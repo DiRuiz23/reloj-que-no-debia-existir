@@ -15,6 +15,20 @@ Ramas: main (estable) <- develop <- feature/tNN-nombre
 Commits: feat(T1): ..., fix: ..., art: ..., docs: ...
 Un solo integrante edita una escena a la vez.
 
+## Controles
+
+| Acción | Teclado | Gamepad |
+|---|---|---|
+| Moverse | A / D o ← / → | Stick izquierdo o cruceta |
+| Saltar | Espacio | Botón A / ✕ |
+| Interactuar | E | Botón X / ◻ |
+| Parada Temporal | Q | RB / R1 |
+| Pausa | Esc | Start |
+| Táctil | Pendiente (I-37) | — |
+
+Las acciones están definidas en `Assets/_Project/Data/Input/PlayerControls.inputactions`
+(mapa `Gameplay`). La clase C# generada está en el namespace `Reloj.Controls`.
+
 ## Cómo compilar
 
 Los perfiles de build están en `Assets/Settings/Build Profiles`
