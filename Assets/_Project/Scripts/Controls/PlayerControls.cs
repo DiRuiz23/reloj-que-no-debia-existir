@@ -256,7 +256,7 @@ namespace Reloj.Controls
                     ""id"": ""f1a37f7a-df60-46c6-9d02-34a6ab8e4788"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.2,max=0.925)"",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
