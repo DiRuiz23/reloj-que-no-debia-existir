@@ -1,0 +1,15 @@
+Fuente: Alegreya (Variable Font, eje wght; instancia Regular)
+Autores: The Alegreya Project Authors (Huerta Tipografica)
+Licencia: SIL Open Font License 1.1 (uso comercial y distribucion dentro del juego permitidos). Texto completo en OFL.txt (misma carpeta).
+Origen: https://fonts.google.com/specimen/Alegreya
+Repositorio: https://github.com/huertatipografica/Alegreya
+Fecha de descarga: 18-oct-2026
+Archivos:
+  - Alegreya-VariableFont_wght.ttf  (fuente original)
+  - Alegreya SDF.asset              (TMP Font Asset generado)
+Generado con: Window > TextMeshPro > Font Asset Creator
+  - Sampling Point Size: 48 | Padding: 2 | Atlas: 1024x1024
+  - Render Mode: SDFAA | Atlas Population: Static
+  - Caracteres: ASCII (32-126) + Latin-1 (160-255: acentos, n con tilde, signos de apertura, comillas angulares)
+    + puntuacion tipografica (guiones largos, comillas curvas, puntos suspensivos)
+Uso en el proyecto: tipografia por defecto de la UI (legible a 1280x720).
