@@ -33,6 +33,7 @@ namespace Reloj.TimeStop
 
         public event Action OnTimeStopStart;
         public event Action OnTimeStopEnd;
+        public event Action OnTimeStopReady;
 
         public TimeStopState State { get; private set; } = TimeStopState.Ready;
 
@@ -52,6 +53,8 @@ namespace Reloj.TimeStop
 
         public float RemainingActiveTime =>
             State == TimeStopState.Active ? Mathf.Max(0f, duration - timer) : 0f;
+
+        public float Duration => duration;
 
         // Evita estado viejo si el Editor tiene desactivado "Reload Domain".
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -138,6 +141,7 @@ namespace Reloj.TimeStop
                     {
                         State = TimeStopState.Ready;
                         timer = 0f;
+                        OnTimeStopReady?.Invoke();
                     }
                     break;
             }
