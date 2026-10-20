@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,14 +12,15 @@ namespace Reloj.Core
         public event Action<string> SceneLoaded;
         public event Action<string> SceneUnloaded;
 
-        // Carga normal (reemplaza todo menos GameServices, que es DontDestroyOnLoad)
         public void LoadSingle(int buildIndex) => StartCoroutine(LoadSingleRoutine(buildIndex));
 
-        // Aditiva
         public void LoadAdditive(string sceneName, bool setActive = false) =>
             StartCoroutine(LoadAdditiveRoutine(sceneName, setActive));
 
         public void Unload(string sceneName) => StartCoroutine(UnloadRoutine(sceneName));
+
+        // Recarga el nivel actual: la escena activa y las aditivas que tenga cargadas.
+        public void ReloadCurrent() => StartCoroutine(ReloadRoutine());
 
         // Conveniencia: LevelNN_Gameplay + LevelNN_Art
         public IEnumerator LoadLevel(int n)
@@ -33,6 +35,28 @@ namespace Reloj.Core
             IsLoading = true;
             var op = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
             while (!op.isDone) yield return null;
+            IsLoading = false;
+        }
+
+        private IEnumerator ReloadRoutine()
+        {
+            IsLoading = true;
+            string activeName = SceneManager.GetActiveScene().name;
+
+            var others = new List<string>();
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                string n = SceneManager.GetSceneAt(i).name;
+                if (n != activeName) others.Add(n);
+            }
+
+            var op = SceneManager.LoadSceneAsync(activeName, LoadSceneMode.Single);
+            while (!op.isDone) yield return null;
+
+            foreach (var n in others)
+                yield return LoadAdditiveRoutine(n, false);
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(activeName));
             IsLoading = false;
         }
 

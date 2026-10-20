@@ -10,11 +10,13 @@ namespace Reloj.Core
         [SerializeField] private GameSession session;
         [SerializeField] private SaveService save;
         [SerializeField] private SceneLoader sceneLoader;
+        [SerializeField] private GameStateManager state;
 
         public DialogueFlagManager Flags => flags;
         public GameSession Session => session;
         public SaveService Save => save;
         public SceneLoader Loader => sceneLoader;
+        public GameStateManager State => state;
 
         private void Awake()
         {
