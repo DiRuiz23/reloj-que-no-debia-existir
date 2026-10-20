@@ -13,6 +13,7 @@ namespace Reloj.Core
         public event Action<string> SceneUnloaded;
 
         public void LoadSingle(int buildIndex) => StartCoroutine(LoadSingleRoutine(buildIndex));
+        public void LoadSingle(string sceneName) => StartCoroutine(LoadSingleRoutine(sceneName));
 
         public void LoadAdditive(string sceneName, bool setActive = false) =>
             StartCoroutine(LoadAdditiveRoutine(sceneName, setActive));
@@ -34,6 +35,14 @@ namespace Reloj.Core
         {
             IsLoading = true;
             var op = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+            while (!op.isDone) yield return null;
+            IsLoading = false;
+        }
+
+        private IEnumerator LoadSingleRoutine(string sceneName)
+        {
+            IsLoading = true;
+            var op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
             while (!op.isDone) yield return null;
             IsLoading = false;
         }

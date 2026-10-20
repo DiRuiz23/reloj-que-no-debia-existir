@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ namespace Reloj.Core
     public class GameStateManager : MonoBehaviour
     {
         [SerializeField] private InputActionReference pauseAction;
+        [Tooltip("Nombre de la escena del menú principal (debe estar en el build).")]
+        [SerializeField] private string menuSceneName = "MainMenu";
 
         public GameState CurrentState { get; private set; } = GameState.Jugando;
         public GameState PreviousState { get; private set; } = GameState.Jugando;
@@ -17,12 +20,23 @@ namespace Reloj.Core
         /// <summary>(estado anterior, estado nuevo)</summary>
         public event Action<GameState, GameState> OnStateChanged;
 
+        /// <summary>true si la escena siguiente del build existe y no es el menú.</summary>
+        public bool HasNextLevel
+        {
+            get
+            {
+                int next = SceneManager.GetActiveScene().buildIndex + 1;
+                if (next >= SceneManager.sceneCountInBuildSettings) return false;
+                string nextName = Path.GetFileNameWithoutExtension(
+                    SceneUtility.GetScenePathByBuildIndex(next));
+                return nextName != menuSceneName;
+            }
+        }
+
         private bool _inputActive;
 
         private void Start()
         {
-            // Si este es un GameServices duplicado (al volver a Boot), no tocar el input
-            // compartido: se destruye en este frame y desactivaría la acción del original.
             var services = GameServices.Instance;
             if (services != null && services.State != this) return;
 
@@ -50,7 +64,6 @@ namespace Reloj.Core
         {
             if (CurrentState == GameState.Jugando) Pause();
             else if (CurrentState == GameState.Pausado) Resume();
-            // En FinDelNivel y GameOver no se hace nada.
         }
 
         public void Pause()
@@ -77,7 +90,6 @@ namespace Reloj.Core
         public void Fail()
         {
             if (CurrentState != GameState.Jugando) return;
-            // No se toca GameSession ni DialogueFlagManager: flags y puntos se conservan.
             SetState(GameState.GameOver);
         }
 
@@ -89,14 +101,25 @@ namespace Reloj.Core
 
         public void LoadNext()
         {
-            int next = SceneManager.GetActiveScene().buildIndex + 1;
-            if (next >= SceneManager.sceneCountInBuildSettings)
+            if (!HasNextLevel)
             {
-                Debug.LogWarning("[GameStateManager] No hay una escena siguiente en el build.");
+                Debug.LogWarning("[GameStateManager] No hay un siguiente nivel.");
                 return;
             }
+            int next = SceneManager.GetActiveScene().buildIndex + 1;
             SetState(GameState.Jugando);
             GameServices.Instance.Loader.LoadSingle(next);
+        }
+
+        public void QuitToMenu()
+        {
+            if (!Application.CanStreamedLevelBeLoaded(menuSceneName))
+            {
+                Debug.LogWarning($"[GameStateManager] La escena '{menuSceneName}' no está en el build.");
+                return;
+            }
+            SetState(GameState.Jugando);   // devuelve timeScale a 1 antes de salir
+            GameServices.Instance.Loader.LoadSingle(menuSceneName);
         }
 
         private void SetState(GameState next)
@@ -106,7 +129,6 @@ namespace Reloj.Core
             PreviousState = CurrentState;
             CurrentState = next;
 
-            // Jugando = tiempo normal. Cualquier otro estado congela el gameplay.
             Time.timeScale = next == GameState.Jugando ? 1f : 0f;
             AudioListener.pause = next == GameState.Pausado;
 
