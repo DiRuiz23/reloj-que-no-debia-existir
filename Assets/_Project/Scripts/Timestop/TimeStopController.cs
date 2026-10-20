@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Reloj.Core;
 
 namespace Reloj.TimeStop
 {
@@ -114,6 +115,11 @@ namespace Reloj.TimeStop
 
         public bool TryStartTimeStop()
         {
+            // I-11: sin Parada Temporal en Pausa / FinDelNivel / GameOver.
+            var services = GameServices.Instance;
+            if (services != null && services.State != null
+                && services.State.CurrentState != GameState.Jugando) return false;
+
             // En Activo o Recargando no hace nada y NO toca el temporizador.
             if (State != TimeStopState.Ready) return false;
 
