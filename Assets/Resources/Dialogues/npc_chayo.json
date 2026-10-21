@@ -1,0 +1,68 @@
+{
+  "id": "npc_chayo",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Doña Chayo",
+      "text": "Ay, muchacho... ¿tú no eres el aprendiz del relojero? Desde que el reloj de la plaza dejó de sonar, el pueblo anda raro.",
+      "altIf": { "flag": "pista_dia20_obtenida", "next": "ya_hablamos" },
+      "choices": [
+        { "text": "¿Sabe algo del reloj?", "next": "pista", "setFlag": "pista_dia20_obtenida" },
+        { "text": "Solo pasaba a saludar.", "next": "saludo" },
+        { "text": "No tengo tiempo, señora.", "next": "seca" }
+      ]
+    },
+    {
+      "id": "pista",
+      "speaker": "Doña Chayo",
+      "text": "El día 20, de madrugada, vi a un hombre de levita salir del taller. Cargaba algo que hacía tic, tic, tic.",
+      "choices": [
+        { "text": "¿Cómo era ese hombre?", "next": "descripcion" },
+        { "text": "Gracias, Doña Chayo.", "next": "fin_amable" }
+      ]
+    },
+    {
+      "id": "descripcion",
+      "speaker": "Doña Chayo",
+      "text": "Alto, de bigote fino, y con un anillo de oro con un engrane grabado. Eso sí lo recuerdo.",
+      "choices": [
+        { "text": "Con eso me basta. Gracias.", "next": "fin_amable" },
+        { "text": "¿Y hacia dónde se fue?", "next": "direccion" }
+      ]
+    },
+    {
+      "id": "direccion",
+      "speaker": "Doña Chayo",
+      "text": "Rumbo a la estación, ándale. Pero no me preguntes más, que me da miedo.",
+      "end": true
+    },
+    {
+      "id": "saludo",
+      "speaker": "Doña Chayo",
+      "text": "Qué amable. Pasa por unos tamales cuando tengas tiempo.",
+      "choices": [
+        { "text": "Luego paso, gracias.", "next": "fin_amable" },
+        { "text": "Mejor dígame del reloj.", "next": "pista", "setFlag": "pista_dia20_obtenida" }
+      ]
+    },
+    {
+      "id": "seca",
+      "speaker": "Doña Chayo",
+      "text": "Pues qué prisa, jovencito. Ni los buenos días.",
+      "end": true
+    },
+    {
+      "id": "fin_amable",
+      "speaker": "Doña Chayo",
+      "text": "Que Dios te cuide, muchacho.",
+      "end": true
+    },
+    {
+      "id": "ya_hablamos",
+      "speaker": "Doña Chayo",
+      "text": "Ya te dije todo lo que vi. Ten cuidado con el hombre del anillo.",
+      "end": true
+    }
+  ]
+}
