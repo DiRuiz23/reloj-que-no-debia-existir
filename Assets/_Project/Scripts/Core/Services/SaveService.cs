@@ -7,5 +7,8 @@ namespace Reloj.Core
     {
         public void Save() => Debug.Log("[SaveService] Save() - stub");
         public bool Load() { Debug.Log("[SaveService] Load() - stub"); return false; }
+
+        // STUB (I-34): devolverá true cuando exista un archivo de guardado.
+        public bool HasSaveGame => false;
     }
 }
