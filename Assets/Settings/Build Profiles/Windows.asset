@@ -23,6 +23,8 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Boot.unity
   - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Splash.unity
+  - m_enabled: 1
     m_path: Assets/_Project/Scenes/Test_Sandbox.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Test_GameState.unity
