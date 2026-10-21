@@ -25,6 +25,12 @@ namespace Reloj.Player
         Vector2 input;
         bool wasMoving;
 
+        /// <summary>
+        /// true = ignora el input de movimiento (dialogos, cinematicas). El personaje se detiene
+        /// y su animacion vuelve a Idle; al ponerlo en false recupera el control.
+        /// </summary>
+        public bool InputLocked { get; set; }
+
         /// <summary>0 a 1: magnitud del input (stick proporcional, teclado = 1).</summary>
         public float NormalizedSpeed { get; private set; }
 
@@ -53,7 +59,7 @@ namespace Reloj.Player
 
         void Update()
         {
-            Vector2 raw = moveAction != null ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
+            Vector2 raw = (!InputLocked && moveAction != null) ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
             input = Vector2.ClampMagnitude(raw, 1f);
             NormalizedSpeed = input.magnitude;
 
