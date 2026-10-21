@@ -25,7 +25,7 @@ namespace Reloj.Core
             var gs = GameServices.Instance;
             if (gs == null) return;
             gs.Session.AddScore(100);
-            gs.Flags.SetFlag("prueba");
+            DialogueFlagManager.SetFlag("prueba");
         }
 
         private void Update()
@@ -41,7 +41,7 @@ namespace Reloj.Core
                 $"Estado: {gs.State.CurrentState}\n" +
                 $"TimeScale: {Time.timeScale}\n" +
                 $"Puntos: {gs.Session.Score}\n" +
-                $"Flag 'prueba': {gs.Flags.GetFlag("prueba")}\n" +
+                $"Flag 'prueba': {DialogueFlagManager.GetFlag("prueba")}\n" +
                 $"Resultado nivel: {gs.Session.LastLevelScore} pts / {gs.Session.LastLevelTime:F1} s";
         }
     }
