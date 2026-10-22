@@ -1,0 +1,58 @@
+{
+  "id": "nivel1_candelaria",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Candelaria",
+      "text": "Juan, hijo, qué bueno verte. Desde que la campana de la plaza calló, el pueblo duerme mal. Y yo, peor.",
+      "altIf": { "flag": "pista_dia20_obtenida", "next": "ya_hablamos" },
+      "choices": [
+        { "text": "¿Usted sabe algo del reloj, Doña Candelaria?", "next": "pista", "setFlag": "pista_dia20_obtenida" },
+        { "text": "Se le ve cansada. ¿Pudo dormir?", "next": "charla", "setFlag": "candelaria_confio" }
+      ]
+    },
+    {
+      "id": "charla",
+      "speaker": "Candelaria",
+      "text": "¿Dormir? Cada noche oigo ese tic, tic, tic dentro de mi cabeza, como si el reloj siguiera corriendo en algún lado. Me pasa desde la madrugada del día 20.",
+      "choices": [
+        { "text": "Cuénteme qué pasó ese día.", "next": "pista", "setFlag": "pista_dia20_obtenida" },
+        { "text": "No quiero importunarla.", "next": "despedida" }
+      ]
+    },
+    {
+      "id": "pista",
+      "speaker": "Candelaria",
+      "text": "Esa madrugada vi salir del taller a un hombre de levita, con prisa. Cargaba algo envuelto en un paño, y de ahí venía un tic, tic, tic que no era de reloj de bolsillo. Panfilo, el campanero, dice que la campana se paró sola a esa misma hora.",
+      "choices": [
+        { "text": "¿Dónde encuentro a Panfilo?", "next": "panfilo", "setFlag": "panfilo_mencionado" },
+        { "text": "Gracias, Doña Candelaria.", "next": "fin_gracias" }
+      ]
+    },
+    {
+      "id": "panfilo",
+      "speaker": "Candelaria",
+      "text": "En la plaza, al pie de la torre. Desde que el reloj calló no se separa de ahí.",
+      "end": true
+    },
+    {
+      "id": "fin_gracias",
+      "speaker": "Candelaria",
+      "text": "Que Dios te cuide, Juan.",
+      "end": true
+    },
+    {
+      "id": "despedida",
+      "speaker": "Candelaria",
+      "text": "Será otro día, entonces. Las noches aquí son largas.",
+      "end": true
+    },
+    {
+      "id": "ya_hablamos",
+      "speaker": "Candelaria",
+      "text": "Ya te conté lo que vi, Juan. Busca a Panfilo en la plaza y ten cuidado con el hombre de la levita.",
+      "end": true
+    }
+  ]
+}
