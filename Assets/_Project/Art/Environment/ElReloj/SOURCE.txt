@@ -1,0 +1,12 @@
+Fuente: Kit modular de entorno "ElReloj" - Estacion ferroviaria 1910 (109 piezas FBX + paleta de color)
+Autores: Equipo del proyecto "El Reloj que No Debia Existir" (creacion propia, sin recursos de terceros)
+Licencia: Obra original del equipo. Distribucion dentro del juego permitida; no incluye material con licencia externa.
+Herramienta: Blender (modelado low-poly con scripts Python); exportado a FBX.
+Fecha de creacion: 22-oct-2026
+Fuente editable: Assets/_Project/Art/Environment/_Fuente/ (ElReloj_Estacion1910.blend y scripts/)
+Archivos:
+  - FBX/                        (piezas por categoria: terreno, arquitectura, ferrocarril, props, vegetacion)
+  - Textures/TEX_Palette_16x16.png  (paleta unica de 100 colores, filtrado Point)
+  - Materials/                  (MAT_Palette, MAT_Glass_Clear; generados con el menu ElReloj > 1 - Crear materiales)
+  - Editor/ElRelojPostprocessor.cs  (importador: materiales, colliders y capa Interactable)
+Uso en el proyecto: decorado 3D de Level01_Art (estacion San Roque, 1910).
