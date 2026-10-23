@@ -1,0 +1,6 @@
+Fuente: Sprites del NPC masculino (Panfilo) - pixel art, animacion de caminar
+Autores: Equipo del proyecto "El Reloj que No Debia Existir" (creacion propia, sin recursos de terceros)
+Licencia: Obra original del equipo. Distribucion dentro del juego permitida; no incluye material con licencia externa.
+Herramienta: Blender (render a pixel art por script); PNG para Unity.
+Fecha de creacion: 22-oct-2026
+Uso en el proyecto: NPC de Gameplay (I-17). No se usa en Level01_Art.
