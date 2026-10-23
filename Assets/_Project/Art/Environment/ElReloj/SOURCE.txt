@@ -9,4 +9,6 @@ Archivos:
   - Textures/TEX_Palette_16x16.png  (paleta unica de 100 colores, filtrado Point)
   - Materials/                  (MAT_Palette, MAT_Glass_Clear; generados con el menu ElReloj > 1 - Crear materiales)
   - Editor/ElRelojPostprocessor.cs  (importador: materiales, colliders y capa Interactable)
-Uso en el proyecto: decorado 3D de Level01_Art (estacion San Roque, 1910).
+Uso en el proyecto:
+  - Level01_Art: decorado 3D de la estacion San Roque, 1910.
+  - Level03_Art: pueblo ocupado y campamento revolucionario, armados reutilizando piezas de este mismo kit (casas de adobe, ramadas, tiendas, atalaya, fogata); no se anadieron recursos externos ni modelos nuevos.
