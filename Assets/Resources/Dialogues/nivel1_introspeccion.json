@@ -1,0 +1,12 @@
+{
+  "id": "nivel1_introspeccion",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "El taller huele a aceite y a polvo. Desde que el maestro no está, el reloj de la plaza no marca la hora y todos fingen que no lo notan. En un país a punto de incendiarse, un reloj detenido debería ser lo de menos. No lo es.",
+      "end": true
+    }
+  ]
+}
