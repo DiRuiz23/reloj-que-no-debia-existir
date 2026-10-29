@@ -30,6 +30,31 @@ namespace Reloj.Core
             LastLevelScore = 0;
             LastLevelTime = 0f;
             _data.Clear();
+            ClearCheckpoint();
+        }
+
+        public bool HasCheckpoint { get; private set; }
+        public Vector3 CheckpointPosition { get; private set; }
+        public string CheckpointId { get; private set; } = "";
+        public int CheckpointOrder { get; private set; } = -1;
+
+        /// Guarda el checkpoint solo si no es anterior al actual (evita retroceder).
+        public bool SetCheckpoint(string id, Vector3 position, int order)
+        {
+            if (HasCheckpoint && order < CheckpointOrder) return false;
+            HasCheckpoint = true;
+            CheckpointId = id;
+            CheckpointPosition = position;
+            CheckpointOrder = order;
+            return true;
+        }
+
+        public void ClearCheckpoint()
+        {
+            HasCheckpoint = false;
+            CheckpointId = "";
+            CheckpointPosition = Vector3.zero;
+            CheckpointOrder = -1;
         }
     }
 }

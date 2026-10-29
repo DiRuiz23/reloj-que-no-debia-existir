@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.UI.GameStateUI
   panels:
   - {fileID: 7574277844954664479}
-  - {fileID: 0}
+  - {fileID: 5006590116246147831}
   - {fileID: 4465460520397195107}
   optionsPanel: {fileID: 0}
 --- !u!1 &440630036822402179
