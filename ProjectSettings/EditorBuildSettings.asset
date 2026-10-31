@@ -6,17 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Project/Scenes/Boot.unity
+    guid: bd3b6f9f13e6d88479f64b38943f113d
   - enabled: 1
-    path: Assets/_Project/Scenes/Test_Sandbox.unity
-    guid: b62b88e5cff84084a8407d53276bd89c
+    path: Assets/_Project/Scenes/Splash.unity
+    guid: 86c9afa040d57ed479b17b85fd025d7a
   - enabled: 1
-    path: Assets/_Project/Scenes/Test_TimeStop.unity
-    guid: ec2ceaa713617d74fa9e566ae8729a95
+    path: Assets/_Project/Scenes/MainMenu.unity
+    guid: b5d307e729d9bd440aaf2284157a4b92
   - enabled: 1
     path: Assets/_Project/Scenes/Level01_Art.unity
     guid: d4ea95e6ccabe4c41a6559fe7fba9d81
+  - enabled: 1
+    path: Assets/_Project/Scenes/Level01_Gameplay.unity
+    guid: 6e651d6ab5c35824e9896ab14bfb9fd3
+  - enabled: 0
+    path: Assets/_Project/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/_Project/Scenes/Test_Sandbox.unity
+    guid: b62b88e5cff84084a8407d53276bd89c
+  - enabled: 0
+    path: Assets/_Project/Scenes/Test_TimeStop.unity
+    guid: ec2ceaa713617d74fa9e566ae8729a95
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

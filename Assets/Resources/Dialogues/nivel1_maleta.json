@@ -1,0 +1,41 @@
+{
+  "id": "nivel1_maleta",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Una maleta de cuero, olvidada junto a los rieles. Tiene el broche forzado y por la rendija asoma un papel doblado.",
+      "altIf": { "flag": "telegrama_dia20_leido", "next": "ya_leido" },
+      "choices": [
+        { "text": "Tomar el papel.", "next": "telegrama", "setFlag": "telegrama_dia20_leido" },
+        { "text": "No es asunto mío.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "telegrama",
+      "speaker": "Juan",
+      "text": "Lo desdoblo y me lo guardo en el abrigo. Es un telegrama arrugado: «La pieza sale en el tren de la madrugada del veinte. Que nadie la vea partir. —E.» Al reverso, alguien dibujó un engrane a lápiz. El veinte... tendré que preguntar en el pueblo qué pasó esa madrugada.",
+      "altIf": { "flag": "pista_dia20_obtenida", "next": "telegrama_pista" },
+      "end": true
+    },
+    {
+      "id": "telegrama_pista",
+      "speaker": "Juan",
+      "text": "Lo desdoblo y me lo guardo en el abrigo. Es un telegrama arrugado: «La pieza sale en el tren de la madrugada del veinte. Que nadie la vea partir. —E.» El veinte. La misma madrugada en que Doña Candelaria vio salir del taller al hombre de la levita, cargando algo que hacía tic, tic, tic. No fue un robo cualquiera: alguien sabía a qué hora partía el tren.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "Cierro la maleta como la encontré. Algo me dice que más adelante echaré de menos ese papel.",
+      "end": true
+    },
+    {
+      "id": "ya_leido",
+      "speaker": "Juan",
+      "text": "El telegrama ya va conmigo, bien guardado en el abrigo.",
+      "end": true
+    }
+  ]
+}
