@@ -1,0 +1,6 @@
+Nombre: Plantilla WebGL PIXELNOVA (basada en la plantilla Default de Unity)
+Autor: Unity Technologies (plantilla base y botones/barra de carga); PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera) para título, favicon, colores y pantalla de carga
+URL: https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-templates.html
+Licencia: Plantilla incluida con Unity Editor, sujeta a los términos de Unity. Favicon y logo de carga derivados de las imágenes del equipo (ver Art/UI/SOURCE.txt).
+Herramienta: Unity 6000.3.9f1.
+Uso en el proyecto: página, favicon, título y pantalla de carga del build WebGL.

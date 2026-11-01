@@ -51,6 +51,16 @@ MonoBehaviour:
     tool: Unity (Window > TextMeshPro > Import TMP Essential Resources).
     usage: fuente y shaders por defecto de TextMesh Pro.
     sourcePath: Assets/TextMesh Pro
+  - name: Plantilla WebGL PIXELNOVA (basada en la plantilla Default de Unity)
+    author: "Unity Technologies (plantilla base y botones/barra de carga); PIXELNOVA
+      GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan Diego Ruiz Rivera)
+      para t\xEDtulo, favicon, colores y pantalla de carga"
+    source: https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-templates.html
+    license: "Plantilla incluida con Unity Editor, sujeta a los t\xE9rminos de Unity.
+      Favicon y logo de carga derivados de las im\xE1genes del equipo (ver Art/UI/SOURCE.txt)."
+    tool: Unity 6000.3.9f1.
+    usage: "p\xE1gina, favicon, t\xEDtulo y pantalla de carga del build WebGL."
+    sourcePath: Assets/WebGLTemplates/PIXELNOVA
   - name: Sprite provisional del jugador, animaciones y controladores
     author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
       Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
