@@ -1,0 +1,7 @@
+Nombre: Logotipos, fondo del menú e ícono del reloj (Logo, Logo_Juego_1910, Img_Fondo, icon_reloj)
+Autor: Generado con Gemini AI (Google) por encargo de PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera)
+URL: https://gemini.google.com
+Licencia: Contenido generado con IA para el proyecto. Uso dentro del juego conforme a los términos de servicio de Gemini (Google); no incluye material con licencia de terceros conocido.
+Herramienta: Gemini AI (Google).
+Uso en el proyecto: logotipo del estudio, logotipo del juego 1910, imagen de fondo del menú principal e ícono del reloj en la interfaz.
+Nota: la tipografía (subcarpeta Fonts) tiene su propio SOURCE.txt.

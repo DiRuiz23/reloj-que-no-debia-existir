@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461850b1ccdcf2243b104bffc523b092, type: 3}
+  m_Name: CreditsData
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.UI.CreditsData
+  gameTitle: 1910
+  studio: PIXELNOVA GAME STUDIO
+  authors:
+  - name: "Monserrat Guadalupe Casta\xF1on Sanchez"
+    role: Desarrollo
+  - name: Juan Diego Ruiz Rivera
+    role: Desarrollo
+  tools:
+  - name: Unity 6000.3.9f1
+    usage: Motor del juego
+    url: https://unity.com
+  - name: Blender
+    usage: Modelado y renderizado de sprites
+    url: https://www.blender.org
+  - name: Gemini AI (Google)
+    usage: "Logotipos e im\xE1genes de fondo"
+    url: https://gemini.google.com
+  - name: Claude (Anthropic)
+    usage: "Programaci\xF3n, audio y arte generados con asistencia de IA"
+    url: https://claude.ai
+  - name: Antigravity (Google)
+    usage: Entorno de desarrollo asistido por IA
+    url: https://antigravity.google
+  - name: Unity MCP (CoplayDev)
+    usage: "Conexi\xF3n de Claude con el editor de Unity"
+    url: https://github.com/CoplayDev/unity-mcp
+  - name: Paquetes de Unity
+    usage: Universal Render Pipeline, Input System, Cinemachine, Timeline, AI Navigation,
+      ProBuilder, TextMesh Pro (uGUI), Visual Scripting
+    url: https://docs.unity3d.com/Manual/PackagesList.html
+  assets:
+  - name: TextMesh Pro (recursos esenciales) y fuente Liberation Sans
+    author: Unity Technologies (TextMesh Pro); Red Hat, Inc. (Liberation Sans)
+    source: https://github.com/liberationfonts/liberation-fonts
+    license: "SIL Open Font License 1.1 (Liberation Sans). Shaders y dem\xE1s recursos
+      de TextMesh Pro: licencia del paquete com.unity.ugui de Unity."
+    tool: Unity (Window > TextMeshPro > Import TMP Essential Resources).
+    usage: fuente y shaders por defecto de TextMesh Pro.
+    sourcePath: Assets/TextMesh Pro
+  - name: Sprite provisional del jugador, animaciones y controladores
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: Blender y scripts generados con Claude (Anthropic); animaciones y controladores
+      creados en Unity.
+    usage: personaje jugable (Gameplay).
+    sourcePath: Assets/_Project/Art/Characters
+  - name: Kit modular de entorno "ElReloj" - Estacion ferroviaria 1910 (109 piezas
+      FBX + paleta de color)
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: "Blender (modelado low-poly con scripts Python); exportado a FBX. Scripts
+      y generaci\xF3n con Claude (Anthropic)."
+    usage: 
+    sourcePath: Assets/_Project/Art/Environment/ElReloj
+  - name: Sprites del NPC masculino (Panfilo) - pixel art, animacion de caminar
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: "Blender (render a pixel art por script); PNG para Unity. Scripts y generaci\xF3n
+      con Claude (Anthropic)."
+    usage: NPC de Gameplay (I-17). No se usa en Level01_Art.
+    sourcePath: Assets/_Project/Art/RelojBlender_NPC_Hombre-20261022T042823Z-1-001/RelojBlender_NPC_Hombre
+  - name: Sprite sheets del NPC femenino - pixel art
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: "Blender (render a pixel art por script); sheets PNG para Unity. Scripts
+      y generaci\xF3n con Claude (Anthropic)."
+    usage: personaje no jugable (NPC) del nivel.
+    sourcePath: Assets/_Project/Art/RelojBlender_NPC_Mujer-20261025T040126Z-1-001/RelojBlender_NPC_Mujer
+  - name: Sprite sheets del protagonista (Juan) - pixel art, celdas 32x64
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: "Blender (render a pixel art por script); sheets PNG para Unity. Scripts
+      y generaci\xF3n con Claude (Anthropic)."
+    usage: sprite del jugador (Gameplay). No se usa en Level01_Art.
+    sourcePath: Assets/_Project/Art/RelojBlender_Protagonista-20261022T042756Z-1-001/RelojBlender_Protagonista
+  - name: Texturas pixel-art de 16 px (texture_16px) para el entorno
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: Blender y scripts generados con Claude (Anthropic).
+    usage: texturas de superficies del entorno.
+    sourcePath: Assets/_Project/Art/Textures
+  - name: "Logotipos, fondo del men\xFA e \xEDcono del reloj (Logo, Logo_Juego_1910,
+      Img_Fondo, icon_reloj)"
+    author: "Generado con Gemini AI (Google) por encargo de PIXELNOVA GAME STUDIO
+      (Monserrat Guadalupe Casta\xF1on Sanchez y Juan Diego Ruiz Rivera)"
+    source: https://gemini.google.com
+    license: "Contenido generado con IA para el proyecto. Uso dentro del juego conforme
+      a los t\xE9rminos de servicio de Gemini (Google); no incluye material con licencia
+      de terceros conocido."
+    tool: Gemini AI (Google).
+    usage: "logotipo del estudio, logotipo del juego 1910, imagen de fondo del men\xFA
+      principal e \xEDcono del reloj en la interfaz."
+    sourcePath: Assets/_Project/Art/UI
+  - name: Alegreya (Variable Font, eje wght; instancia Regular)
+    author: The Alegreya Project Authors (Huerta Tipografica)
+    source: https://fonts.google.com/specimen/Alegreya
+    license: SIL Open Font License 1.1 (uso comercial y distribucion dentro del juego
+      permitidos). Texto completo en OFL.txt (misma carpeta).
+    tool: Google Fonts / TextMeshPro Font Asset Creator
+    usage: tipografia por defecto de la UI (legible a 1280x720).
+    sourcePath: Assets/_Project/Art/UI/Fonts
+  - name: Efecto de brillo circular (ring_glow)
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: N/A (obra original)
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: Scripts generados con Claude (Anthropic).
+    usage: efecto visual de la Parada Temporal.
+    sourcePath: Assets/_Project/Art/VFX
+  - name: "Audio del juego - m\xFAsica, efectos de sonido y ambientes (18 WAV)"
+    author: "PIXELNOVA GAME STUDIO (Monserrat Guadalupe Casta\xF1on Sanchez y Juan
+      Diego Ruiz Rivera), con asistencia de Claude (Anthropic)"
+    source: "N/A (obra original generada por c\xF3digo)"
+    license: "Obra original del equipo, generada con asistencia de IA. Distribuci\xF3n
+      dentro del juego permitida; no incluye material con licencia externa. Uso conforme
+      a los t\xE9rminos de servicio de la herramienta de IA utilizada."
+    tool: "Claude (Anthropic) y el script de editor PlaceholderAudioGenerator (s\xEDntesis
+      de audio por c\xF3digo)."
+    usage: audio provisional del nivel 1 y de la interfaz.
+    sourcePath: Assets/_Project/Audio

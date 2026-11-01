@@ -1,0 +1,6 @@
+Nombre: Texturas pixel-art de 16 px (texture_16px) para el entorno
+Autor: PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera), con asistencia de Claude (Anthropic)
+URL: N/A (obra original)
+Licencia: Obra original del equipo, generada con asistencia de IA. Distribución dentro del juego permitida; no incluye material con licencia externa. Uso conforme a los términos de servicio de la herramienta de IA utilizada.
+Herramienta: Blender y scripts generados con Claude (Anthropic).
+Uso en el proyecto: texturas de superficies del entorno.

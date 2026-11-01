@@ -1,0 +1,7 @@
+Nombre: Sprite sheets del NPC femenino - pixel art
+Autor: PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera), con asistencia de Claude (Anthropic)
+URL: N/A (obra original)
+Licencia: Obra original del equipo, generada con asistencia de IA. Distribución dentro del juego permitida; no incluye material con licencia externa. Uso conforme a los términos de servicio de la herramienta de IA utilizada.
+Herramienta: Blender (render a pixel art por script); sheets PNG para Unity. Scripts y generación con Claude (Anthropic).
+Fecha de creacion: 25-oct-2026
+Uso en el proyecto: personaje no jugable (NPC) del nivel.

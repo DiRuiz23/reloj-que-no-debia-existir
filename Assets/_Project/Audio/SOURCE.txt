@@ -1,0 +1,7 @@
+Nombre: Audio del juego - música, efectos de sonido y ambientes (18 WAV)
+Autor: PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera), con asistencia de Claude (Anthropic)
+URL: N/A (obra original generada por código)
+Licencia: Obra original del equipo, generada con asistencia de IA. Distribución dentro del juego permitida; no incluye material con licencia externa. Uso conforme a los términos de servicio de la herramienta de IA utilizada.
+Herramienta: Claude (Anthropic) y el script de editor PlaceholderAudioGenerator (síntesis de audio por código).
+Contenido: 1 pista de música, 15 efectos de sonido y 2 ambientes.
+Uso en el proyecto: audio provisional del nivel 1 y de la interfaz.

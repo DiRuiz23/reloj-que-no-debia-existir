@@ -1,7 +1,8 @@
-Fuente: Alegreya (Variable Font, eje wght; instancia Regular)
-Autores: The Alegreya Project Authors (Huerta Tipografica)
+Nombre: Alegreya (Variable Font, eje wght; instancia Regular)
+Autor: The Alegreya Project Authors (Huerta Tipografica)
+URL: https://fonts.google.com/specimen/Alegreya
 Licencia: SIL Open Font License 1.1 (uso comercial y distribucion dentro del juego permitidos). Texto completo en OFL.txt (misma carpeta).
-Origen: https://fonts.google.com/specimen/Alegreya
+Herramienta: Google Fonts / TextMeshPro Font Asset Creator
 Repositorio: https://github.com/huertatipografica/Alegreya
 Fecha de descarga: 18-oct-2026
 Archivos:
