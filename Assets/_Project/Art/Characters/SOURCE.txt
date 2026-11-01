@@ -1,0 +1,6 @@
+Nombre: Sprite provisional del jugador, animaciones y controladores
+Autor: PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera), con asistencia de Claude (Anthropic)
+URL: N/A (obra original)
+Licencia: Obra original del equipo, generada con asistencia de IA. Distribución dentro del juego permitida; no incluye material con licencia externa. Uso conforme a los términos de servicio de la herramienta de IA utilizada.
+Herramienta: Blender y scripts generados con Claude (Anthropic); animaciones y controladores creados en Unity.
+Uso en el proyecto: personaje jugable (Gameplay).

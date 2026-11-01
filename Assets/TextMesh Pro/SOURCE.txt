@@ -1,0 +1,6 @@
+Nombre: TextMesh Pro (recursos esenciales) y fuente Liberation Sans
+Autor: Unity Technologies (TextMesh Pro); Red Hat, Inc. (Liberation Sans)
+URL: https://github.com/liberationfonts/liberation-fonts
+Licencia: SIL Open Font License 1.1 (Liberation Sans). Shaders y demás recursos de TextMesh Pro: licencia del paquete com.unity.ugui de Unity.
+Herramienta: Unity (Window > TextMeshPro > Import TMP Essential Resources).
+Uso en el proyecto: fuente y shaders por defecto de TextMesh Pro.

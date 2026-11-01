@@ -30,6 +30,10 @@ MonoBehaviour:
     m_path: Assets/_Project/Scenes/Test_GameState.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/MainMenu.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level01_Art.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level01_Gameplay.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

@@ -1,7 +1,8 @@
-Fuente: Kit modular de entorno "ElReloj" - Estacion ferroviaria 1910 (109 piezas FBX + paleta de color)
-Autores: Equipo del proyecto "El Reloj que No Debia Existir" (creacion propia, sin recursos de terceros)
-Licencia: Obra original del equipo. Distribucion dentro del juego permitida; no incluye material con licencia externa.
-Herramienta: Blender (modelado low-poly con scripts Python); exportado a FBX.
+Nombre: Kit modular de entorno "ElReloj" - Estacion ferroviaria 1910 (109 piezas FBX + paleta de color)
+Autor: PIXELNOVA GAME STUDIO (Monserrat Guadalupe Castañon Sanchez y Juan Diego Ruiz Rivera), con asistencia de Claude (Anthropic)
+URL: N/A (obra original)
+Licencia: Obra original del equipo, generada con asistencia de IA. Distribución dentro del juego permitida; no incluye material con licencia externa. Uso conforme a los términos de servicio de la herramienta de IA utilizada.
+Herramienta: Blender (modelado low-poly con scripts Python); exportado a FBX. Scripts y generación con Claude (Anthropic).
 Fecha de creacion: 22-oct-2026
 Fuente editable: Assets/_Project/Art/Environment/_Fuente/ (ElReloj_Estacion1910.blend y scripts/)
 Archivos:
