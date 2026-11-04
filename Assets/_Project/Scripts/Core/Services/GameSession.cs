@@ -9,6 +9,16 @@ namespace Reloj.Core
         public int LastLevelScore { get; private set; }
         public float LastLevelTime { get; private set; }
 
+        // --- Vida, puntaje y tiempo del nivel en curso (los escriben PlayerHealth, ScoreManager y LevelTimer) ---
+        public int CurrentHealth { get; private set; }
+        public int MaxHealth { get; private set; }
+        public int LevelScore { get; private set; }
+        public float LevelTime { get; private set; }
+
+        public void SetHealth(int current, int max) { CurrentHealth = current; MaxHealth = max; }
+        public void SetLevelScore(int score) => LevelScore = score;
+        public void SetLevelTime(float time) => LevelTime = time;
+
         private readonly Dictionary<string, string> _data = new();
 
         public void AddScore(int amount) => Score += amount;
@@ -29,6 +39,10 @@ namespace Reloj.Core
             Score = 0;
             LastLevelScore = 0;
             LastLevelTime = 0f;
+            CurrentHealth = 0;
+            MaxHealth = 0;
+            LevelScore = 0;
+            LevelTime = 0f;
             _data.Clear();
             ClearCheckpoint();
         }

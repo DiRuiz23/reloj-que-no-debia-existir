@@ -13,9 +13,12 @@ namespace Reloj.Player
         [SerializeField, Min(0f)] float invulnerableSeconds = 1f;
         [Tooltip("0 = nunca GameOver. >0 = al llegar a ese número de muertes se llama Fail().")]
         [SerializeField, Min(0)] int maxDeathsBeforeGameOver = 0;
+        [Tooltip("Vida que se pierde en cada muerte (convoy o caída). 0 = la muerte no afecta la vida.")]
+        [SerializeField, Min(0)] int damagePerDeath = 34;
 
         Rigidbody rb;
         PlayerMotor motor;
+        PlayerHealth health;
         float invulnerableUntil;
 
         public int Deaths { get; private set; }
@@ -26,6 +29,7 @@ namespace Reloj.Player
         {
             rb = GetComponent<Rigidbody>();
             motor = GetComponent<PlayerMotor>();
+            health = GetComponent<PlayerHealth>();
         }
 
         void Start()
@@ -46,6 +50,12 @@ namespace Reloj.Player
 
             Deaths++;
             OnDied?.Invoke();
+
+            if (health != null && damagePerDeath > 0)
+            {
+                health.TakeDamage(damagePerDeath);
+                if (health.IsDead) return;   // PlayerHealth ya llamó a Fail(): no reaparecer
+            }
 
             if (maxDeathsBeforeGameOver > 0 && Deaths >= maxDeathsBeforeGameOver && state != null)
             {
