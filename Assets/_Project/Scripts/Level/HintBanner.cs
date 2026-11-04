@@ -17,6 +17,8 @@ namespace Reloj.Level
 
         CanvasGroup group;
         object owner;
+        int ownerPriority;
+        int ownerFrame = -10;
         string persistentText;
         string flashText;
         float flashUntil = -1f;
@@ -44,9 +46,18 @@ namespace Reloj.Level
 
         void HandleUsed() { TimeStopUsed = true; }
 
-        public void Show(object who, string text)
+        /// <summary>
+        /// Pide mostrar un texto mientras la zona siga llamando cada frame. Si otra zona ya lo esta usando,
+        /// solo se lo quita con mayor prioridad (a igual prioridad manda quien llego primero: sin parpadeo).
+        /// </summary>
+        public void Show(object who, string text, int priority = 0)
         {
+            bool ownerAlive = owner != null && Time.frameCount - ownerFrame <= 1;
+            if (ownerAlive && owner != who && priority <= ownerPriority) return;
+
             owner = who;
+            ownerPriority = priority;
+            ownerFrame = Time.frameCount;
             persistentText = text;
         }
 
