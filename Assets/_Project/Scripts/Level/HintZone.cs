@@ -4,6 +4,7 @@ using Reloj.Core;
 using Reloj.Dialogue;
 using Reloj.Player;
 using Reloj.TimeStop;
+using Reloj.Tutorial;
 
 namespace Reloj.Level
 {
@@ -15,6 +16,8 @@ namespace Reloj.Level
         [SerializeField] InputActionReference timeStopAction;
         [SerializeField] string readyMessage = "Pulsa {0} para detener el tiempo";
         [SerializeField] string rechargingMessage = "La Parada se recarga... {0}%";
+        [Tooltip("Lo que se muestra en {0} con pantalla tactil (hasta que I-37 agregue bindings tactiles).")]
+        [SerializeField] string touchLabel = "el boton de Parada";
         [Tooltip("Si es true, deja de mostrar la pista de uso una vez que el jugador ya uso la Parada.")]
         [SerializeField] bool hideAfterFirstUse = true;
         [Tooltip("Si es true, solo avisa mientras la Parada se esta recargando.")]
@@ -35,6 +38,7 @@ namespace Reloj.Level
         {
             if (other.GetComponentInParent<PlayerMotor>() == null) return;
             inside = true;
+            if (timeStopAction != null) timeStopAction.action.Enable();
             if (!flashed && !string.IsNullOrEmpty(flashOnEnter)
                 && (string.IsNullOrEmpty(flashIfFlagMissing) || !DialogueFlagManager.GetFlag(flashIfFlagMissing))
                 && HintBanner.Instance != null)
@@ -80,10 +84,11 @@ namespace Reloj.Level
             banner.Show(this, string.Format(readyMessage, KeyLabel()));
         }
 
+        // Tecla/boton real del dispositivo que la persona esta usando (teclado, gamepad o tactil).
         string KeyLabel()
         {
-            if (timeStopAction == null || timeStopAction.action == null) return "Q";
-            return timeStopAction.action.GetBindingDisplayString().Replace(" | ", " / ");
+            if (timeStopAction == null || timeStopAction.action == null) return "[Q]";
+            return InputPrompt.Label(timeStopAction.action, InputDeviceTracker.Current, touchLabel);
         }
     }
 }
