@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Reloj.Core;
 using Reloj.Player;
+using Reloj.Tutorial;
 
 namespace Reloj.Level
 {
@@ -14,7 +15,6 @@ namespace Reloj.Level
         [SerializeField] int maxScore = 1000;
         [SerializeField] int penaltyPerDeath = 100;
 
-        float elapsed;
         bool completed;
 
         static GameStateManager State =>
@@ -24,6 +24,8 @@ namespace Reloj.Level
         {
             // Cada partida del nivel empieza sin flags (el telegrama de la maleta hay que volver a tomarlo).
             DialogueFlagManager.Clear();
+            // ...salvo tutorial_completado, que es progreso de la persona y no del nivel.
+            TutorialProgress.SyncFlag();
         }
 
         IEnumerator Start()
@@ -42,13 +44,6 @@ namespace Reloj.Level
             else SceneManager.LoadSceneAsync(artSceneName, LoadSceneMode.Additive);
         }
 
-        void Update()
-        {
-            var s = State;
-            if (!completed && (s == null || s.CurrentState == GameState.Jugando))
-                elapsed += Time.deltaTime;
-        }
-
         public void Complete()
         {
             if (completed) return;
@@ -57,9 +52,20 @@ namespace Reloj.Level
             if (s.CurrentState != GameState.Jugando) return;
 
             completed = true;
+            // Terminar el nivel cuenta como tutorial superado: al repetirlo no vuelve a explicarse.
+            TutorialProgress.MarkCompleted();
+
+            // El tiempo lo lleva LevelTimer: se congela y se toma el valor exacto.
+            var timer = LevelTimer.Instance;
+            if (timer != null) timer.Stop();
+            float time = timer != null ? timer.Elapsed : 0f;
+
             int deaths = player != null ? player.Deaths : 0;
-            int score = Mathf.Max(0, maxScore - deaths * penaltyPerDeath);
-            s.CompleteLevel(score, elapsed);
+            int collected = ScoreManager.Instance != null ? ScoreManager.Instance.Score : 0;
+            int score = Mathf.Max(0, maxScore - deaths * penaltyPerDeath) + collected;
+
+            // GameSession.LastLevelScore/Time -> pantalla de Fin del Nivel.
+            s.CompleteLevel(score, time);
         }
     }
 }
