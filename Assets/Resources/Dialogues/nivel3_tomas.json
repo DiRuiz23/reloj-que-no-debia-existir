@@ -1,0 +1,297 @@
+{
+  "id": "nivel3_tomas",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Tomás",
+      "text": "¡Alto ahí! Este camino ya no es de paso, forastero. Aquí nadie pasa sin decir quién es y quién lo manda.",
+      "altIf": { "flag": "n3_tomas_hablado", "next": "volver" },
+      "choices": [
+        { "text": "Me llamo Juan. Soy aprendiz del relojero del pueblo.", "next": "quien_soy", "setFlag": "n3_tomas_hablado" },
+        { "text": "Me manda Doña Candelaria.", "next": "candelaria", "setFlag": "n3_tomas_hablado" },
+        { "text": "No tengo por qué darte explicaciones.", "next": "altivo", "setFlag": "n3_tomas_hablado" }
+      ]
+    },
+
+    {
+      "id": "quien_soy",
+      "speaker": "Tomás",
+      "text": "¿Aprendiz de relojero? Qué conveniente. La semana pasada un tipo juró ser maestro de escuela y resultó soplón de los rurales. Aquí aprendimos a no creerle a nadie a la primera. Y mírame: ni la hora puedo darte, mi reloj de bolsillo lleva días parado y nadie sabe por qué.",
+      "altIf": { "flag": "rep_n3_alta", "next": "quien_soy_alta" },
+      "choices": [
+        { "text": "Tengo las manos hechas para esto. Déjame revisar tu reloj.", "next": "reloj", "setFlag": "n3_tomas_confia" },
+        { "text": "Solo busco a un hombre de levita que salió del taller esa madrugada.", "next": "seca", "setFlag": "n3_tomas_hostil" },
+        { "text": "Mejor sigo mi camino.", "next": "neutro" }
+      ]
+    },
+    {
+      "id": "reloj",
+      "speaker": "Juan",
+      "text": "Tomás duda, pero al final me tiende un reloj de bolsillo con la tapa abollada. Abro la tapa y reviso el áncora, la rueda de escape, los resortes: no tiene nada roto y aun así no arranca, como si el reloj hubiera olvidado cómo andar. Tomás me observa trabajar en silencio. «Un soplón no sabría ni dónde abrirlo», dice al fin, y baja el rifle.",
+      "choices": [
+        { "text": "¿Sabes algo de lo que pasó la madrugada del veinte?", "next": "telegrafo_baja", "setFlag": "n3_pista_telegrafo_mudo" },
+        { "text": "Con eso estamos a mano. ¿Puedo seguir al campamento?", "next": "pase_baja", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "telegrafo_baja",
+      "speaker": "Tomás",
+      "text": "Poco. Mi reloj se paró esa madrugada, y el telégrafo se quedó mudo: el hilo dejó de zumbar de golpe, como si lo hubieran cortado desde la estación. Lo demás lo sabe Lupe, la del campamento. Y no te adelantes: la confianza se gana poco a poco.",
+      "choices": [
+        { "text": "Gracias, Tomás. Iré con Lupe.", "next": "fin_baja", "setFlag": "n3_paso_campamento" },
+        { "text": "¿Por qué no me dices tú lo demás?", "next": "no_mas", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "fin_baja",
+      "speaker": "Tomás",
+      "text": "Sigue el camino derecho. Si ves soldados, espera a que pasen: no les caen bien los forasteros.",
+      "end": true
+    },
+    {
+      "id": "no_mas",
+      "speaker": "Tomás",
+      "text": "Porque lo que no sé decir no me lo pueden sacar. Anda, que se hace tarde.",
+      "end": true
+    },
+    {
+      "id": "pase_baja",
+      "speaker": "Tomás",
+      "text": "Pues sigue tu camino, relojero. Pero Lupe es quien decide si te quedas, y a ella no la convences con trucos de feria.",
+      "end": true
+    },
+    {
+      "id": "seca",
+      "speaker": "Tomás",
+      "text": "Esas preguntas nos cuestan caras, aprendiz. Quien anda buscando hombres de levita anda buscando problemas, para él y para quienes lo ven con él. Lárgate antes de que me arrepienta de dejarte ir.",
+      "end": true
+    },
+    {
+      "id": "neutro",
+      "speaker": "Tomás",
+      "text": "Haces bien. Por aquí no hay nada para quien no trae nada que ofrecer.",
+      "end": true
+    },
+
+    {
+      "id": "quien_soy_alta",
+      "speaker": "Tomás",
+      "text": "¿Aprendiz del relojero? Sí... ya me hablaron de ti. Dicen que preguntas por la gente antes de preguntar por las cosas. Aquí eso pesa más que cualquier papel.",
+      "choices": [
+        { "text": "Entonces dime lo que sepas del hombre de la levita.", "next": "alta_confia", "setFlag": "n3_tomas_confia" },
+        { "text": "¿Quién te habló de mí?", "next": "alta_fama", "setFlag": "n3_tomas_confia" }
+      ]
+    },
+    {
+      "id": "alta_confia",
+      "speaker": "Tomás",
+      "text": "Pregunta sin miedo, aprendiz. Con esa fama, aquí tienes crédito. ¿Qué quieres saber primero?",
+      "choices": [
+        { "text": "¿Qué pasó la madrugada del veinte?", "next": "telegrafo_alta", "setFlag": "n3_pista_telegrafo_mudo" },
+        { "text": "¿Puedo pasar al campamento?", "next": "pase_alta", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "alta_fama",
+      "speaker": "Tomás",
+      "text": "Aquí las noticias corren más que el tren. Se sabe quién trató con respeto a la gente del pueblo y quién solo vino a sacarle secretos. Tú traes fama de lo primero, y eso abre puertas.",
+      "choices": [
+        { "text": "Entonces cuéntame de la madrugada del veinte.", "next": "telegrafo_alta", "setFlag": "n3_pista_telegrafo_mudo" },
+        { "text": "Entonces déjame pasar al campamento.", "next": "pase_alta", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "telegrafo_alta",
+      "speaker": "Tomás",
+      "text": "Esa madrugada, la del veinte, el telégrafo se quedó mudo. Yo cuidaba el poste de aquí abajo y el hilo dejó de zumbar de golpe, como si lo hubieran cortado desde la estación. Ese cable nunca calla, aprendiz.",
+      "choices": [
+        { "text": "Alguien no quería que se avisara de lo que salía en el tren.", "next": "vagon_alta", "setFlag": "n3_pista_vagon_sin_numero" },
+        { "text": "¿Hubo algo más raro esa madrugada?", "next": "vagon_alta2", "setFlag": "n3_pista_vagon_sin_numero" }
+      ]
+    },
+    {
+      "id": "vagon_alta",
+      "speaker": "Tomás",
+      "text": "Eso mismo pienso yo. Y hay más: un compadre ferroviario me contó que en el tren de esa madrugada iba un vagón de carga sin número pintado. En la estación nadie supo decir de quién era ni qué llevaba. Un vagón sin número no sale por error.",
+      "choices": [
+        { "text": "Un vagón sin número... lo tendré presente.", "next": "pase_alta", "setFlag": "n3_paso_campamento" },
+        { "text": "¿Sabes a dónde iba?", "next": "no_se", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "vagon_alta2",
+      "speaker": "Tomás",
+      "text": "Sí, y no es poca cosa: un compadre ferroviario me contó que en el tren de esa madrugada iba un vagón de carga sin número pintado. Nadie en la estación supo decir de quién era ni qué llevaba. Un vagón sin número no sale por error.",
+      "choices": [
+        { "text": "Un vagón sin número... lo tendré presente.", "next": "pase_alta", "setFlag": "n3_paso_campamento" },
+        { "text": "¿Sabes a dónde iba?", "next": "no_se", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "no_se",
+      "speaker": "Tomás",
+      "text": "Eso no lo sé. Pregúntale a Lupe, en el campamento: ella lleva la cuenta de lo que se mueve por la línea. Dile que Tomás te dejó pasar.",
+      "end": true
+    },
+    {
+      "id": "pase_alta",
+      "speaker": "Tomás",
+      "text": "Sigue el camino derecho hasta el campamento; ya le avisé a Lupe que vas para allá. Y cuídate de los soldados: patrullan la ruta y no hacen preguntas.",
+      "end": true
+    },
+
+    {
+      "id": "candelaria",
+      "speaker": "Tomás",
+      "text": "¿Doña Candelaria? Esa señora no manda recados con cualquiera. Si de verdad te mandó, le caíste en gracia; si no, te estás colgando de su nombre.",
+      "altIf": { "flag": "candelaria_confio", "next": "candelaria_ok" },
+      "choices": [
+        { "text": "Es verdad. Hablé con ella en el pueblo. Soy Juan, aprendiz del relojero.", "next": "quien_soy" },
+        { "text": "Tienes razón: no me mandó nadie.", "next": "mentira", "setFlag": "n3_tomas_hostil" }
+      ]
+    },
+    {
+      "id": "candelaria_ok",
+      "speaker": "Tomás",
+      "text": "¿Doña Candelaria? Esa señora no deja que nadie le pregunte por su insomnio... y a ti te dejó. Algo vio en ti. Ven, cuéntame quién eres.",
+      "choices": [
+        { "text": "Soy Juan, aprendiz del relojero del pueblo.", "next": "quien_soy" },
+        { "text": "Prefiero no decir más.", "next": "neutro" }
+      ]
+    },
+    {
+      "id": "mentira",
+      "speaker": "Tomás",
+      "text": "Al menos ya no sigues mintiendo. Pero un mentiroso es un mentiroso, forastero. Lárgate por donde viniste.",
+      "end": true
+    },
+
+    {
+      "id": "altivo",
+      "speaker": "Tomás",
+      "text": "Pues sin explicaciones tampoco hay paso, y menos con ese tonito.",
+      "choices": [
+        { "text": "Perdona. Fue un mal día. Soy Juan, aprendiz del relojero.", "next": "quien_soy" },
+        { "text": "Entonces buscaré otro camino.", "next": "altivo_fin", "setFlag": "n3_tomas_hostil" }
+      ]
+    },
+    {
+      "id": "altivo_fin",
+      "speaker": "Tomás",
+      "text": "Hazlo. Pero por los otros caminos hay soldados, y ahí nadie te va a dejar pasar por buenos modales.",
+      "end": true
+    },
+
+    {
+      "id": "volver",
+      "speaker": "Tomás",
+      "text": "¿Otra vez tú? Ya te dije lo que pienso. No me hagas repetirlo.",
+      "altIf": { "flag": "n3_tomas_confia", "next": "vuelta_confia" },
+      "choices": [
+        { "text": "Quiero empezar de nuevo, Tomás.", "next": "reintento" },
+        { "text": "Mira lo que encontré en el camino.", "next": "evidencia" },
+        { "text": "Está bien, ya me voy.", "next": "volver_fin" }
+      ]
+    },
+    {
+      "id": "reintento",
+      "speaker": "Tomás",
+      "text": "Empezar de nuevo no se puede, aprendiz. Lo hecho, hecho. Trae algo que se pueda tocar y hablamos.",
+      "altIf": { "flag": "rep_n3_alta", "next": "reintento_alta" },
+      "end": true
+    },
+    {
+      "id": "reintento_alta",
+      "speaker": "Tomás",
+      "text": "Hmm. Tu fama te ayuda, y eso no es poca cosa. Está bien: una oportunidad más. ¿Qué querías saber?",
+      "choices": [
+        { "text": "Del hombre de la levita.", "next": "alta_confia", "setFlag": "n3_tomas_confia" },
+        { "text": "Mejor otro día.", "next": "volver_fin" }
+      ]
+    },
+    {
+      "id": "evidencia",
+      "speaker": "Tomás",
+      "text": "¿Qué cosa? No veo nada en tus manos. Cuando traigas algo que se pueda tocar, hablamos.",
+      "altIf": { "flag": "n3_pista_registro_telegrafo", "next": "evidencia_ok" },
+      "end": true
+    },
+    {
+      "id": "evidencia_ok",
+      "speaker": "Tomás",
+      "text": "A ver... eso es del telégrafo, sin duda. Si lo encontraste tú, no eres soplón: un soplón no se toma la molestia. Está bien, aprendiz. Empecemos de nuevo.",
+      "choices": [
+        { "text": "Gracias, Tomás.", "next": "confia_pregunta", "setFlag": "n3_tomas_confia" },
+        { "text": "Con eso me basta. Hasta luego.", "next": "adios", "setFlag": "n3_tomas_confia" }
+      ]
+    },
+    {
+      "id": "confia_pregunta",
+      "speaker": "Tomás",
+      "text": "Pregunta, pues. ¿Qué quieres saber?",
+      "choices": [
+        { "text": "¿Qué pasó la madrugada del veinte?", "next": "telegrafo_baja", "setFlag": "n3_pista_telegrafo_mudo" },
+        { "text": "¿Puedo pasar al campamento?", "next": "pase_baja", "setFlag": "n3_paso_campamento" }
+      ]
+    },
+    {
+      "id": "volver_fin",
+      "speaker": "Tomás",
+      "text": "Eso. Anda con cuidado.",
+      "end": true
+    },
+    {
+      "id": "adios",
+      "speaker": "Tomás",
+      "text": "Anda, aprendiz. Que te vaya bien.",
+      "end": true
+    },
+
+    {
+      "id": "vuelta_confia",
+      "speaker": "Tomás",
+      "text": "Anda, aprendiz. Si encuentras algo que valga la pena, me lo cuentas.",
+      "altIf": { "flag": "n3_pista_registro_telegrafo", "next": "vuelta_registro" },
+      "choices": [
+        { "text": "¿Hay algo más que deba saber del veinte?", "next": "mas" },
+        { "text": "Nada por ahora.", "next": "adios" }
+      ]
+    },
+    {
+      "id": "mas",
+      "speaker": "Tomás",
+      "text": "Por ahora, no. La confianza se gana poquito: tráeme algo del camino, un papel, una marca, lo que sea.",
+      "altIf": { "flag": "n3_pista_vagon_sin_numero", "next": "mas_ya" },
+      "end": true
+    },
+    {
+      "id": "mas_ya",
+      "speaker": "Tomás",
+      "text": "Ya te conté lo del vagón sin número. Más no tengo, aprendiz.",
+      "end": true
+    },
+    {
+      "id": "vuelta_registro",
+      "speaker": "Tomás",
+      "text": "¿Ese papel del telégrafo? Déjame ver... Sí, no hay duda de que es del hilo de aquí. Si encontraste eso es que de verdad andas en lo tuyo. Siéntate: te cuento lo que oí.",
+      "altIf": { "flag": "n3_pista_vagon_sin_numero", "next": "vuelta_final" },
+      "choices": [
+        { "text": "Te escucho.", "next": "vagon_vuelta", "setFlag": "n3_pista_vagon_sin_numero" },
+        { "text": "Otro día, Tomás.", "next": "adios" }
+      ]
+    },
+    {
+      "id": "vagon_vuelta",
+      "speaker": "Tomás",
+      "text": "Un compadre ferroviario me contó que en el tren de esa madrugada iba un vagón de carga sin número pintado. En la estación nadie supo decir de quién era ni qué llevaba. Un vagón sin número no sale por error, aprendiz. Acuérdate de eso.",
+      "end": true
+    },
+    {
+      "id": "vuelta_final",
+      "speaker": "Tomás",
+      "text": "Ya te conté todo lo que sé: el hilo mudo y el vagón sin número. Lo demás, con Lupe.",
+      "end": true
+    }
+  ]
+}

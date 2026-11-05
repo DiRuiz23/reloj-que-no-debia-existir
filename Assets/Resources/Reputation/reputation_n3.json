@@ -1,0 +1,9 @@
+{
+  "derivedFlag": "rep_n3_alta",
+  "threshold": 3,
+  "entries": [
+    { "flag": "candelaria_confio", "points": 2 },
+    { "flag": "panfilo_mencionado", "points": 1 },
+    { "flag": "telegrama_dia20_leido", "points": 1 }
+  ]
+}

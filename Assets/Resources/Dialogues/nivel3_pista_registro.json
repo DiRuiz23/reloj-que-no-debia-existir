@@ -1,0 +1,41 @@
+{
+  "id": "nivel3_pista_registro",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Al pie del poste hay una libreta de registro del telégrafo, atada con alambre y medio mojada. Las últimas hojas están arrancadas, pero la última anotación todavía se alcanza a leer.",
+      "altIf": { "flag": "n3_pista_registro_telegrafo", "next": "ya_visto" },
+      "choices": [
+        { "text": "Leer la última anotación.", "next": "leer", "setFlag": "n3_pista_registro_telegrafo" },
+        { "text": "Dejar la libreta donde está.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "leer",
+      "speaker": "Juan",
+      "text": "Es un mensaje enviado desde la estación poco antes de que la línea se cortara: «Pieza en camino. Sin testigos.» El destinatario figura solo con una inicial: «E.» Después de eso, nada; las hojas siguientes están arrancadas. Me guardo la libreta en el abrigo.",
+      "altIf": { "flag": "n3_pista_telegrafo_mudo", "next": "leer_ref" },
+      "end": true
+    },
+    {
+      "id": "leer_ref",
+      "speaker": "Juan",
+      "text": "Es un mensaje enviado desde la estación poco antes de que la línea se cortara: «Pieza en camino. Sin testigos.» El destinatario figura solo con una inicial: «E.» Tomás tenía razón: el hilo se cortó justo después. Quien mandó esto sabía que la línea iba a callar, o la hizo callar. Me guardo la libreta en el abrigo.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "No quiero que se moje más. La dejo bajo una piedra, por si alguien vuelve por ella.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Ya leí la última anotación: «Pieza en camino. Sin testigos.», para una tal «E.». La libreta va conmigo.",
+      "end": true
+    }
+  ]
+}
