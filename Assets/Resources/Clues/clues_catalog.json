@@ -1,0 +1,11 @@
+{
+  "clues": [
+    { "id": "telegrama_dia20", "flag": "telegrama_dia20_leido", "level": 1, "title": "Telegrama de la maleta", "summary": "La pieza sale en el tren de la madrugada del veinte. Firmado «E.», con un engrane dibujado al reverso." },
+    { "id": "n3_registro_telegrafo", "flag": "n3_pista_registro_telegrafo", "level": 3, "title": "Registro del telégrafo", "summary": "«Pieza en camino. Sin testigos.» enviado a una tal «E.» justo antes de que la línea callara." },
+    { "id": "n3_caja_lacre", "flag": "n3_pista_caja_lacre", "level": 3, "title": "Caja con lacre rojo", "summary": "Sello con un engrane y una «E», igual al del telegrama." },
+    { "id": "n3_telegrafo_mudo", "flag": "n3_pista_telegrafo_mudo", "level": 3, "title": "El hilo mudo", "summary": "Tomás: el telégrafo y su reloj de bolsillo se detuvieron la madrugada del veinte." },
+    { "id": "n3_vagon_sin_numero", "flag": "n3_pista_vagon_sin_numero", "level": 3, "title": "Vagón sin número", "summary": "En el tren de esa madrugada iba un vagón de carga sin número pintado." },
+    { "id": "n3_relojes_317", "flag": "n3_pista_relojes_317", "level": 3, "title": "Pista de Lupe: los relojes", "summary": "Dato de Lupe sobre los relojes detenidos (texto en nivel3_lupe.json)." },
+    { "id": "n3_dia20_alzamiento", "flag": "n3_pista_dia20_alzamiento", "level": 3, "title": "El veinte y el alzamiento", "summary": "Lupe: un tren sin testigos, un telégrafo callado y una fecha que no es de cualquiera." }
+  ]
+}

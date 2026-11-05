@@ -1,0 +1,297 @@
+{
+  "id": "nivel3_lupe",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Lupe",
+      "text": "¿Y a ti quién te dejó entrar? Aquí no se aceptan curiosos. Habla claro y rápido.",
+      "altIf": { "flag": "n3_lupe_hablado", "next": "volver" },
+      "choices": [
+        { "text": "Vengo de parte de Tomás.", "next": "tomas_ref", "setFlag": "n3_lupe_hablado" },
+        { "text": "Busco al hombre de levita que salió del taller esa madrugada.", "next": "busco", "setFlag": "n3_lupe_hablado" },
+        { "text": "Solo estoy de paso.", "next": "paso", "setFlag": "n3_lupe_hablado" }
+      ]
+    },
+    {
+      "id": "tomas_ref",
+      "speaker": "Lupe",
+      "text": "¿Tomás? A mí Tomás no me avisó de nada. O te colaste por otro camino, o eres buen mentiroso.",
+      "altIf": { "flag": "n3_tomas_confia", "next": "tomas_ok" },
+      "choices": [
+        { "text": "Es cierto, no pasé por Tomás. Pero no vengo a hacer daño.", "next": "busco" },
+        { "text": "Entonces me largo.", "next": "paso" }
+      ]
+    },
+    {
+      "id": "tomas_ok",
+      "speaker": "Lupe",
+      "text": "¿Tomás te dejó pasar? Entonces algo le diste a entender; ese no le abre el camino ni al compadre. Habla, pues: ¿qué te trae?",
+      "choices": [
+        { "text": "Busco al hombre de levita que salió del taller esa madrugada.", "next": "busco" },
+        { "text": "Solo quería conocerlos.", "next": "paso" }
+      ]
+    },
+
+    {
+      "id": "busco",
+      "speaker": "Lupe",
+      "text": "Muchos buscan a ese hombre. Los rurales, sobre todo. ¿De qué lado vienes tú? Porque si eres de ellos, de este campamento no sales caminando.",
+      "altIf": { "flag": "rep_n3_alta", "next": "busco_alta" },
+      "choices": [
+        { "text": "Tengo un telegrama de esa madrugada.", "next": "telegrama" },
+        { "text": "Sé que la campana del pueblo se paró sola esa madrugada.", "next": "campana" },
+        { "text": "Mejor me callo.", "next": "silencio" }
+      ]
+    },
+    {
+      "id": "telegrama",
+      "speaker": "Lupe",
+      "text": "¿Un telegrama? Enséñalo. ...Ah, no lo traes. Mentirle a quien te escucha es mala idea, aprendiz. Ahí está la salida.",
+      "altIf": { "flag": "telegrama_dia20_leido", "next": "telegrama_ok" },
+      "end": true
+    },
+    {
+      "id": "telegrama_ok",
+      "speaker": "Lupe",
+      "text": "A ver... «La pieza sale en el tren de la madrugada del veinte. Que nadie la vea partir.» Y al reverso, un engrane dibujado a lápiz. Pues o eres muy listo o muy sincero. Te escucho.",
+      "choices": [
+        { "text": "Cuéntame lo que sepas de esa madrugada.", "next": "relojes_baja", "setFlag": "n3_lupe_confia" },
+        { "text": "Solo quería que supieras que no vengo de parte de los rurales.", "next": "no_rural", "setFlag": "n3_lupe_confia" }
+      ]
+    },
+    {
+      "id": "campana",
+      "speaker": "Lupe",
+      "text": "¿La campana? ¿Y tú cómo sabes eso? Será rumor de plaza, y aquí no vivimos de rumores.",
+      "altIf": { "flag": "pista_dia20_obtenida", "next": "campana_ok" },
+      "end": true
+    },
+    {
+      "id": "campana_ok",
+      "speaker": "Lupe",
+      "text": "¿La campana? Entonces hablaste con alguien que sabe. Si la campana se paró sola esa madrugada, ya son dos cosas que dejaron de andar a la vez, y eso me gusta menos.",
+      "choices": [
+        { "text": "¿Dos cosas? ¿Qué más se paró?", "next": "relojes_baja", "setFlag": "n3_lupe_confia" },
+        { "text": "Yo solo repito lo que me contaron.", "next": "silencio" }
+      ]
+    },
+    {
+      "id": "relojes_baja",
+      "speaker": "Lupe",
+      "text": "Los relojes. Esa madrugada se pararon todos los que conozco a la misma hora: las tres y diecisiete. El de la estación, el del campamento, hasta mi reloj de bolsillo; ninguno ha vuelto a andar. Más no te digo: lo demás se lo cuento a quien me lo demuestre.",
+      "choices": [
+        { "text": "Las tres y diecisiete. Lo recordaré.", "next": "fin_baja", "setFlag": "n3_pista_relojes_317" },
+        { "text": "¿Y el telégrafo? ¿Pasó algo?", "next": "telegrafo_ref", "setFlag": "n3_pista_relojes_317" }
+      ]
+    },
+    {
+      "id": "no_rural",
+      "speaker": "Lupe",
+      "text": "Eso lo dicen todos. Pero te creo, un poco. Te cuento lo único que puedo contar sin que me cueste caro: esa madrugada se pararon todos los relojes a las tres y diecisiete. Hasta el mío, y ninguno ha vuelto a andar.",
+      "choices": [
+        { "text": "Gracias, Lupe. Lo apunto.", "next": "fin_baja", "setFlag": "n3_pista_relojes_317" },
+        { "text": "¿Y el telégrafo? ¿Pasó algo?", "next": "telegrafo_ref", "setFlag": "n3_pista_relojes_317" }
+      ]
+    },
+    {
+      "id": "telegrafo_ref",
+      "speaker": "Lupe",
+      "text": "¿El telégrafo? Si algo pasó con el hilo, a mí no me avisaron. Ve a ver a Tomás: él cuida la línea de abajo.",
+      "altIf": { "flag": "n3_pista_telegrafo_mudo", "next": "telegrafo_ok" },
+      "end": true
+    },
+    {
+      "id": "telegrafo_ok",
+      "speaker": "Lupe",
+      "text": "¿Tomás te contó lo del hilo cortado? Entonces ya sabes que alguien quiso callar la línea esa madrugada. Ve atando cabos: relojes parados, hilo cortado y un tren que parte sin que nadie lo vea.",
+      "end": true
+    },
+    {
+      "id": "fin_baja",
+      "speaker": "Lupe",
+      "text": "Entre lo que tienes y lo que te falta hay mucho camino. En el campamento hay cosas que mirar, si sabes buscar. Vuelve cuando traigas algo que se pueda tocar.",
+      "end": true
+    },
+    {
+      "id": "silencio",
+      "speaker": "Lupe",
+      "text": "Quien no habla, no estorba. Ahí está la salida.",
+      "end": true
+    },
+    {
+      "id": "paso",
+      "speaker": "Lupe",
+      "text": "Pues pasa de largo, que aquí no hay nada que ver para los curiosos.",
+      "end": true
+    },
+
+    {
+      "id": "busco_alta",
+      "speaker": "Lupe",
+      "text": "Así que tú eres el aprendiz. En esta comarca las noticias corren más rápido que el tren, y las tuyas son buenas. Siéntate, que lo que vienes a buscar no se cuenta de pie.",
+      "choices": [
+        { "text": "Gracias. ¿Qué pasó la madrugada del veinte?", "next": "relojes_alta", "setFlag": "n3_lupe_confia" },
+        { "text": "¿Qué dicen de mí?", "next": "fama", "setFlag": "n3_lupe_confia" }
+      ]
+    },
+    {
+      "id": "fama",
+      "speaker": "Lupe",
+      "text": "Que no le mientes a la gente y que no preguntas por preguntar. Aquí eso vale más que un rifle. Ahora dime: ¿qué quieres saber?",
+      "choices": [
+        { "text": "¿Qué pasó la madrugada del veinte?", "next": "relojes_alta" },
+        { "text": "Mejor otro día.", "next": "silencio_alta" }
+      ]
+    },
+    {
+      "id": "relojes_alta",
+      "speaker": "Lupe",
+      "text": "Esa madrugada se pararon todos los relojes que conozco a la misma hora: las tres y diecisiete. El de la estación, el del campamento, hasta mi reloj de bolsillo; ninguno ha vuelto a andar. Yo no creo en brujerías, pero algo se llevaron esa noche que era más que un reloj.",
+      "choices": [
+        { "text": "¿Y por qué justo esa noche, la del veinte?", "next": "veinte", "setFlag": "n3_pista_relojes_317" },
+        { "text": "¿Qué crees que se llevaron?", "next": "llevaron", "setFlag": "n3_pista_relojes_317" }
+      ]
+    },
+    {
+      "id": "llevaron",
+      "speaker": "Lupe",
+      "text": "Algo que pesaba, que hacía tic, tic, tic y que alguien necesitaba sacar sin que lo vieran. Eso es todo lo que sé.",
+      "choices": [
+        { "text": "¿Y por qué justo el veinte?", "next": "veinte" },
+        { "text": "Entiendo. Gracias, Lupe.", "next": "fin_alta" }
+      ]
+    },
+    {
+      "id": "veinte",
+      "speaker": "Lupe",
+      "text": "Porque el veinte es la fecha que se acordó para levantarnos. Pocos la saben. Quien movió esa pieza esa madrugada sabía que ese día nadie iba a mirar los relojes ni los trenes: todos íbamos a estar mirando otra cosa.",
+      "choices": [
+        { "text": "Entonces alguien conocía la fecha del levantamiento.", "next": "conocia", "setFlag": "n3_pista_dia20_alzamiento" },
+        { "text": "¿Y qué tiene que ver un reloj con eso?", "next": "tiene_que_ver", "setFlag": "n3_pista_dia20_alzamiento" }
+      ]
+    },
+    {
+      "id": "conocia",
+      "speaker": "Lupe",
+      "text": "O alguien se la contó. Esa es la parte que no me deja dormir. Mira por el campamento, aprendiz: hay una caja con lacre que llegó sin dueño. A lo mejor tú sabes leer lo que nosotros no.",
+      "end": true
+    },
+    {
+      "id": "tiene_que_ver",
+      "speaker": "Lupe",
+      "text": "Quizá nada. O quizá todo: un tren que parte sin testigos, un telégrafo callado y una fecha que no es de cualquiera. Mira por el campamento: hay una caja con lacre que llegó sin dueño.",
+      "end": true
+    },
+    {
+      "id": "fin_alta",
+      "speaker": "Lupe",
+      "text": "Ándale, pues. En el campamento hay cosas que mirar; hay una caja con lacre que llegó sin dueño.",
+      "end": true
+    },
+    {
+      "id": "silencio_alta",
+      "speaker": "Lupe",
+      "text": "Cuando quieras. Aquí hay café y no hay prisa.",
+      "end": true
+    },
+
+    {
+      "id": "volver",
+      "speaker": "Lupe",
+      "text": "¿Otra vez por aquí? Ya sabes lo que pienso de los curiosos.",
+      "altIf": { "flag": "n3_lupe_confia", "next": "vuelta_confia" },
+      "choices": [
+        { "text": "Quiero ganarme tu confianza.", "next": "ganar" },
+        { "text": "Solo pasaba.", "next": "adios_l" }
+      ]
+    },
+    {
+      "id": "ganar",
+      "speaker": "Lupe",
+      "text": "La confianza se gana con hechos, no con palabras. ¿Qué traes?",
+      "altIf": { "flag": "rep_n3_alta", "next": "ganar_alta" },
+      "choices": [
+        { "text": "Mira lo que encontré en el camino.", "next": "pruebas" },
+        { "text": "Olvídalo.", "next": "adios_l" }
+      ]
+    },
+    {
+      "id": "pruebas",
+      "speaker": "Lupe",
+      "text": "¿Qué cosa? No veo nada en tus manos. Cuando traigas algo que se pueda tocar, hablamos.",
+      "altIf": { "flag": "n3_pista_registro_telegrafo", "next": "pruebas_ok" },
+      "end": true
+    },
+    {
+      "id": "pruebas_ok",
+      "speaker": "Lupe",
+      "text": "¿Ese registro del telégrafo lo encontraste tú? Eso sí es un hecho, no un cuento. Está bien: siéntate.",
+      "choices": [
+        { "text": "¿Qué sabes de esa madrugada?", "next": "relojes_baja", "setFlag": "n3_lupe_confia" },
+        { "text": "Solo quería que lo vieras.", "next": "silencio" }
+      ]
+    },
+    {
+      "id": "ganar_alta",
+      "speaker": "Lupe",
+      "text": "Hmm. Tu fama te ayuda, y eso no es poca cosa. Está bien: una oportunidad. Siéntate y habla.",
+      "choices": [
+        { "text": "¿Qué pasó la madrugada del veinte?", "next": "relojes_alta", "setFlag": "n3_lupe_confia" },
+        { "text": "Mejor otro día.", "next": "silencio_alta" }
+      ]
+    },
+    {
+      "id": "adios_l",
+      "speaker": "Lupe",
+      "text": "Cuando quieras. Aquí seguiremos.",
+      "end": true
+    },
+
+    {
+      "id": "vuelta_confia",
+      "speaker": "Lupe",
+      "text": "Aprendiz. ¿Encontraste algo por el campamento? Aquí hay cosas que mirar, si sabes buscar.",
+      "altIf": { "flag": "n3_pista_caja_lacre", "next": "vuelta_caja" },
+      "choices": [
+        { "text": "¿Hay algo más que deba saber del veinte?", "next": "mas_l" },
+        { "text": "Nada por ahora.", "next": "adios_l" }
+      ]
+    },
+    {
+      "id": "mas_l",
+      "speaker": "Lupe",
+      "text": "Por ahora te di lo que podía. Si encuentras algo que se pueda tocar, vuelve a verme.",
+      "altIf": { "flag": "n3_pista_dia20_alzamiento", "next": "mas_ya_l" },
+      "end": true
+    },
+    {
+      "id": "mas_ya_l",
+      "speaker": "Lupe",
+      "text": "Ya te conté lo de los relojes y la fecha. Lo demás está en tus manos, aprendiz.",
+      "end": true
+    },
+    {
+      "id": "vuelta_caja",
+      "speaker": "Lupe",
+      "text": "¿Esa caja con lacre? Déjame ver lo que copiaste... un engrane con una letra. Eso no es casualidad, aprendiz. Siéntate: te cuento lo que callé.",
+      "altIf": { "flag": "n3_pista_dia20_alzamiento", "next": "vuelta_final_l" },
+      "choices": [
+        { "text": "Te escucho.", "next": "veinte_vuelta", "setFlag": "n3_pista_dia20_alzamiento" },
+        { "text": "Otro día, Lupe.", "next": "adios_l" }
+      ]
+    },
+    {
+      "id": "veinte_vuelta",
+      "speaker": "Lupe",
+      "text": "Porque el veinte es la fecha que se acordó para levantarnos. Pocos la saben. Quien movió esa pieza esa madrugada sabía que ese día nadie iba a mirar los relojes ni los trenes. Y esa caja, con su engrane, me dice que no fue casualidad: alguien lo planeó con tiempo.",
+      "end": true
+    },
+    {
+      "id": "vuelta_final_l",
+      "speaker": "Lupe",
+      "text": "Ya te conté todo lo que sé: los relojes, la fecha y la caja. Lo demás está en tus manos, aprendiz.",
+      "end": true
+    }
+  ]
+}

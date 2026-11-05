@@ -1,0 +1,41 @@
+{
+  "id": "nivel3_pista_caja",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Una caja de madera, sellada con lacre rojo. En el sello hay un engrane y una letra grabados. La tapa está húmeda, como si la hubieran movido hace poco.",
+      "altIf": { "flag": "n3_pista_caja_lacre", "next": "ya_visto" },
+      "choices": [
+        { "text": "Copiar la marca del sello.", "next": "copiar", "setFlag": "n3_pista_caja_lacre" },
+        { "text": "Dejarla como estaba.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "copiar",
+      "speaker": "Juan",
+      "text": "Dibujo el engrane y la letra en mi libreta: una «E». Una inicial y un engrane; debe significar algo, aunque todavía no sé qué.",
+      "altIf": { "flag": "telegrama_dia20_leido", "next": "copiar_telegrama" },
+      "end": true
+    },
+    {
+      "id": "copiar_telegrama",
+      "speaker": "Juan",
+      "text": "Dibujo el engrane y la letra en mi libreta: una «E». Es el mismo engrane que alguien dibujó a lápiz en el reverso del telegrama, y la misma inicial con la que se firmó. Esto no es casualidad.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "Mejor no tocarla. Pero el engrane del sello se me queda grabado en la cabeza.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Ya copié la marca del sello en mi libreta: un engrane y una «E».",
+      "end": true
+    }
+  ]
+}

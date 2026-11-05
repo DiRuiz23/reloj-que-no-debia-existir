@@ -15,6 +15,16 @@ namespace Reloj.Level
         [SerializeField] int maxScore = 1000;
         [SerializeField] int penaltyPerDeath = 100;
 
+        [Header("Flags / Reputacion (Nivel 3+)")]
+        [Tooltip("true = el nivel empieza sin flags (Nivel 1). false = conserva las decisiones de niveles previos.")]
+        [SerializeField] bool clearFlagsOnAwake = true;
+        [Tooltip("Si no esta vacio, al iniciar se borran SOLO los flags con este prefijo (flags locales del nivel, ej. 'n3_'), para que Reiniciar sea limpio sin perder la reputacion.")]
+        [SerializeField] string levelFlagPrefix = "";
+        [Tooltip("Recalcula la reputacion (ReputationService) al iniciar el nivel.")]
+        [SerializeField] bool recalculateReputation;
+        [Tooltip("SOLO PRUEBAS (Editor/Development build): flags que se activan si abres la escena directo, sin pasar por el Nivel 1.")]
+        [SerializeField] string[] editorTestFlags;
+
         bool completed;
 
         static GameStateManager State =>
@@ -23,9 +33,26 @@ namespace Reloj.Level
         void Awake()
         {
             // Cada partida del nivel empieza sin flags (el telegrama de la maleta hay que volver a tomarlo).
-            DialogueFlagManager.Clear();
+            if (clearFlagsOnAwake) DialogueFlagManager.Clear();
+            else if (!string.IsNullOrEmpty(levelFlagPrefix))
+            {
+                var keep = new System.Collections.Generic.Dictionary<string, bool>();
+                foreach (var kv in DialogueFlagManager.Snapshot())
+                    if (!kv.Key.StartsWith(levelFlagPrefix)) keep[kv.Key] = kv.Value;
+                DialogueFlagManager.Restore(keep);
+            }
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if (editorTestFlags != null)
+                foreach (var f in editorTestFlags) if (!string.IsNullOrEmpty(f)) DialogueFlagManager.SetFlag(f, true);
+#endif
             // ...salvo tutorial_completado, que es progreso de la persona y no del nivel.
             TutorialProgress.SyncFlag();
+            if (recalculateReputation)
+            {
+                int score = ReputationService.Recalculate();
+                Debug.Log($"[Level] Reputacion = {score} (alta confianza: {ReputationService.IsHighTrust})");
+            }
+            ClueTracker.Rebuild();
         }
 
         IEnumerator Start()

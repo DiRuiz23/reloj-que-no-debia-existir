@@ -1,3 +1,10 @@
 {
-  "flags": ["pista_dia20_obtenida", "candelaria_confio", "panfilo_mencionado", "telegrama_dia20_leido"]
+  "flags": [
+    "pista_dia20_obtenida", "candelaria_confio", "panfilo_mencionado", "telegrama_dia20_leido",
+    "rep_n3_alta",
+    "n3_tomas_confia", "n3_tomas_hostil", "n3_pista_telegrafo_mudo", "n3_paso_campamento",
+    "n3_lupe_confia", "n3_pista_relojes_317", "n3_pista_vagon_sin_numero",
+    "n3_pista_caja_lacre", "n3_pista_registro_telegrafo",
+    "n3_tomas_hablado", "n3_lupe_hablado", "n3_pista_dia20_alzamiento"
+  ]
 }
