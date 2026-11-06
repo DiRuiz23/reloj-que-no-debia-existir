@@ -11056,7 +11056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a08d8588aea097429918c9f3565481a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Art.ParallaxLayer
-  factor: 0.6
+  factor: 1
 --- !u!4 &389393133
 Transform:
   m_ObjectHideFlags: 0

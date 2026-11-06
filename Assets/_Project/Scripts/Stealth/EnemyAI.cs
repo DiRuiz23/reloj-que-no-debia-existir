@@ -66,6 +66,8 @@ namespace Reloj.Stealth
         public float ViewDistance => viewDistance;
         public float TimeToAlert => timeToAlert;
         public float ForgetCooldown => forgetCooldown;
+        public float EyeHeight => eyeHeight;
+        public LayerMask VisionMask => visionMask;
 
         // ---------- Ciclo de vida ----------
         protected override void Awake()

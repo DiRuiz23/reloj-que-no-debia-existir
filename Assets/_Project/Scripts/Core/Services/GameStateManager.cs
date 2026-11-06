@@ -25,6 +25,12 @@ namespace Reloj.Core
         {
             get
             {
+                string active = SceneManager.GetActiveScene().name;
+                if (LevelSequence.Contains(active))
+                {
+                    string seq = LevelSequence.NextAfter(active);
+                    return seq != null && Application.CanStreamedLevelBeLoaded(seq);
+                }
                 int next = SceneManager.GetActiveScene().buildIndex + 1;
                 if (next >= SceneManager.sceneCountInBuildSettings) return false;
                 string nextName = Path.GetFileNameWithoutExtension(
@@ -106,9 +112,10 @@ namespace Reloj.Core
                 Debug.LogWarning("[GameStateManager] No hay un siguiente nivel.");
                 return;
             }
-            int next = SceneManager.GetActiveScene().buildIndex + 1;
+            string seqNext = LevelSequence.NextAfter(SceneManager.GetActiveScene().name);
             SetState(GameState.Jugando);
-            GameServices.Instance.Loader.LoadSingle(next);
+            if (seqNext != null) { GameServices.Instance.Loader.LoadSingle(seqNext); return; }
+            GameServices.Instance.Loader.LoadSingle(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         public void QuitToMenu()
