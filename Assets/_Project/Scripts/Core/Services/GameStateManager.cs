@@ -20,6 +20,13 @@ namespace Reloj.Core
         /// <summary>(estado anterior, estado nuevo)</summary>
         public event Action<GameState, GameState> OnStateChanged;
 
+                static bool SceneInBuild(string sceneName)
+        {
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+                if (Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)) == sceneName) return true;
+            return false;
+        }
+
         /// <summary>true si la escena siguiente del build existe y no es el menú.</summary>
         public bool HasNextLevel
         {
@@ -29,7 +36,7 @@ namespace Reloj.Core
                 if (LevelSequence.Contains(active))
                 {
                     string seq = LevelSequence.NextAfter(active);
-                    return seq != null && Application.CanStreamedLevelBeLoaded(seq);
+                    return seq != null && SceneInBuild(seq);
                 }
                 int next = SceneManager.GetActiveScene().buildIndex + 1;
                 if (next >= SceneManager.sceneCountInBuildSettings) return false;

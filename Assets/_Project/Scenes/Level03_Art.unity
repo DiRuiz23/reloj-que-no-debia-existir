@@ -13273,7 +13273,7 @@ MonoBehaviour:
   priority: 10
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 28e01de50cbf9e64eac13e94c8e20738, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ed68bb749e48e684388aadfde9259c98, type: 2}
 --- !u!1001 &471739185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31418,8 +31418,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Art.LevelAtmosphere
   paleta: {fileID: 11400000, guid: 15d58d6a678fa78488841799d1d77809, type: 2}
   usarNiebla: 1
-  nieblaInicio: 34
-  nieblaFin: 120
+  nieblaInicio: 24
+  nieblaFin: 95
+  noche: 1
+  nocheCielo: {r: 0.16, g: 0.2, b: 0.4, a: 1}
+  nocheHorizonte: {r: 0.11, g: 0.14, b: 0.3, a: 1}
+  nocheSuelo: {r: 0.05, g: 0.05, b: 0.11, a: 1}
+  nocheNiebla: {r: 0.05, g: 0.07, b: 0.16, a: 1}
 --- !u!4 &1120749662
 Transform:
   m_ObjectHideFlags: 0
@@ -50012,7 +50017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709496645}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3477229, y: 0.22585355, z: -0.08669706, w: 0.9058491}
+  m_LocalRotation: {x: 0.39098036, y: -0.25180724, z: 0.112111814, w: 0.87815624}
   m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -50058,8 +50063,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.8, b: 0.57, a: 1}
-  m_Intensity: 1.4
+  m_Color: {r: 0.5, g: 0.62, b: 1, a: 1}
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

@@ -132,13 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1761a9cd666a5d840a468629307e09b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Stealth.EnemyVisionCone
-  ignorante: {r: 0.45, g: 0.85, b: 1, a: 0.38}
-  sospechoso: {r: 1, g: 0.6, b: 0.1, a: 0.5}
-  alerta: {r: 1, g: 0.1, b: 0.1, a: 0.6}
-  congelado: {r: 0.55, g: 0.6, b: 0.9, a: 0.28}
-  rays: 36
+  ignorante: {r: 1, g: 0.86, b: 0.5, a: 0.55}
+  sospechoso: {r: 1, g: 0.62, b: 0.2, a: 0.65}
+  alerta: {r: 1, g: 0.25, b: 0.12, a: 0.7}
+  congelado: {r: 0.7, g: 0.78, b: 1, a: 0.35}
+  rays: 40
+  rows: 10
   groundOffset: 0.12
-  farAlpha: 0.35
+  fadePower: 1.5
+  edgeSoftness: 0.45
   visible: 1
 --- !u!1 &1670665941974366214
 GameObject:

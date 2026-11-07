@@ -19,6 +19,13 @@ namespace Reloj.Art
         [SerializeField] float nieblaInicio = 34f;
         [SerializeField] float nieblaFin = 120f;
 
+        [Header("Noche (reemplaza los colores de la paleta)")]
+        [SerializeField] bool noche;
+        [SerializeField] Color nocheCielo = new Color(0.16f, 0.20f, 0.40f);
+        [SerializeField] Color nocheHorizonte = new Color(0.11f, 0.14f, 0.30f);
+        [SerializeField] Color nocheSuelo = new Color(0.05f, 0.05f, 0.11f);
+        [SerializeField] Color nocheNiebla = new Color(0.05f, 0.07f, 0.16f);
+
         void Awake() => Aplicar();
 
         [ContextMenu("Aplicar ahora")]
@@ -31,11 +38,18 @@ namespace Reloj.Art
             RenderSettings.ambientEquatorColor = Color.Lerp(paleta.TierraOscura, paleta.SepiaMedio, 0.6f);
             RenderSettings.ambientGroundColor = Color.Lerp(paleta.Tinta, paleta.TierraOscura, 0.5f);
 
+            if (noche)
+            {
+                RenderSettings.ambientSkyColor = nocheCielo;
+                RenderSettings.ambientEquatorColor = nocheHorizonte;
+                RenderSettings.ambientGroundColor = nocheSuelo;
+            }
+
             RenderSettings.fog = usarNiebla;
             if (usarNiebla)
             {
                 RenderSettings.fogMode = FogMode.Linear;
-                RenderSettings.fogColor = Color.Lerp(paleta.SepiaMedio, paleta.Arena, 0.5f);
+                RenderSettings.fogColor = noche ? nocheNiebla : Color.Lerp(paleta.SepiaMedio, paleta.Arena, 0.5f);
                 RenderSettings.fogStartDistance = nieblaInicio;
                 RenderSettings.fogEndDistance = nieblaFin;
             }
