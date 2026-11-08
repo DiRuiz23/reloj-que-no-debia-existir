@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 147144289765327168}
   - component: {fileID: 8084528103967385446}
   - component: {fileID: 4713617875823657367}
+  - component: {fileID: 7373368554727977980}
   m_Layer: 10
   m_Name: Enemy_Base
   m_TagString: Untagged
@@ -119,6 +120,28 @@ MonoBehaviour:
   blindAfterCatch: 1.5
   stopWhenSuspicious: 1
   alertIcon: {fileID: 2072536578445237344}
+--- !u!114 &7373368554727977980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462193093180064171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1761a9cd666a5d840a468629307e09b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Stealth.EnemyVisionCone
+  ignorante: {r: 1, g: 0.86, b: 0.5, a: 0.55}
+  sospechoso: {r: 1, g: 0.62, b: 0.2, a: 0.65}
+  alerta: {r: 1, g: 0.25, b: 0.12, a: 0.7}
+  congelado: {r: 0.7, g: 0.78, b: 1, a: 0.35}
+  rays: 40
+  rows: 10
+  groundOffset: 0.12
+  fadePower: 1.5
+  edgeSoftness: 0.45
+  visible: 1
 --- !u!1 &1670665941974366214
 GameObject:
   m_ObjectHideFlags: 0

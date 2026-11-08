@@ -20,11 +20,24 @@ namespace Reloj.Core
         /// <summary>(estado anterior, estado nuevo)</summary>
         public event Action<GameState, GameState> OnStateChanged;
 
+                static bool SceneInBuild(string sceneName)
+        {
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+                if (Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)) == sceneName) return true;
+            return false;
+        }
+
         /// <summary>true si la escena siguiente del build existe y no es el menú.</summary>
         public bool HasNextLevel
         {
             get
             {
+                string active = SceneManager.GetActiveScene().name;
+                if (LevelSequence.Contains(active))
+                {
+                    string seq = LevelSequence.NextAfter(active);
+                    return seq != null && SceneInBuild(seq);
+                }
                 int next = SceneManager.GetActiveScene().buildIndex + 1;
                 if (next >= SceneManager.sceneCountInBuildSettings) return false;
                 string nextName = Path.GetFileNameWithoutExtension(
@@ -106,9 +119,10 @@ namespace Reloj.Core
                 Debug.LogWarning("[GameStateManager] No hay un siguiente nivel.");
                 return;
             }
-            int next = SceneManager.GetActiveScene().buildIndex + 1;
+            string seqNext = LevelSequence.NextAfter(SceneManager.GetActiveScene().name);
             SetState(GameState.Jugando);
-            GameServices.Instance.Loader.LoadSingle(next);
+            if (seqNext != null) { GameServices.Instance.Loader.LoadSingle(seqNext); return; }
+            GameServices.Instance.Loader.LoadSingle(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         public void QuitToMenu()

@@ -49,8 +49,7 @@ namespace Reloj.Level
             TutorialProgress.SyncFlag();
             if (recalculateReputation)
             {
-                int score = ReputationService.Recalculate();
-                Debug.Log($"[Level] Reputacion = {score} (alta confianza: {ReputationService.IsHighTrust})");
+                ReputationService.Recalculate();
             }
             ClueTracker.Rebuild();
         }

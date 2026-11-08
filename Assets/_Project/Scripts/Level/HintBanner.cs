@@ -15,6 +15,15 @@ namespace Reloj.Level
         [SerializeField] TMP_Text label;
         [SerializeField, Min(0.01f)] float fadeSeconds = 0.25f;
 
+        [Header("Tamano adaptable al texto")]
+        [Tooltip("Recuadro que se ajusta al texto. Si esta vacio se usa el padre del label.")]
+        [SerializeField] RectTransform panel;
+        [Tooltip("Ancho maximo del recuadro. 0 = el ancho que tenga el recuadro al iniciar.")]
+        [SerializeField, Min(0f)] float maxWidth = 0f;
+        [SerializeField, Min(0f)] float minWidth = 220f;
+        [SerializeField, Min(0f)] float minHeight = 48f;
+        [SerializeField] Vector2 padding = new Vector2(40f, 16f);
+
         CanvasGroup group;
         object owner;
         int ownerPriority;
@@ -30,6 +39,8 @@ namespace Reloj.Level
             TimeStopUsed = false;
             group = GetComponent<CanvasGroup>();
             group.alpha = 0f;
+            if (panel == null && label != null) panel = label.rectTransform.parent as RectTransform;
+            if (panel != null && maxWidth <= 0f) maxWidth = panel.sizeDelta.x;
         }
 
         void Start()
@@ -72,6 +83,17 @@ namespace Reloj.Level
             flashUntil = Time.unscaledTime + seconds;
         }
 
+        // Ajusta ancho y alto del recuadro al texto (con salto de linea si supera el ancho maximo).
+        void FitToText(string txt)
+        {
+            if (panel == null || label == null) return;
+            float innerMax = Mathf.Max(40f, maxWidth - padding.x);
+            Vector2 pref = label.GetPreferredValues(txt, innerMax, 0f);
+            float w = Mathf.Clamp(pref.x + padding.x, minWidth, maxWidth);
+            float h = Mathf.Max(minHeight, pref.y + padding.y);
+            panel.sizeDelta = new Vector2(w, h);
+        }
+
         void Update()
         {
             bool flash = Time.unscaledTime < flashUntil;
@@ -79,7 +101,7 @@ namespace Reloj.Level
             if (show && label != null)
             {
                 string txt = flash ? flashText : persistentText;
-                if (label.text != txt) label.text = txt;
+                if (label.text != txt) { label.text = txt; FitToText(txt); }
             }
             float target = show ? 1f : 0f;
             group.alpha = Mathf.MoveTowards(group.alpha, target, Time.unscaledDeltaTime / fadeSeconds);
