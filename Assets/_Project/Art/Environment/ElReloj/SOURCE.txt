@@ -13,3 +13,4 @@ Archivos:
 Uso en el proyecto:
   - Level01_Art: decorado 3D de la estacion San Roque, 1910.
   - Level03_Art: pueblo ocupado y campamento revolucionario, armados reutilizando piezas de este mismo kit (casas de adobe, ramadas, tiendas, atalaya, fogata); no se anadieron recursos externos ni modelos nuevos.
+  - Level02_Art: hacienda (entrada, patio, pasillos, casa interior, caballerizas y granero), armada reutilizando piezas de este mismo kit y los prefabs PF_* del Nivel 1; no se anadieron recursos externos ni modelos nuevos.
