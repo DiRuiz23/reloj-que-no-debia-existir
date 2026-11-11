@@ -1,0 +1,41 @@
+{
+  "id": "nivel2_pista_libro",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Sobre el escritorio hay un libro de registro del hacendado, abierto en la última página escrita. Las hojas que siguen están en blanco, como si alguien hubiera dejado de anotar a propósito.",
+      "altIf": { "flag": "n2_pista_libro_hacienda", "next": "ya_visto" },
+      "choices": [
+        { "text": "Leer la última anotación.", "next": "leer", "setFlag": "n2_pista_libro_hacienda" },
+        { "text": "Dejar el libro donde está.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "leer",
+      "speaker": "Juan",
+      "text": "«Pieza entregada al telégrafo del pueblo el diecinueve. Que nadie la vea. Avisar a E. cuando la línea calle.» Al margen, dibujado a pluma, el mismo engrane del telegrama de la maleta. Arranco la hoja y me la guardo; los pasos de los soldados ya vuelven por el pasillo.",
+      "altIf": { "flag": "telegrama_dia20_leido", "next": "leer_ref" },
+      "end": true
+    },
+    {
+      "id": "leer_ref",
+      "speaker": "Juan",
+      "text": "«Pieza entregada al telégrafo del pueblo el diecinueve. Que nadie la vea. Avisar a E. cuando la línea calle.» El engrane del margen es idéntico al que venía en el telegrama de la maleta: la «E.» es la misma. Si la pieza pasó por el telégrafo, allá debo seguir. Arranco la hoja y salgo antes de que vuelvan los soldados.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "No sé qué busco todavía, pero un libro así no se deja abierto por descuido. Mejor lo reviso con calma.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Ya tengo la hoja: el telégrafo del pueblo, el diecinueve, y la «E.» de siempre. No hay nada más aquí.",
+      "end": true
+    }
+  ]
+}

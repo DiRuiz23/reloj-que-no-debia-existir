@@ -1,0 +1,590 @@
+fileFormatVersion: 2
+guid: 47ca250e4f6237c429c62dee113f2b5f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb5e7b814ce529970800000000000000
+      internalID: 8760168421510342078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded3f2ea564d7bd60800000000000000
+      internalID: 7906021204051312109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36154015cac10bb0800000000000000
+      internalID: -4971469565909985734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ee89335c77f6bee0800000000000000
+      internalID: -1245536133577077024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ab8bb604b001210800000000000000
+      internalID: 1301552663623154278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f817324314690dc20800000000000000
+      internalID: 3229246139616424335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb9bec680054fe2e0800000000000000
+      internalID: -2094379433139979841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_7
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2fdebacd0f54fbd0800000000000000
+      internalID: -2597346572245213398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b4f11c5afe65590800000000000000
+      internalID: -7685692218872476893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb59fd337f303900800000000000000
+      internalID: 662098909417004000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c89e4647706db53f0800000000000000
+      internalID: -910899172106507892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2a3daa477e24780800000000000000
+      internalID: -8700137041858157905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaeaa0fc324388490800000000000000
+      internalID: -7743882230861484374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_13
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baba1e948854c5bf0800000000000000
+      internalID: -334315820674864213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_14
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1f5cc4a3e418650800000000000000
+      internalID: 6233349371560587738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 126da8bbf74a0b050800000000000000
+      internalID: 5814327987449550369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_16
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3644ab2c0c7acd30800000000000000
+      internalID: 4452507573322794559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_17
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f4a87dfa94d06d20800000000000000
+      internalID: 3269847091613574384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51be5f7465bcf7320800000000000000
+      internalID: 2557986684804655893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_disparo_144x112_19
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3373ee1a7d96d750800000000000000
+      internalID: 6329419474145604414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      soldado_disparo_144x112_0: 8760168421510342078
+      soldado_disparo_144x112_1: 7906021204051312109
+      soldado_disparo_144x112_10: -910899172106507892
+      soldado_disparo_144x112_11: -8700137041858157905
+      soldado_disparo_144x112_12: -7743882230861484374
+      soldado_disparo_144x112_13: -334315820674864213
+      soldado_disparo_144x112_14: 6233349371560587738
+      soldado_disparo_144x112_15: 5814327987449550369
+      soldado_disparo_144x112_16: 4452507573322794559
+      soldado_disparo_144x112_17: 3269847091613574384
+      soldado_disparo_144x112_18: 2557986684804655893
+      soldado_disparo_144x112_19: 6329419474145604414
+      soldado_disparo_144x112_2: -4971469565909985734
+      soldado_disparo_144x112_3: -1245536133577077024
+      soldado_disparo_144x112_4: 1301552663623154278
+      soldado_disparo_144x112_5: 3229246139616424335
+      soldado_disparo_144x112_6: -2094379433139979841
+      soldado_disparo_144x112_7: -2597346572245213398
+      soldado_disparo_144x112_8: -7685692218872476893
+      soldado_disparo_144x112_9: 662098909417004000
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

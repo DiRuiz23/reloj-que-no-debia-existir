@@ -5,14 +5,13 @@ namespace Reloj.Core
     /// <summary>
     /// Orden de los niveles JUGABLES (escenas Gameplay). El boton 'Siguiente nivel' sigue este orden,
     /// no el orden del Build Settings. Cada Gameplay carga su escena Art por si mismo (Level01Controller).
-    /// PARA AGREGAR EL NIVEL 2: insertar "Level02_Gameplay" entre Level01 y Level03 (ver Order).
     /// </summary>
     public static class LevelSequence
     {
         public static readonly string[] Order =
         {
             "Level01_Gameplay",
-            // "Level02_Gameplay",   // <- descomentar cuando exista el Nivel 2 (y agregarlo al Build Settings)
+            "Level02_Gameplay",
             "Level03_Gameplay",
         };
 
