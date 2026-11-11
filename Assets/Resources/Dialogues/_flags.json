@@ -1,6 +1,7 @@
 {
   "flags": [
     "pista_dia20_obtenida", "candelaria_confio", "panfilo_mencionado", "telegrama_dia20_leido",
+    "n2_pista_libro_hacienda",
     "rep_n3_alta",
     "n3_tomas_confia", "n3_tomas_hostil", "n3_pista_telegrafo_mudo", "n3_paso_campamento",
     "n3_lupe_confia", "n3_pista_relojes_317", "n3_pista_vagon_sin_numero",

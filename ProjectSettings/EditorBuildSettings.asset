@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/Scenes/Test_TimeStop.unity
     guid: ec2ceaa713617d74fa9e566ae8729a95
+  - enabled: 1
+    path: Assets/_Project/Scenes/Level02_Gameplay.unity
+    guid: 6046ed9beceef1e43ab0501e7ee966ea
+  - enabled: 1
+    path: Assets/_Project/Scenes/Level02_Art.unity
+    guid: 946fa50cad18776489df97b378ecef77
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

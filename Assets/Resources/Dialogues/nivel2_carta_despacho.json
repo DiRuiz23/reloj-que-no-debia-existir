@@ -1,0 +1,34 @@
+{
+  "id": "nivel2_carta_despacho",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Una carta a medio escribir sobre el escritorio del despacho. La tinta aún brilla. Al final, una sola firma: «E.».",
+      "altIf": { "flag": "n2_pista_carta_despacho", "next": "ya_visto" },
+      "choices": [
+        { "text": "Leerla y copiarla en mi libreta.", "next": "copiar", "setFlag": "n2_pista_carta_despacho" },
+        { "text": "Dejarla donde estaba.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "copiar",
+      "speaker": "Juan",
+      "text": "«La pieza no puede quedarse en la hacienda. Que siga su camino hasta el pueblo; allá ya hay soldados y nadie hará preguntas. —E.». La misma inicial del telegrama. Tengo que llegar al pueblo.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "Mejor no tocar nada todavía. Pero esa «E.» me suena demasiado.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Ya copié la carta: la pieza sigue su camino hacia el pueblo, donde hay soldados.",
+      "end": true
+    }
+  ]
+}

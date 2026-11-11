@@ -1,6 +1,7 @@
 {
   "clues": [
     { "id": "telegrama_dia20", "flag": "telegrama_dia20_leido", "level": 1, "title": "Telegrama de la maleta", "summary": "La pieza sale en el tren de la madrugada del veinte. Firmado «E.», con un engrane dibujado al reverso." },
+    { "id": "n2_libro_hacienda", "flag": "n2_pista_libro_hacienda", "level": 2, "title": "Libro de la hacienda", "summary": "«Pieza entregada al telégrafo del pueblo el diecinueve. Avisar a E. cuando la línea calle.» El mismo engrane del telegrama." },
     { "id": "n3_registro_telegrafo", "flag": "n3_pista_registro_telegrafo", "level": 3, "title": "Registro del telégrafo", "summary": "«Pieza en camino. Sin testigos.» enviado a una tal «E.» justo antes de que la línea callara." },
     { "id": "n3_caja_lacre", "flag": "n3_pista_caja_lacre", "level": 3, "title": "Caja con lacre rojo", "summary": "Sello con un engrane y una «E», igual al del telegrama." },
     { "id": "n3_telegrafo_mudo", "flag": "n3_pista_telegrafo_mudo", "level": 3, "title": "El hilo mudo", "summary": "Tomás: el telégrafo y su reloj de bolsillo se detuvieron la madrugada del veinte." },
