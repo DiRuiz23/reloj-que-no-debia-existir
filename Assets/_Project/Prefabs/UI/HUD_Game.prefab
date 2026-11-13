@@ -686,6 +686,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3087565932545817395}
   - component: {fileID: 2956861152940025365}
+  - component: {fileID: 5683206106443991141}
+  - component: {fileID: 6352918397368839804}
   m_Layer: 0
   m_Name: HUD_Game
   m_TagString: Untagged
@@ -733,6 +735,48 @@ MonoBehaviour:
   healthLabel: {fileID: 1595886051157280254}
   scoreLabel: {fileID: 4708610198262807235}
   timeLabel: {fileID: 3385141359204872464}
+--- !u!114 &5683206106443991141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666790377562857553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd39ae57e42b2a419159ead6756db2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.ObjectiveHUD
+  palette: {fileID: 11400000, guid: 15d58d6a678fa78488841799d1d77809, type: 2}
+  font: {fileID: 11400000, guid: 26e3529377020ea4794804d1566ec189, type: 2}
+  label: {fileID: 0}
+  prefix: 'Objetivo: '
+  flashSeconds: 1.2
+--- !u!114 &6352918397368839804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666790377562857553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859f9f704d207a745989a1eeddcc8d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.ClueMenuUI
+  palette: {fileID: 11400000, guid: 15d58d6a678fa78488841799d1d77809, type: 2}
+  font: {fileID: 11400000, guid: 26e3529377020ea4794804d1566ec189, type: 2}
+  toggleAction:
+    m_Name: ToggleClues
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: b7b5c6ca-082f-4507-a643-b1f0d8cf9fff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  showOpenButton: 1
+  scrollSpeed: 900
 --- !u!1001 &1911440831882250630
 PrefabInstance:
   m_ObjectHideFlags: 0

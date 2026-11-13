@@ -1,4 +1,5 @@
 using UnityEngine;
+using Reloj.Clues;
 
 namespace Reloj.Core
 {
@@ -11,12 +12,14 @@ namespace Reloj.Core
         [SerializeField] private SaveService save;
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private GameStateManager state;
+        [SerializeField] private ClueInventory clues;
 
         public DialogueFlagManager Flags => flags;
         public GameSession Session => session;
         public SaveService Save => save;
         public SceneLoader Loader => sceneLoader;
         public GameStateManager State => state;
+        public ClueInventory Clues => clues;
 
         private void Awake()
         {
@@ -27,6 +30,7 @@ namespace Reloj.Core
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            if (clues == null) clues = GetComponent<ClueInventory>();   // I-27: no exige cablearlo a mano
         }
     }
 }
