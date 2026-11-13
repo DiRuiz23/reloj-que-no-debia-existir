@@ -186,6 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6094481626130073961}
   - component: {fileID: 7031715613767259623}
+  - component: {fileID: 949419809401329163}
   m_Layer: 0
   m_Name: GameService
   m_TagString: Untagged
@@ -230,6 +231,28 @@ MonoBehaviour:
   save: {fileID: 2067962843592792548}
   sceneLoader: {fileID: 3644351540768868189}
   state: {fileID: 4885286880016399121}
+  clues: {fileID: 949419809401329163}
+--- !u!114 &949419809401329163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036867392367989550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f85fe2082cdaa4eb6ce649e27f629c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.ClueInventory
+  catalog:
+  - {fileID: 11400000, guid: 077a5fead07c73e43a035ae66cb774d2, type: 2}
+  - {fileID: 11400000, guid: f4beec3868d323d41a802e1d225011a2, type: 2}
+  - {fileID: 11400000, guid: d0f11831a7d339b43a9711cb37d6b4d3, type: 2}
+  - {fileID: 11400000, guid: ceba6bcd52923cb43aa5ad79bcdf7e30, type: 2}
+  - {fileID: 11400000, guid: 0bf53d462f463ec4b8803c3d4426b6e4, type: 2}
+  - {fileID: 11400000, guid: 1774ab125c39bdf49912a4af2a000207, type: 2}
+  - {fileID: 11400000, guid: 078c2abe3516969488f8760e4c2e0611, type: 2}
+  - {fileID: 11400000, guid: d70b4b0994c91994b881fc1e5800b714, type: 2}
 --- !u!1 &7602810662677817761
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,3 +298,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Core.GameStateManager
   pauseAction: {fileID: 7750044523115738848, guid: fb9002de5945bcc489275e1311bb3d4e, type: 3}
+  menuSceneName: MainMenu
