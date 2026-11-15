@@ -1,17 +1,38 @@
 using UnityEngine;
-using Reloj.Core;
+using Reloj.Clues;
 
 namespace Reloj.Level
 {
-    /// <summary>Avisa en pantalla cuando se obtiene una pista (hasta que exista la UI del inventario, I-27).</summary>
+    /// <summary>Avisa en pantalla cuando se obtiene una pista nueva (I-27). Escucha a ClueInventory.</summary>
     public class ClueToast : MonoBehaviour
     {
         [SerializeField] string prefix = "Pista guardada: ";
-        void OnEnable() { ClueTracker.OnClueObtained += Show; }
-        void OnDisable() { ClueTracker.OnClueObtained -= Show; }
-        void Show(ClueEntry c)
+        [SerializeField, Min(0.5f)] float seconds = 3f;
+
+        ClueInventory inv;
+
+        void OnEnable() { Bind(); }
+        void Start() { Bind(); }          // por si GameServices aun no existia en OnEnable
+        void OnDisable() { Unbind(); }
+
+        void Bind()
         {
-            if (HintBanner.Instance != null) HintBanner.Instance.Flash(prefix + c.title, 3f);
+            var current = ClueInventory.Current;
+            if (current == inv || current == null) return;
+            Unbind();
+            inv = current;
+            inv.OnClueAdded += Show;
+        }
+
+        void Unbind()
+        {
+            if (inv != null) inv.OnClueAdded -= Show;
+            inv = null;
+        }
+
+        void Show(ClueData c)
+        {
+            if (HintBanner.Instance != null) HintBanner.Instance.Flash(prefix + c.Title, seconds);
         }
     }
 }

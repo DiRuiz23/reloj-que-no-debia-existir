@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c58c4f69dd5bd48aad2e7eed0a2961, type: 3}
+  m_Name: Clue_n3_relojes_317
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.ClueData
+  id: n3_relojes_317
+  title: 'Pista de Lupe: los relojes'
+  summary: Dato de Lupe sobre los relojes detenidos (texto en nivel3_lupe.json).
+  level: 3
+  icon: {fileID: 0}
+  flag: n3_pista_relojes_317

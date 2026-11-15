@@ -73,6 +73,10 @@ namespace Reloj.UI
             }
             if (services.Loader.IsLoading) return;
 
+            // Partida nueva (I-27): sin pistas ni flags de partidas anteriores.
+            DialogueFlagManager.Clear();
+            if (services.Clues != null) services.Clues.Clear();
+
             _loading = true;
             services.Loader.LoadSingle(level1SceneName);
         }

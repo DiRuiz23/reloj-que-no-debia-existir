@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Reloj.Clues;
 using Reloj.Core;
 using Reloj.Player;
 using Reloj.Tutorial;
@@ -51,7 +52,10 @@ namespace Reloj.Level
             {
                 ReputationService.Recalculate();
             }
-            ClueTracker.Rebuild();
+            // I-27: el inventario de pistas se alinea con los flags ya limpiados. Las pistas de niveles
+            // previos se conservan (su flag sigue activo); las de este nivel se pierden al reiniciarlo.
+            var clues = ClueInventory.Current;
+            if (clues != null) clues.RebuildFromFlags();
         }
 
         IEnumerator Start()
