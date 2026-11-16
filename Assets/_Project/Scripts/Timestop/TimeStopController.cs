@@ -32,6 +32,9 @@ namespace Reloj.TimeStop
 
         float timer;
 
+        // Valores efectivos del nivel (I-30): base del inspector x modificadores de LevelDifficultyConfig.
+        float activeDuration, activeCooldown;
+
         public event Action OnTimeStopStart;
         public event Action OnTimeStopEnd;
         public event Action OnTimeStopReady;
@@ -46,16 +49,17 @@ namespace Reloj.TimeStop
                 switch (State)
                 {
                     case TimeStopState.Ready: return 1f;
-                    case TimeStopState.Recharging: return Mathf.Clamp01(timer / cooldown);
+                    case TimeStopState.Recharging: return Mathf.Clamp01(timer / activeCooldown);
                     default: return 0f;
                 }
             }
         }
 
         public float RemainingActiveTime =>
-            State == TimeStopState.Active ? Mathf.Max(0f, duration - timer) : 0f;
+            State == TimeStopState.Active ? Mathf.Max(0f, activeDuration - timer) : 0f;
 
-        public float Duration => duration;
+        public float Duration => activeDuration;
+        public float Cooldown => activeCooldown;
 
         // Evita estado viejo si el Editor tiene desactivado "Reload Domain".
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -84,6 +88,20 @@ namespace Reloj.TimeStop
             if (Instance != null && Instance != this)
                 Debug.LogWarning("Hay mas de un TimeStopController en la escena.", this);
             Instance = this;
+            ApplyDifficulty(LevelDifficultyConfig.Current);
+        }
+
+        /// <summary>
+        /// I-30: duracion y recarga = valores base (inspector) x modificadores del nivel.
+        /// Idempotente: siempre parte de la base, nunca acumula. config null = valores base.
+        /// </summary>
+        public void ApplyDifficulty(LevelDifficultyConfig config)
+        {
+            activeDuration = duration;
+            activeCooldown = cooldown;
+            if (config == null) return;
+            activeDuration = Mathf.Max(0.1f, duration * config.TimeStopDurationMultiplier);
+            activeCooldown = Mathf.Max(0.1f, cooldown * config.TimeStopCooldownMultiplier);
         }
 
         void OnDestroy()
@@ -138,12 +156,12 @@ namespace Reloj.TimeStop
             {
                 case TimeStopState.Active:
                     timer += Time.deltaTime;
-                    if (timer >= duration) EndTimeStop();
+                    if (timer >= activeDuration) EndTimeStop();
                     break;
 
                 case TimeStopState.Recharging:
                     timer += Time.deltaTime;
-                    if (timer >= cooldown)
+                    if (timer >= activeCooldown)
                     {
                         State = TimeStopState.Ready;
                         timer = 0f;

@@ -3304,6 +3304,7 @@ MonoBehaviour:
   player: {fileID: 1766138993}
   maxScore: 1000
   penaltyPerDeath: 100
+  difficulty: {fileID: 11400000, guid: dd41f4a56a816f44ba47bfb80d69d8d1, type: 2}
   clearFlagsOnAwake: 1
   levelFlagPrefix: 
   recalculateReputation: 0
@@ -4246,6 +4247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Level.HintBanner
   label: {fileID: 812694876}
   fadeSeconds: 0.25
+  panel: {fileID: 0}
+  maxWidth: 0
+  minWidth: 220
+  minHeight: 48
+  padding: {x: 40, y: 16}
 --- !u!225 &1508646874
 CanvasGroup:
   m_ObjectHideFlags: 0

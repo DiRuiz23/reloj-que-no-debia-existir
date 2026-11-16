@@ -6814,6 +6814,7 @@ MonoBehaviour:
   player: {fileID: 1766138993}
   maxScore: 1000
   penaltyPerDeath: 100
+  difficulty: {fileID: 11400000, guid: b36165b9a0e9c2f4696ba03216978725, type: 2}
   clearFlagsOnAwake: 0
   levelFlagPrefix: n3_
   recalculateReputation: 1
@@ -8461,6 +8462,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Level.HintBanner
   label: {fileID: 812694876}
   fadeSeconds: 0.25
+  panel: {fileID: 0}
+  maxWidth: 0
+  minWidth: 220
+  minHeight: 48
+  padding: {x: 40, y: 16}
 --- !u!225 &1508646874
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8931,6 +8937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Level.ClueToast
   prefix: 'Pista guardada: '
+  seconds: 3
 --- !u!4 &1596665046
 Transform:
   m_ObjectHideFlags: 0

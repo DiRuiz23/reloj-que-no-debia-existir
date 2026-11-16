@@ -16,6 +16,10 @@ namespace Reloj.Level
         [SerializeField] int maxScore = 1000;
         [SerializeField] int penaltyPerDeath = 100;
 
+        [Header("Dificultad (I-30)")]
+        [Tooltip("Asset LevelDifficultyConfig de este nivel. Los enemigos y la Parada Temporal leen sus valores de aqui. Vacio = cada uno usa sus valores propios.")]
+        [SerializeField] LevelDifficultyConfig difficulty;
+
         [Header("Flags / Reputacion (Nivel 3+)")]
         [Tooltip("true = el nivel empieza sin flags (Nivel 1). false = conserva las decisiones de niveles previos.")]
         [SerializeField] bool clearFlagsOnAwake = true;
@@ -33,6 +37,9 @@ namespace Reloj.Level
 
         void Awake()
         {
+            // I-30: se registra antes que EnemyAI / TimeStopController (este script corre en orden -100).
+            LevelDifficultyConfig.SetCurrent(difficulty, this);
+
             // Cada partida del nivel empieza sin flags (el telegrama de la maleta hay que volver a tomarlo).
             if (clearFlagsOnAwake) DialogueFlagManager.Clear();
             else if (!string.IsNullOrEmpty(levelFlagPrefix))
@@ -57,6 +64,8 @@ namespace Reloj.Level
             var clues = ClueInventory.Current;
             if (clues != null) clues.RebuildFromFlags();
         }
+
+        void OnDestroy() { LevelDifficultyConfig.ReleaseCurrent(this); }
 
         IEnumerator Start()
         {
