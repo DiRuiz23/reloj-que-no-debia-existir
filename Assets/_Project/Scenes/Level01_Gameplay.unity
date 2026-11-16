@@ -3304,6 +3304,7 @@ MonoBehaviour:
   player: {fileID: 1766138993}
   maxScore: 1000
   penaltyPerDeath: 100
+  difficulty: {fileID: 11400000, guid: dd41f4a56a816f44ba47bfb80d69d8d1, type: 2}
   clearFlagsOnAwake: 1
   levelFlagPrefix: 
   recalculateReputation: 0

@@ -32,7 +32,7 @@ namespace Reloj.Stealth
         [SerializeField, Min(1f)] float turnSpeed = 240f;
         [SerializeField, Min(0.01f)] float arriveDistance = 0.1f;
 
-        [Header("Vision (los carga I-30 con ApplyTuning)")]
+        [Header("Vision (los sobreescribe LevelDifficultyConfig, I-30)")]
         [SerializeField, Range(10f, 180f)] float viewAngle = 70f;
         [SerializeField, Min(0.5f)] float viewDistance = 6f;
         [SerializeField] float eyeHeight = 1.2f;
@@ -78,6 +78,9 @@ namespace Reloj.Stealth
             body.useGravity = false;
             body.interpolation = RigidbodyInterpolation.Interpolate;
 
+            // I-30: velocidad, cono y tiempo de escalada salen del asset del nivel cargado (si hay).
+            ApplyDifficulty(LevelDifficultyConfig.Current);
+
             // Nunca debe verse a si mismo ni a otros enemigos como "pared".
             visionMask &= ~(1 << gameObject.layer);
 
@@ -103,7 +106,18 @@ namespace Reloj.Stealth
             base.OnDisable();
         }
 
-        /// <summary>Punto de entrada para LevelDifficultyConfig (I-30).</summary>
+        /// <summary>
+        /// I-30: aplica la dificultad del nivel (velocidad, angulo y distancia del cono, tiempo hasta Alerta).
+        /// El tiempo de olvido (forgetCooldown) no depende del nivel y se conserva. config null = no cambia nada.
+        /// </summary>
+        public void ApplyDifficulty(LevelDifficultyConfig config)
+        {
+            if (config == null) return;
+            speed = Mathf.Max(0.1f, config.EnemySpeed);
+            ApplyTuning(config.ViewAngle, config.ViewDistance, config.TimeToAlert, forgetCooldown);
+        }
+
+        /// <summary>Asigna cono de vision y tiempos de deteccion (lo usa ApplyDifficulty).</summary>
         public void ApplyTuning(float angle, float distance, float alertSeconds, float cooldownSeconds)
         {
             viewAngle = Mathf.Clamp(angle, 10f, 180f);

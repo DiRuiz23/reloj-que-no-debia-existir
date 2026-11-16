@@ -6560,6 +6560,7 @@ MonoBehaviour:
   player: {fileID: 1766138993}
   maxScore: 1000
   penaltyPerDeath: 100
+  difficulty: {fileID: 11400000, guid: b36165b9a0e9c2f4696ba03216978725, type: 2}
   clearFlagsOnAwake: 0
   levelFlagPrefix: n3_
   recalculateReputation: 1
