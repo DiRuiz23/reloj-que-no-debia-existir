@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8136734302487907462
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 671081084262906420, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 671081084262906420, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 671081084262906420, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462193093180064171, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Guardian
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713617875823657367, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: speed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713617875823657367, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: viewAngle
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713617875823657367, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: timeToAlert
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713617875823657367, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: viewDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744597929578921164, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744597929578921164, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744597929578921164, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990956566335761940, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084528103967385446, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Height
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084528103967385446, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Radius
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084528103967385446, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837418578980191461, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1462193093180064171, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5306945833242982352}
+    - targetCorrespondingSourceObject: {fileID: 1462193093180064171, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1634653533683925990}
+  m_SourcePrefab: {fileID: 100100000, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+--- !u!1 &7251284012382031149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1462193093180064171, guid: 966859cf80203054a8d4fe7495ebcebc, type: 3}
+  m_PrefabInstance: {fileID: 8136734302487907462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5306945833242982352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251284012382031149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37564299f5a44b34eb26f2d249d08c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Stealth.GuardianAI
+  patrolSpeed: 2.5
+  viewAngle: 80
+  viewDistance: 7
+  timeToAlert: 1
+  anticipationSeconds: 1.5
+  recoverySeconds: 3
+  strikeSeconds: 0.35
+  escapeMargin: 1.25
+  radiusPadding: 0.5
+  fallbackPlayerSpeed: 5
+  waitForTimeStop: 1
+  graceAfterRecovery: 0.75
+  graceAfterRespawn: 1.5
+--- !u!114 &1634653533683925990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251284012382031149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558e100078d88514e8f58ef9c7d4db27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Stealth.GuardianTelegraph
+  dangerColor: {r: 1, g: 0.18, b: 0.08, a: 1}
+  frozenColor: {r: 0.65, g: 0.78, b: 1, a: 1}
+  strikeColor: {r: 1, g: 0.95, b: 0.85, a: 1}
+  fillAlpha: 0.35
+  ringAlpha: 0.9
+  ringThickness: 0.4
+  groundOffset: 0.15
+  segments: 72
+  body: {fileID: 0}
+  recoveryTint: {r: 0.55, g: 0.6, b: 0.72, a: 1}
