@@ -50,6 +50,9 @@ namespace Reloj.Player
             lockUntil = Mathf.Max(lockUntil, Time.time + seconds);
         }
 
+        /// <summary>Velocidad maxima de movimiento (m/s). Los enemigos la usan para dimensionar ataques (I-32).</summary>
+        public float MoveSpeed => moveSpeed;
+
         /// <summary>0 a 1: magnitud del input (stick proporcional, teclado = 1).</summary>
         public float NormalizedSpeed { get; private set; }
 

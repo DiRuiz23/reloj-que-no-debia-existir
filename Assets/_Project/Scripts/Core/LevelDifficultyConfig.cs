@@ -64,6 +64,26 @@ namespace Reloj.Core
         [Tooltip("Multiplicador del cooldown de la parada. 1 = valor base; 1.25 = tarda un 25% mas en recargar. Mas alto = puedes usarla menos veces.")]
         [SerializeField, Range(0.25f, 3f)] float timeStopCooldownMultiplier = 1f;
 
+        // ---------- Guardian (I-32) ----------
+        [Header("Guardian del dia 20 (jefe final, Nivel 4)")]
+        [Tooltip("Velocidad de patrulla del Guardian (unidades por segundo).")]
+        [SerializeField, Min(0.1f)] float guardianSpeed = 2.5f;
+
+        [Tooltip("Apertura del cono de vision del Guardian, en grados.")]
+        [SerializeField, Range(10f, 180f)] float guardianViewAngle = 80f;
+
+        [Tooltip("Alcance del cono de vision del Guardian, en unidades.")]
+        [SerializeField, Min(0.5f)] float guardianViewDistance = 7f;
+
+        [Tooltip("Segundos de visibilidad continua antes de que el Guardian te fije y empiece su ataque.")]
+        [SerializeField, Min(0.1f)] float guardianTimeToAlert = 1f;
+
+        [Tooltip("Segundos entre que el ataque se anuncia y el golpe. Minimo 1 s. Es la ventana en la que hay que detener el tiempo.")]
+        [SerializeField, Min(1f)] float guardianAnticipationSeconds = 1.5f;
+
+        [Tooltip("Segundos que el Guardian queda aturdido (sin ver ni moverse) tras su ataque.")]
+        [SerializeField, Min(0.5f)] float guardianRecoverySeconds = 3f;
+
         public int Level => level;
         public float EnemySpeed => enemySpeed;
         public float ViewAngle => viewAngle;
@@ -72,5 +92,11 @@ namespace Reloj.Core
         public int SuggestedEnemyCount => suggestedEnemyCount;
         public float TimeStopDurationMultiplier => timeStopDurationMultiplier;
         public float TimeStopCooldownMultiplier => timeStopCooldownMultiplier;
+        public float GuardianSpeed => guardianSpeed;
+        public float GuardianViewAngle => guardianViewAngle;
+        public float GuardianViewDistance => guardianViewDistance;
+        public float GuardianTimeToAlert => guardianTimeToAlert;
+        public float GuardianAnticipationSeconds => guardianAnticipationSeconds;
+        public float GuardianRecoverySeconds => guardianRecoverySeconds;
     }
 }

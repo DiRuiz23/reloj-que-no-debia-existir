@@ -80,8 +80,9 @@ namespace Reloj.Stealth
 
         void LateUpdate()
         {
-            mr.enabled = visible;
-            if (!visible) return;
+            bool show = visible && !ai.VisionHidden;
+            mr.enabled = show;
+            if (!show) return;
             float dist = ai.ViewDistance, half = ai.ViewAngle * 0.5f;
             current = Color.Lerp(current, TargetColor(), 1f - Mathf.Exp(-12f * Time.deltaTime));
             Vector3 origin = transform.position;

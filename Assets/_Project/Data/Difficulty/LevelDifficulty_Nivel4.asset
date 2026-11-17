@@ -20,3 +20,9 @@ MonoBehaviour:
   suggestedEnemyCount: 9
   timeStopDurationMultiplier: 0.7
   timeStopCooldownMultiplier: 1.35
+  guardianSpeed: 2.5
+  guardianViewAngle: 80
+  guardianViewDistance: 7
+  guardianTimeToAlert: 1
+  guardianAnticipationSeconds: 1.5
+  guardianRecoverySeconds: 3

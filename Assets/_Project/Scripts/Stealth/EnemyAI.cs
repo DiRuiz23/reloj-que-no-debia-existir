@@ -69,6 +69,39 @@ namespace Reloj.Stealth
         public float EyeHeight => eyeHeight;
         public LayerMask VisionMask => visionMask;
 
+        // ---------- API para comportamientos que extienden al enemigo (I-32: GuardianAI) ----------
+        /// <summary>true = la IA base ni patrulla ni detecta: otro componente (p. ej. GuardianAI) la controla.</summary>
+        public bool Suspended { get; set; }
+
+        /// <summary>true = el cono de vision no se dibuja (p. ej. Guardian aturdido).</summary>
+        public bool VisionHidden { get; set; }
+
+        /// <summary>Se dispara cuando el jugador reaparece (despues de morir por cualquier causa).</summary>
+        public event Action PlayerRespawned;
+
+        /// <summary>true si en este instante el enemigo ve al jugador (cono + linea de vision + no cegado).</summary>
+        public bool CanSeePlayerNow => ResolvePlayer() && blindTimer <= 0f && CanSeePlayer();
+
+        /// <summary>Cambia la velocidad de patrulla.</summary>
+        public void SetSpeed(float value) { speed = Mathf.Max(0.1f, value); }
+
+        /// <summary>Ciega al enemigo (no detecta) durante unos segundos.</summary>
+        public void BlindFor(float seconds) { blindTimer = Mathf.Max(blindTimer, seconds); }
+
+        /// <summary>Cambia de estado y reinicia los contadores de sospecha y olvido.</summary>
+        public void ForceState(EnemyState next)
+        {
+            suspicion = 0f; lostTimer = 0f;
+            SetState(next);
+        }
+
+        /// <summary>Gira hacia un punto del mundo a la velocidad de giro del enemigo.</summary>
+        public void TurnTowards(Vector3 worldPoint, float dt)
+        {
+            if (body == null) return;
+            FaceDirection(worldPoint - body.position, dt);
+        }
+
         // ---------- Ciclo de vida ----------
         protected override void Awake()
         {
@@ -131,6 +164,7 @@ namespace Reloj.Stealth
         {
             if (IsFrozen) return;                 // Parada Temporal: ni se mueve ni detecta
             if (!IsPlaying()) return;             // Pausa / Fin de nivel / Game Over
+            if (Suspended) return;                // Lo controla otro componente (GuardianAI)
 
             float dt = Time.fixedDeltaTime;
             bool hasPlayer = ResolvePlayer();
@@ -190,6 +224,7 @@ namespace Reloj.Stealth
             blindTimer = blindAfterCatch;
             suspicion = 0f; lostTimer = 0f;
             SetState(EnemyState.Ignorante);
+            PlayerRespawned?.Invoke();
         }
 
         // ---------- Vision ----------
