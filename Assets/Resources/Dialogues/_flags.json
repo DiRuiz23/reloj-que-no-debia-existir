@@ -6,6 +6,7 @@
     "n3_tomas_confia", "n3_tomas_hostil", "n3_pista_telegrafo_mudo", "n3_paso_campamento",
     "n3_lupe_confia", "n3_pista_relojes_317", "n3_pista_vagon_sin_numero",
     "n3_pista_caja_lacre", "n3_pista_registro_telegrafo",
-    "n3_tomas_hablado", "n3_lupe_hablado", "n3_pista_dia20_alzamiento"
+    "n3_tomas_hablado", "n3_lupe_hablado", "n3_pista_dia20_alzamiento",
+    "n4_pista_aviso_estacion", "n4_pista_horario_317", "n4_pista_baul_torre", "n4_en_patio", "n4_en_talleres", "n4_en_estacion", "n4_en_arena", "n4_encuentro_iniciado", "n4_encuentro_superado"
   ]
 }

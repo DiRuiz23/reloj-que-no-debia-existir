@@ -1,0 +1,12 @@
+{
+  "id": "nivel4_antesala",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "La torre del reloj se alza al fondo y su esfera marca las tres y diecisiete. La reja está alzada, como una boca abierta. Quien espera ahí dentro ya sabe que vengo. Si esto sale mal, el día veinte se escribe sin mí.",
+      "end": true
+    }
+  ]
+}

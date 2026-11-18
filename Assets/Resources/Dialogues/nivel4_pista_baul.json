@@ -1,0 +1,41 @@
+{
+  "id": "nivel4_pista_baul",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Un baúl de viaje abandonado junto a la pared. Una etiqueta cosida a la tapa: «Para E. Torre del reloj.»",
+      "altIf": { "flag": "n4_pista_baul_torre", "next": "ya_visto" },
+      "choices": [
+        { "text": "Abrirlo.", "next": "leer", "setFlag": "n4_pista_baul_torre" },
+        { "text": "Dejarlo cerrado.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "leer",
+      "speaker": "Juan",
+      "text": "Dentro, doblada, una levita gris con un engrane bordado en el cuello, y una nota: «La corrección se completa cuando la torre dé la hora. Que nadie la detenga.» Lo que sea que esté pasando, termina en esa torre.",
+      "altIf": { "flag": "n3_pista_caja_lacre", "next": "leer_ref" },
+      "end": true
+    },
+    {
+      "id": "leer_ref",
+      "speaker": "Juan",
+      "text": "Dentro, doblada, una levita gris con el mismo engrane del lacre bordado en el cuello, y una nota: «La corrección se completa cuando la torre dé la hora. Que nadie la detenga.» Quien espera en esa torre es el mismo que firmaba con una «E.».",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "No es mío. Pero la palabra «torre» no me abandona.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "La levita, la nota: la corrección se completa cuando la torre dé la hora. Hay que llegar antes.",
+      "end": true
+    }
+  ]
+}

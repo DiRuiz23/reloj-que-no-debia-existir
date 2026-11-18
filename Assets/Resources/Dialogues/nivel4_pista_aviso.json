@@ -1,0 +1,41 @@
+{
+  "id": "nivel4_pista_aviso",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Un tablero de avisos clavado a la pared, con papeles amarillentos. Uno, sin fecha, lleva un engrane dibujado a lápiz al pie.",
+      "altIf": { "flag": "n4_pista_aviso_estacion", "next": "ya_visto" },
+      "choices": [
+        { "text": "Leer el aviso.", "next": "leer", "setFlag": "n4_pista_aviso_estacion" },
+        { "text": "Dejarlo donde está.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "leer",
+      "speaker": "Juan",
+      "text": "«Estación San Roque clausurada por orden de la Compañía. Acceso al patio y a la torre del reloj solo con permiso de E.» El mismo engrane, la misma inicial. Quien manda aquí no quiere testigos.",
+      "altIf": { "flag": "n3_pista_registro_telegrafo", "next": "leer_ref" },
+      "end": true
+    },
+    {
+      "id": "leer_ref",
+      "speaker": "Juan",
+      "text": "«Estación San Roque clausurada por orden de la Compañía. Acceso al patio y a la torre del reloj solo con permiso de E.» La «E.» del telégrafo mudo, otra vez. «Sin testigos», decía el registro; aquí lo han hecho ley.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "Mejor no perder tiempo. Pero el engrane dibujado se me queda grabado.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Ya lo leí: la estación está clausurada y solo entra quien tenga permiso de «E.».",
+      "end": true
+    }
+  ]
+}
