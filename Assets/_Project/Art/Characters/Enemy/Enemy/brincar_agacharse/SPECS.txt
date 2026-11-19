@@ -1,0 +1,1 @@
+JUMP 384x192 (3 frames: impulso, aire, aterrizaje) | CROUCH 256x192 (2 frames) | celda 128x192 | PPU 96 | pivote Bottom | Point | sin compresion | SE->flipX=SW | NW->flipX=NE

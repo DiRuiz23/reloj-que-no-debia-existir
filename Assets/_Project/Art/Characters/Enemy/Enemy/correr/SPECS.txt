@@ -1,0 +1,1 @@
+RUN 768x192 (6 frames) | celda 128x192 | PPU 96 | pivote Bottom | Point | sin compresion | SE->flipX=SW | NW->flipX=NE
