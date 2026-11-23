@@ -245,7 +245,7 @@ namespace Reloj.Dialogue
         }
 
         /// <summary>Aplica altIf: si el flag ya esta activo, salta al nodo alternativo.</summary>
-        static DialogueNode ResolveNode(DialogueFile f, DialogueNode n)
+        public static DialogueNode ResolveNode(DialogueFile f, DialogueNode n)
         {
             for (int guard = 0; n != null && guard < 8; guard++)
             {

@@ -5,3 +5,4 @@ Licencia: Obra original del equipo, generada con asistencia de IA. Distribución
 Herramienta: Claude (Anthropic) y los scripts de editor PlaceholderAudioGenerator y PlaceholderAudioGeneratorI22 (síntesis de audio por código).
 Contenido: 2 pistas de música (nivel 1 y menú), 19 efectos de sonido (incluye salto, recoger objeto, daño y tic-tac en bucle) y 2 ambientes.
 Uso en el proyecto: audio provisional del menú, el nivel 1 y la interfaz.
+Finales: mus_ending_a_loop y mus_ending_b_loop (música provisional de los finales A y B, 32 s en bucle cada una), generadas con el script de editor EndingMusicGenerator (síntesis de audio por código, obra original del equipo con asistencia de Claude).

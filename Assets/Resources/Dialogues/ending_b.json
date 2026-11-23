@@ -1,0 +1,69 @@
+{
+  "id": "ending_b",
+  "start": "b1",
+  "nodes": [
+    {
+      "id": "b1",
+      "speaker": "Juan",
+      "text": "Cierro los dedos sobre la pieza y la sostengo contra el pecho hasta que deja de latir. Arriba, la aguja minutera se queda quieta en las tres y diecisiete, y la torre guarda el campanazo que nunca llegó a darse. En lo alto de la escalera alguien lanza una maldición y huye.",
+      "choices": [ { "text": "Continuar", "next": "b2" } ]
+    },
+    {
+      "id": "b2",
+      "speaker": "Juan",
+      "text": "Nada se corrige. El día veinte llegará cuando tenga que llegar, con su pólvora y sus malas noticias por telégrafo. Pero el pueblo sigue en pie: el taller, la plaza, las calles que conozco de memoria.",
+      "choices": [ { "text": "Continuar", "next": "b3" } ]
+    },
+    {
+      "id": "b3",
+      "speaker": "Juan",
+      "text": "Bajo a la plaza con la pieza envuelta en el abrigo. Nadie me espera. Los que pasan miran a otro lado: en tiempos así, un aprendiz de relojero es un forastero más.",
+      "altIf": { "flag": "rep_n3_alta", "next": "b3_alta" },
+      "choices": [ { "text": "Continuar", "next": "b4" } ]
+    },
+    {
+      "id": "b3_alta",
+      "speaker": "Juan",
+      "text": "Bajo a la plaza con la pieza envuelta en el abrigo. Tomás y Lupe me esperan junto a la torre: la noticia de lo que hice corrió más rápido que el tren. «Tenías crédito, aprendiz», dice ella, «y lo gastaste bien».",
+      "choices": [ { "text": "Continuar", "next": "b4" } ]
+    },
+    {
+      "id": "b4",
+      "speaker": "Juan",
+      "text": "Paso por la casa de Doña Candelaria. Me saluda desde la ventana, apenas con un gesto. Todavía se despierta por las noches, aunque el tic, tic, tic ya casi no se oye.",
+      "altIf": { "flag": "candelaria_confio", "next": "b4_candelaria" },
+      "choices": [ { "text": "Continuar", "next": "b5" } ]
+    },
+    {
+      "id": "b4_candelaria",
+      "speaker": "Juan",
+      "text": "Paso por la casa de Doña Candelaria. Me abre antes de que toque. «Qué bueno verte, Juan, hijo», dice, y por primera vez en semanas no tiene ojeras. Me sirve un café mientras el tic, tic, tic se apaga para siempre en su cabeza.",
+      "choices": [ { "text": "Continuar", "next": "b5" } ]
+    },
+    {
+      "id": "b5",
+      "speaker": "Juan",
+      "text": "Llevo la pieza al taller y la dejo sobre el banco donde mi maestro trabajó tantos años; la cubro con un paño. No sé quién era «E.» en realidad, ni si volverá por ella. Sé que, mientras yo viva entre estos muros, nadie le dará cuerda sin pasar sobre mí.",
+      "choices": [ { "text": "Continuar", "next": "b6" } ]
+    },
+    {
+      "id": "b6",
+      "speaker": "Juan",
+      "text": "No tengo papeles que enseñar a nadie, solo mi palabra de aprendiz.",
+      "altIf": { "flag": "n4_pista_baul_torre", "next": "b6_baul" },
+      "choices": [ { "text": "Continuar", "next": "b7" } ]
+    },
+    {
+      "id": "b6_baul",
+      "speaker": "Juan",
+      "text": "En la repisa del taller guardo la levita gris del baúl, con el engrane bordado en el cuello, y la nota: «La corrección se completa cuando la torre dé la hora». Esa hora nunca llegó, y yo me encargaré de que siga sin llegar.",
+      "choices": [ { "text": "Continuar", "next": "b7" } ]
+    },
+    {
+      "id": "b7",
+      "speaker": "Juan",
+      "text": "Afuera, la plaza espera el veinte con los relojes detenidos y el corazón en la boca. Yo abro el taller, enciendo la lámpara y vuelvo a mi oficio. El tiempo no se corrige: se vive, hora tras hora, con la gente que uno quiere.",
+      "end": true
+    }
+  ]
+}

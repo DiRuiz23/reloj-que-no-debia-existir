@@ -6,7 +6,7 @@ namespace Reloj.Stealth
     /// <summary>
     /// Maneja los sprites/animaciones del soldado (Idle, Walk, Aim, Shoot) a partir del estado de EnemyAI.
     /// Ignorante  -> Idle / Walk segun se mueva, mirando hacia donde camina.
-    /// Sospechoso -> Aim (apunta hacia el jugador).
+    /// Sospechoso -> Aim (apunta hacia el jugador en N, NE, E, SE y S; W/SW/NW se voltean).
     /// Alerta     -> Shoot (disparo antes de reaparecer al jugador).
     /// El volteo horizontal se hace con la escala (igual que el jugador), no con flipX.
     /// La Parada Temporal pausa el Animator sola (TimeAffectableBase congela los Animators hijos).
@@ -95,11 +95,9 @@ namespace Reloj.Stealth
             // ---- Volteo (con histeresis para que no parpadee cerca de x = 0) ----
             if (Mathf.Abs(facing.x) > 0.05f)
             {
-                if (aiming) flip = false;                               // Aim usa E/W propios
-                else if (shooting) flip = facing.x < 0f;                // Shoot: todos miran a la derecha
+                if (aiming || shooting) flip = facing.x < 0f;           // Aim/Shoot: todos miran a la derecha, W/SW/NW se voltean
                 else flip = facing.y >= 0f ? facing.x < 0f : facing.x > 0f; // N/NE miran a la derecha, S/SW a la izquierda
             }
-            else if (aiming) flip = false;
 
             Vector3 sc = baseScale;
             sc.x = flip ? -baseScale.x : baseScale.x;
