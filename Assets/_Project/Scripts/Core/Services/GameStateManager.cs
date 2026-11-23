@@ -20,7 +20,7 @@ namespace Reloj.Core
         /// <summary>(estado anterior, estado nuevo)</summary>
         public event Action<GameState, GameState> OnStateChanged;
 
-                static bool SceneInBuild(string sceneName)
+        static bool SceneInBuild(string sceneName)
         {
             for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
                 if (Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)) == sceneName) return true;
@@ -97,6 +97,11 @@ namespace Reloj.Core
             var services = GameServices.Instance;
             if (services != null && services.Session != null)
                 services.Session.SetLevelResult(score, time);
+
+            // I-34: al terminar el nivel se desbloquea el siguiente y se guarda el progreso.
+            if (services != null && services.Save != null)
+                services.Save.RegisterLevelComplete(SceneManager.GetActiveScene().name, score);
+
             SetState(GameState.FinDelNivel);
         }
 
@@ -132,6 +137,11 @@ namespace Reloj.Core
                 Debug.LogWarning($"[GameStateManager] La escena '{menuSceneName}' no está en el build.");
                 return;
             }
+
+            // I-34: al salir al menú se guarda (conserva el último progreso y las opciones).
+            var services = GameServices.Instance;
+            if (services != null && services.Save != null) services.Save.Save();
+
             SetState(GameState.Jugando);   // devuelve timeScale a 1 antes de salir
             GameServices.Instance.Loader.LoadSingle(menuSceneName);
         }
