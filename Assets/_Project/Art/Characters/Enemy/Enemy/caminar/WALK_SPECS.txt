@@ -1,0 +1,3 @@
+CAMINAR - 4 hojas (S, SE, N, NW), 4 frames cada una
+Hoja: 512 x 192 px | 4 columnas x 1 fila | celda 128 x 192 px | PPU 96 | pivote Bottom (0.5, 0) | Filter Point | Compression None
+SE -> flipX para SW | NW -> flipX para NE | S y N sin flip

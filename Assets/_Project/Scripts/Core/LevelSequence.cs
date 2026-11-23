@@ -13,6 +13,7 @@ namespace Reloj.Core
             "Level01_Gameplay",
             "Level02_Gameplay",
             "Level03_Gameplay",
+            "Level04_Gameplay",
         };
 
         public static bool Contains(string sceneName) => System.Array.IndexOf(Order, sceneName) >= 0;

@@ -1,0 +1,12 @@
+{
+  "id": "nivel4_inicio",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Día veinte. Aquí empezó todo: la estación, el tren de la madrugada, los relojes parados a las tres y diecisiete. Si alguien intenta corregir lo que pasó, será en este lugar. Voy a mirar con calma antes de entrar al patio.",
+      "end": true
+    }
+  ]
+}

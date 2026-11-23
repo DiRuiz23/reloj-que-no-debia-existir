@@ -1,0 +1,69 @@
+{
+  "id": "ending_a",
+  "start": "a1",
+  "nodes": [
+    {
+      "id": "a1",
+      "speaker": "Juan",
+      "text": "Aparto las manos y la pieza queda sola sobre el mecanismo. Arriba, la aguja minutera completa su último salto y la torre da la hora por primera vez desde la madrugada del veinte. No es un campanazo: es un suspiro largo, como el de alguien que lleva años conteniendo el aliento.",
+      "choices": [ { "text": "Continuar", "next": "a2" } ]
+    },
+    {
+      "id": "a2",
+      "speaker": "Juan",
+      "text": "No hay estruendo ni fuego. Las cosas simplemente se acomodan, una por una, como piezas que encuentran su lugar. El telégrafo vuelve a zumbar, el tren de la madrugada parte con pasajeros y la fecha que todos temían pasa a ser un día cualquiera.",
+      "choices": [ { "text": "Continuar", "next": "a3" } ]
+    },
+    {
+      "id": "a3",
+      "speaker": "Juan",
+      "text": "En la plaza hay quien levanta la vista hacia la torre y sonríe sin saber por qué. Nadie recuerda al aprendiz del relojero: en la casa junto al taller vive ahora una familia que nunca ha oído mi nombre.",
+      "altIf": { "flag": "candelaria_confio", "next": "a3_candelaria" },
+      "choices": [ { "text": "Continuar", "next": "a4" } ]
+    },
+    {
+      "id": "a3_candelaria",
+      "speaker": "Juan",
+      "text": "En la plaza, Doña Candelaria duerme por fin: sin el tic, tic, tic en la cabeza, sin la madrugada del veinte. Pasa junto a mí y me sonríe como se sonríe a un desconocido amable, sin saber que fue la primera en confiar en mí.",
+      "choices": [ { "text": "Continuar", "next": "a4" } ]
+    },
+    {
+      "id": "a4",
+      "speaker": "Juan",
+      "text": "De la sierra no queda ni la memoria de un campamento. Nunca hubo levantamiento que defender, ni nadie que me pidiera pruebas que se pudieran tocar.",
+      "altIf": { "flag": "n3_lupe_confia", "next": "a4_lupe" },
+      "choices": [ { "text": "Continuar", "next": "a5" } ]
+    },
+    {
+      "id": "a4_lupe",
+      "speaker": "Juan",
+      "text": "Lupe tenía razón: el veinte era una fecha que no era de cualquiera. Ahora es un día sin nombre, y en la sierra nadie recuerda por qué tuvo que alzarse. Su reloj de bolsillo marca la hora correcta; ella lo mira un instante y no sabe a quién agradecérselo.",
+      "choices": [ { "text": "Continuar", "next": "a5" } ]
+    },
+    {
+      "id": "a5",
+      "speaker": "Juan",
+      "text": "Camino hasta el taller. Los relojes de la repisa andan todos a la misma hora exacta. Mi nombre no está en la puerta, ni en el libro de cuentas, ni en la memoria de nadie. Debería dolerme. Lo que siento es algo más callado: el alivio de haber dejado el mundo mejor, aunque sea sin mí.",
+      "choices": [ { "text": "Continuar", "next": "a6" } ]
+    },
+    {
+      "id": "a6",
+      "speaker": "Juan",
+      "text": "En el bolsillo del abrigo no hay ningún papel que pruebe lo que hice. Solo me queda la certeza de lo que decidí.",
+      "altIf": { "flag": "telegrama_dia20_leido", "next": "a6_telegrama" },
+      "choices": [ { "text": "Continuar", "next": "a7" } ]
+    },
+    {
+      "id": "a6_telegrama",
+      "speaker": "Juan",
+      "text": "En el bolsillo del abrigo queda el telegrama arrugado, el del engrane dibujado a lápiz. Lo desdoblo y la tinta se desvanece letra por letra: «La pieza sale en el tren…», y después, nada. Era lo último que probaba que todo esto ocurrió.",
+      "choices": [ { "text": "Continuar", "next": "a7" } ]
+    },
+    {
+      "id": "a7",
+      "speaker": "Juan",
+      "text": "Afuera, la torre vuelve a dar la hora. Y yo, que ya no existo en ningún libro, la escucho hasta que se apaga el último eco.",
+      "end": true
+    }
+  ]
+}

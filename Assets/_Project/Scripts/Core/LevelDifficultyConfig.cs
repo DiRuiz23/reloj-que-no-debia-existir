@@ -84,6 +84,12 @@ namespace Reloj.Core
         [Tooltip("Segundos que el Guardian queda aturdido (sin ver ni moverse) tras su ataque.")]
         [SerializeField, Min(0.5f)] float guardianRecoverySeconds = 3f;
 
+        [Tooltip("Velocidad con la que el Guardian PERSIGUE al jugador (unidades por segundo). Debe ser menor que la del jugador (5) para poder huir.")]
+        [SerializeField, Min(0.1f)] float guardianChaseSpeed = 3.2f;
+
+        [Tooltip("Segundos sin linea de vision antes de que el Guardian abandone la persecucion y vuelva a patrullar.")]
+        [SerializeField, Min(0.5f)] float guardianLoseSightSeconds = 3f;
+
         public int Level => level;
         public float EnemySpeed => enemySpeed;
         public float ViewAngle => viewAngle;
@@ -98,5 +104,7 @@ namespace Reloj.Core
         public float GuardianTimeToAlert => guardianTimeToAlert;
         public float GuardianAnticipationSeconds => guardianAnticipationSeconds;
         public float GuardianRecoverySeconds => guardianRecoverySeconds;
+        public float GuardianChaseSpeed => guardianChaseSpeed;
+        public float GuardianLoseSightSeconds => guardianLoseSightSeconds;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Reloj.Clues;
 using Reloj.Core;
 using Reloj.Player;
+using Reloj.Sound;
 using Reloj.Tutorial;
 
 namespace Reloj.Level
@@ -29,6 +30,11 @@ namespace Reloj.Level
         [SerializeField] bool recalculateReputation;
         [Tooltip("SOLO PRUEBAS (Editor/Development build): flags que se activan si abres la escena directo, sin pasar por el Nivel 1.")]
         [SerializeField] string[] editorTestFlags;
+
+        [Header("Final del juego")]
+        [Tooltip("Si no esta vacio, al completar el nivel se carga esta escena (ej. Decision_Final) en lugar de la pantalla de Fin del Nivel.")]
+        [SerializeField] string sceneAfterComplete = "";
+        [SerializeField, Min(0f)] float sceneAfterCompleteDelay = 1.5f;
 
         bool completed;
 
@@ -103,8 +109,29 @@ namespace Reloj.Level
             int collected = ScoreManager.Instance != null ? ScoreManager.Instance.Score : 0;
             int score = Mathf.Max(0, maxScore - deaths * penaltyPerDeath) + collected;
 
+            // Nivel 4: en vez del panel de resultados se pasa a la escena de decision final.
+            if (!string.IsNullOrEmpty(sceneAfterComplete) && Application.CanStreamedLevelBeLoaded(sceneAfterComplete))
+            {
+                var gs = GameServices.Instance;
+                if (gs != null && gs.Session != null) gs.Session.SetLevelResult(score, time);
+                StartCoroutine(LoadSceneAfterComplete());
+                return;
+            }
+
             // GameSession.LastLevelScore/Time -> pantalla de Fin del Nivel.
             s.CompleteLevel(score, time);
+        }
+
+        IEnumerator LoadSceneAfterComplete()
+        {
+            var motor = FindFirstObjectByType<PlayerMotor>();
+            if (motor != null) motor.InputLocked = true;
+            var audio = AudioManager.Instance;
+            if (audio != null) { audio.Play(Sfx.Goal); audio.FadeOutMusic(Mathf.Max(0.5f, sceneAfterCompleteDelay)); }
+            yield return new WaitForSecondsRealtime(sceneAfterCompleteDelay);
+            var services = GameServices.Instance;
+            if (services != null && services.Loader != null) services.Loader.LoadSingle(sceneAfterComplete);
+            else SceneManager.LoadScene(sceneAfterComplete);
         }
     }
 }

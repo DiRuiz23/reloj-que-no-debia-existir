@@ -1,0 +1,27 @@
+{
+  "id": "nivel4_decision",
+  "start": "decision",
+  "nodes": [
+    {
+      "id": "decision",
+      "speaker": "Juan",
+      "text": "La esfera marca las tres y diecisiete, y la pieza late entre mis manos como un corazón ajeno. Si dejo que la torre dé la hora, el día veinte se corregirá: lo que debía ocurrir ocurrirá de otro modo, y quizá yo no esté ahí para recordarlo. Si detengo la pieza, todo seguirá como lo conozco, con sus heridas y con la gente que quiero. Ya no queda tiempo para pensarlo dos veces.",
+      "choices": [
+        { "text": "Dejar que la torre dé la hora y que la historia se corrija.", "next": "ir_final_a", "setFlag": "n4_final_corregir" },
+        { "text": "Detener la pieza y proteger la vida que conozco.", "next": "ir_final_b", "setFlag": "n4_final_proteger" }
+      ]
+    },
+    {
+      "id": "ir_final_a",
+      "speaker": "Juan",
+      "text": "Aparto las manos de la pieza. Que la torre dé la hora.",
+      "end": true
+    },
+    {
+      "id": "ir_final_b",
+      "speaker": "Juan",
+      "text": "Cierro los dedos sobre la pieza y la sostengo hasta que deja de latir.",
+      "end": true
+    }
+  ]
+}

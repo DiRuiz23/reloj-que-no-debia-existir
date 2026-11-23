@@ -118,7 +118,7 @@ namespace Reloj.Dialogue.EditorTools
                     Error(asset, $"{where}: sin continuación (no tiene opciones ni \"end\": true).");
                 if (n.end && hasChoices)
                     Warn(asset, $"{where}: tiene \"end\": true y opciones; las opciones se ignoran.");
-                if (!n.end && hasChoices && n.choices.Count < 2)
+                if (!n.end && hasChoices && n.choices.Count < 2 && !IsLinearPage(n))
                     Warn(asset, $"{where}: solo tiene 1 opción (se piden 2 o más).");
 
                 if (hasChoices)
@@ -195,6 +195,10 @@ namespace Reloj.Dialogue.EditorTools
             if (!catalog.Contains(flag))
                 Error(ctx, $"{where}: flag no definido '{flag}' (agrégalo a _flags.json).");
         }
+
+        // Paginas lineales de los finales: una sola opcion "Continuar" que lleva a la siguiente.
+        static bool IsLinearPage(DialogueNode n) =>
+            n.choices != null && n.choices.Count == 1 && n.choices[0] != null && n.choices[0].text == "Continuar";
 
         static void Error(Object ctx, string msg) { errors++; Debug.LogError($"[Validar diálogos] {msg}", ctx); }
         static void Warn(Object ctx, string msg) { warnings++; Debug.LogWarning($"[Validar diálogos] {msg}", ctx); }

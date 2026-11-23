@@ -17,12 +17,14 @@ MonoBehaviour:
   viewAngle: 90
   viewDistance: 8
   timeToAlert: 1
-  suggestedEnemyCount: 9
+  suggestedEnemyCount: 13
   timeStopDurationMultiplier: 0.7
   timeStopCooldownMultiplier: 1.35
   guardianSpeed: 2.5
-  guardianViewAngle: 80
-  guardianViewDistance: 7
+  guardianViewAngle: 100
+  guardianViewDistance: 11
   guardianTimeToAlert: 1
   guardianAnticipationSeconds: 1.5
   guardianRecoverySeconds: 3
+  guardianChaseSpeed: 3.2
+  guardianLoseSightSeconds: 3

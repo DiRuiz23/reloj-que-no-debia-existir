@@ -1,0 +1,1 @@
+CAST 512x192 (4 frames: preparacion, canalizacion con reloj, lanzamiento, recuperacion) | boss_clock_spell 768x128 (6 frames, 128x128) | PPU 96 | pivote Bottom (personaje) / Center (reloj) | Point | sin compresion | SE->flipX=SW | NW->flipX=NE

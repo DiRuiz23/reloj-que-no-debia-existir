@@ -1,0 +1,718 @@
+fileFormatVersion: 2
+guid: 8a87cf3132a03e840b935912fcb13562
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca0e4d3dd94c7e10800000000000000
+      internalID: 2196711932815084224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 448
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088899a1c83de9e30800000000000000
+      internalID: 4512276475366967424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 448
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d2809b140835a80800000000000000
+      internalID: -8479292653642961514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 448
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5743c706207e89220800000000000000
+      internalID: 2492996391144273013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 448
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7be6c12c4e0094c80800000000000000
+      internalID: -8338132252590575945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a16ebcca9ffb290800000000000000
+      internalID: -7872299103069791729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dec14aace0bfc120800000000000000
+      internalID: 2436360453945937623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_7
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ed7fef6748e72de0800000000000000
+      internalID: -1357861369110626844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c37f2e7bee91b410800000000000000
+      internalID: 1491147685907887049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4201389, y: 0.10714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a7e5ab948939f9b0800000000000000
+      internalID: -5045938665782122584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.40416667, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6d33217849b48f0800000000000000
+      internalID: -555186821203241217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.40416667, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5092e4052c75fb800800000000000000
+      internalID: 630318964937730309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.40416667, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f51b902703c8beef0800000000000000
+      internalID: -77814428849295009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_13
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.40416667, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be9a43830d4bc9590800000000000000
+      internalID: -7666053659302254101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_14
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 224
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.40416667, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171ced70181f16c10800000000000000
+      internalID: 2045181242288030065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef95f29513385e00800000000000000
+      internalID: 1033632282234429420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_16
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9e38179ef0bab20800000000000000
+      internalID: 3146626259954690466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_17
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e696844eb1133d0800000000000000
+      internalID: -3228768790566572507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4512acfa78c5ac9f0800000000000000
+      internalID: -447443475130343084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_19
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 112
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3994e0b2b40c35470800000000000000
+      internalID: 8382254760544061843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fdc4765d60c89d60800000000000000
+      internalID: 7897273522428628468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_21
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98083bbad9a80b9c0800000000000000
+      internalID: -3913475666389794679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_22
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25ae8f5b3ef007990800000000000000
+      internalID: -7390389517830002094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_23
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a355419e5be94d3a0800000000000000
+      internalID: -6641509046327945926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soldado_apuntar_144x112_24
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 144
+        height: 112
+      alignment: 9
+      pivot: {x: 0.39930555, y: 0.09821428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57378dcea542dbe20800000000000000
+      internalID: 3367888069282263925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      soldado_apuntar_144x112_0: 2196711932815084224
+      soldado_apuntar_144x112_1: 4512276475366967424
+      soldado_apuntar_144x112_10: -555186821203241217
+      soldado_apuntar_144x112_11: 630318964937730309
+      soldado_apuntar_144x112_12: -77814428849295009
+      soldado_apuntar_144x112_13: -7666053659302254101
+      soldado_apuntar_144x112_14: 2045181242288030065
+      soldado_apuntar_144x112_15: 1033632282234429420
+      soldado_apuntar_144x112_16: 3146626259954690466
+      soldado_apuntar_144x112_17: -3228768790566572507
+      soldado_apuntar_144x112_18: -447443475130343084
+      soldado_apuntar_144x112_19: 8382254760544061843
+      soldado_apuntar_144x112_2: -8479292653642961514
+      soldado_apuntar_144x112_20: 7897273522428628468
+      soldado_apuntar_144x112_21: -3913475666389794679
+      soldado_apuntar_144x112_22: -7390389517830002094
+      soldado_apuntar_144x112_23: -6641509046327945926
+      soldado_apuntar_144x112_24: 3367888069282263925
+      soldado_apuntar_144x112_3: 2492996391144273013
+      soldado_apuntar_144x112_4: -8338132252590575945
+      soldado_apuntar_144x112_5: -7872299103069791729
+      soldado_apuntar_144x112_6: 2436360453945937623
+      soldado_apuntar_144x112_7: -1357861369110626844
+      soldado_apuntar_144x112_8: 1491147685907887049
+      soldado_apuntar_144x112_9: -5045938665782122584
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

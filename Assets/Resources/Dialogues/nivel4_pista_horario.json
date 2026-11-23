@@ -1,0 +1,41 @@
+{
+  "id": "nivel4_pista_horario",
+  "start": "inicio",
+  "nodes": [
+    {
+      "id": "inicio",
+      "speaker": "Juan",
+      "text": "Un cartel de horarios, descolorido por el sol. Todas las líneas están tachadas menos una.",
+      "altIf": { "flag": "n4_pista_horario_317", "next": "ya_visto" },
+      "choices": [
+        { "text": "Leer la línea sin tachar.", "next": "leer", "setFlag": "n4_pista_horario_317" },
+        { "text": "Seguir de largo.", "next": "dejar" }
+      ]
+    },
+    {
+      "id": "leer",
+      "speaker": "Juan",
+      "text": "«Madrugada del veinte, salida 3:17. Vía única. Sin pasajeros.» Las tres y diecisiete otra vez. Todo se detuvo a esa hora; quizá porque es la hora en que algo debe cumplirse.",
+      "altIf": { "flag": "n3_pista_relojes_317", "next": "leer_ref" },
+      "end": true
+    },
+    {
+      "id": "leer_ref",
+      "speaker": "Juan",
+      "text": "«Madrugada del veinte, salida 3:17. Vía única. Sin pasajeros.» Lupe lo dijo: todos los relojes se pararon a las tres y diecisiete. No fue un accidente: el tren, el hilo cortado y los relojes encajan en el mismo minuto.",
+      "end": true
+    },
+    {
+      "id": "dejar",
+      "speaker": "Juan",
+      "text": "Los horarios no me van a decir nada hoy.",
+      "end": true
+    },
+    {
+      "id": "ya_visto",
+      "speaker": "Juan",
+      "text": "Salida a las 3:17, vía única, sin pasajeros. El mismo minuto de siempre.",
+      "end": true
+    }
+  ]
+}
