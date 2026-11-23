@@ -31,6 +31,13 @@ namespace Reloj.TimeStop
         [SerializeField, Min(0.01f)] float fadeInSeconds = 0.2f;
         [SerializeField, Min(0.01f)] float fadeOutSeconds = 0.5f;
         [SerializeField, Range(-100f, 0f)] float worldSaturation = -60f;
+        [Tooltip("Opacidad de la vineta naranja en el centro de la pantalla (0 = el centro queda totalmente limpio).")]
+        [SerializeField, Range(0f, 1f)] float overlayCenterAlpha = 0.15f;
+        [Tooltip("Distancia al centro (0-1) donde empieza a aparecer la vineta. Mas alto = mas difuminada y con el centro mas despejado.")]
+        [SerializeField, Range(0f, 1f)] float overlayInnerRadius = 0.3f;
+        [Tooltip("Intensidad de la vineta de postprocesado.")]
+        [SerializeField, Range(0f, 1f)] float vignetteIntensity = 0.3f;
+        [SerializeField, Range(-100f, 100f)] float worldContrast = 10f;
 
         static readonly int TimeStopHash = Animator.StringToHash("TimeStop");
         static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
@@ -220,7 +227,7 @@ namespace Reloj.TimeStop
                     float dx = (x + 0.5f) / n * 2f - 1f;
                     float dy = (y + 0.5f) / n * 2f - 1f;
                     float d = Mathf.Sqrt(dx * dx + dy * dy);
-                    float a = 0.15f + 0.85f * Mathf.SmoothStep(0.3f, 1.15f, d);
+                    float a = overlayCenterAlpha + (1f - overlayCenterAlpha) * Mathf.SmoothStep(overlayInnerRadius, 1.15f, d);
                     px[y * n + x] = new Color32(255, 255, 255, (byte)Mathf.RoundToInt(Mathf.Clamp01(a) * 255f));
                 }
             }
@@ -281,10 +288,10 @@ namespace Reloj.TimeStop
             profile = ScriptableObject.CreateInstance<VolumeProfile>();
             var ca = profile.Add<ColorAdjustments>(true);
             ca.saturation.Override(worldSaturation);
-            ca.contrast.Override(10f);
+            ca.contrast.Override(worldContrast);
             var vg = profile.Add<Vignette>(true);
             vg.color.Override(accent);
-            vg.intensity.Override(0.3f);
+            vg.intensity.Override(vignetteIntensity);
             vg.smoothness.Override(0.6f);
 
             volume = gameObject.AddComponent<Volume>();

@@ -35,6 +35,10 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level01_Gameplay.unity
   - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level02_Art.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level02_Gameplay.unity
+  - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level03_Art.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level03_Gameplay.unity

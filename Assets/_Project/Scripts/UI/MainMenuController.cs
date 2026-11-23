@@ -1,4 +1,6 @@
+using System.Collections;
 using Reloj.Core;
+using Reloj.Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,6 +12,13 @@ namespace Reloj.UI
 {
     public class MainMenuController : MonoBehaviour
     {
+        [Header("Nivel 1 (provisional hasta que exista la escena real)")]
+        [SerializeField] private string level1SceneName = "Test_Sandbox";
+
+        [Header("Transicion de musica")]
+        [Tooltip("Segundos que tarda en bajar la musica del menu antes de cargar el nivel.")]
+        [SerializeField, Min(0f)] private float musicFadeOutSeconds = 1f;
+
         [Header("Botones")]
         [SerializeField] private Button playButton;
         [SerializeField] private Button continueButton;
@@ -138,6 +147,19 @@ namespace Reloj.UI
             if (newGameConfirmPanel != null) newGameConfirmPanel.SetActive(false);
             _loading = true;
             services.Loader.LoadSingle(LevelSequence.Order[0]);
+            StartCoroutine(FadeThenLoad(services));
+        }
+
+        // La musica del menu se apaga suave y despues se carga el nivel (que sube su propia musica con fade-in).
+        private IEnumerator FadeThenLoad(GameServices services)
+        {
+            var audio = AudioManager.Instance;
+            if (audio != null && musicFadeOutSeconds > 0f)
+            {
+                audio.FadeOutMusic(musicFadeOutSeconds);
+                yield return new WaitForSecondsRealtime(musicFadeOutSeconds);
+            }
+            services.Loader.LoadSingle(level1SceneName);
         }
 
         private void OpenConfirm()

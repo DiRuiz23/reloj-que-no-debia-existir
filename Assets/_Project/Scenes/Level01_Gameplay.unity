@@ -5238,6 +5238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a54c13d6da4f54fa76de6d2f16b7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Sound.AudioManager
+  mixer: {fileID: 24100000, guid: 29dd423194685a5448318fce31cef3c4, type: 2}
   music: {fileID: 8300000, guid: 43b9e051762103f4e829ba85717d3f05, type: 3}
   ambienceWind: {fileID: 8300000, guid: 2eab4acac758d9c48a68c1e9448f0b0d, type: 3}
   ambienceRumble: {fileID: 8300000, guid: 98706d436d3d75f41a6767d8ffc3270f, type: 3}
@@ -5257,6 +5258,12 @@ MonoBehaviour:
   uiClick: {fileID: 8300000, guid: a07d7993e936cb54e933136e24d2f17e, type: 3}
   pause: {fileID: 8300000, guid: 742a724adf0ed6b4b9ec54e43a8b9e5c, type: 3}
   resume: {fileID: 8300000, guid: 1190c9139b5a5144abe1d8d16c90b523, type: 3}
+  jump: {fileID: 8300000, guid: 802bcb1e971ecd74e8d779fdd0dbaab1, type: 3}
+  pickup: {fileID: 8300000, guid: fca82bebc3c28994c84b081cf4d32e0d, type: 3}
+  damage: {fileID: 8300000, guid: 4c402564bf86aa44097417b85c0c6279, type: 3}
+  tickTock: {fileID: 8300000, guid: b7156ff105ab40b4a85ffe581a277e63, type: 3}
+  tickTockVolume: 0.6
+  tickTockFade: 0.15
   musicVolume: 0.396
   windVolume: 0.309
   rumbleVolume: 0.228
