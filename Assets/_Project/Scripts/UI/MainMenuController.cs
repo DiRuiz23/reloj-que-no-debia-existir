@@ -32,6 +32,12 @@ namespace Reloj.UI
         [SerializeField] private Button optionsBackButton;
         [SerializeField] private Button creditsBackButton;
 
+        [Header("Confirmación de partida nueva (I-34)")]
+        [Tooltip("Panel que aparece al pulsar Jugar si ya existe un guardado. Debe tapar el menú (fondo con Raycast Target).")]
+        [SerializeField] private GameObject newGameConfirmPanel;
+        [SerializeField] private Button confirmYesButton;
+        [SerializeField] private Button confirmNoButton;
+
         private Button _opener;
         private bool _loading;
         private Button[] _menuButtons;
@@ -44,15 +50,19 @@ namespace Reloj.UI
 #endif
             _menuButtons = new[] { playButton, continueButton, optionsButton, creditsButton, quitButton };
             _savedNavModes = new Navigation.Mode[_menuButtons.Length];
+
+            if (confirmYesButton != null) confirmYesButton.onClick.AddListener(StartNewGame);
+            if (confirmNoButton != null) confirmNoButton.onClick.AddListener(CloseConfirm);
         }
 
         private void Start()
         {
             var save = GameServices.Instance != null ? GameServices.Instance.Save : null;
-            continueButton.interactable = save != null && save.HasSaveGame;   // se activa en I-34
+            continueButton.interactable = save != null && save.HasSaveGame;
 
             optionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
+            if (newGameConfirmPanel != null) newGameConfirmPanel.SetActive(false);
             Select(playButton);
         }
 
@@ -61,10 +71,13 @@ namespace Reloj.UI
         {
             var es = EventSystem.current;
             if (es == null || es.currentSelectedGameObject != null) return;
-            if (optionsPanel.activeSelf) Select(optionsBackButton);
+            if (ConfirmOpen) Select(confirmNoButton);
+            else if (optionsPanel.activeSelf) Select(optionsBackButton);
             else if (creditsPanel.activeSelf) Select(creditsBackButton);
             else Select(playButton);
         }
+
+        private bool ConfirmOpen => newGameConfirmPanel != null && newGameConfirmPanel.activeSelf;
 
         // ---- On Click ----
         public void Play()
@@ -79,11 +92,61 @@ namespace Reloj.UI
             }
             if (services.Loader.IsLoading) return;
 
-            // Partida nueva (I-27): sin pistas ni flags de partidas anteriores.
-            DialogueFlagManager.Clear();
-            if (services.Clues != null) services.Clues.Clear();
+            // Si ya hay un guardado, Jugar pide confirmación antes de borrarlo.
+            if (services.Save != null && services.Save.HasSaveGame)
+            {
+                if (newGameConfirmPanel == null || confirmYesButton == null || confirmNoButton == null)
+                {
+                    Debug.LogError("[MainMenu] Hay un guardado pero falta el panel de confirmación: no se inicia la partida para no borrarlo.");
+                    return;
+                }
+                OpenConfirm();
+                return;
+            }
+
+            StartNewGame();
+        }
+
+        public void Continue()
+        {
+            if (_loading) return;
+
+            var services = GameServices.Instance;
+            if (services == null || services.Loader == null || services.Loader.IsLoading) return;
+
+            if (services.Save == null || !services.Save.TryContinue(out string scene))
+            {
+                Debug.LogWarning("[MainMenu] No hay un guardado válido para continuar.");
+                continueButton.interactable = false;
+                Select(playButton);
+                return;
+            }
+            if (!Application.CanStreamedLevelBeLoaded(scene))
+            {
+                Debug.LogWarning($"[MainMenu] La escena '{scene}' no está en el build.");
+                return;
+            }
 
             _loading = true;
+            services.Loader.LoadSingle(scene);
+        }
+
+        private void StartNewGame()
+        {
+            if (_loading) return;
+
+            var services = GameServices.Instance;
+            if (services == null || services.Loader == null || services.Loader.IsLoading) return;
+
+            // Partida nueva: sin pistas, flags ni progreso de partidas anteriores (se conservan las opciones).
+            DialogueFlagManager.Clear();
+            if (services.Clues != null) services.Clues.Clear();
+            if (services.Session != null) services.Session.ResetSession();
+            if (services.Save != null) services.Save.ResetProgress();
+
+            if (newGameConfirmPanel != null) newGameConfirmPanel.SetActive(false);
+            _loading = true;
+            services.Loader.LoadSingle(LevelSequence.Order[0]);
             StartCoroutine(FadeThenLoad(services));
         }
 
@@ -99,9 +162,18 @@ namespace Reloj.UI
             services.Loader.LoadSingle(level1SceneName);
         }
 
-        public void Continue()
+        private void OpenConfirm()
         {
-            Debug.Log("[MainMenu] Continuar: pendiente (I-34).");
+            SetMenuNavigationBlocked(true);
+            newGameConfirmPanel.SetActive(true);
+            Select(confirmNoButton);   // por defecto "No": evita borrar el guardado por accidente
+        }
+
+        private void CloseConfirm()
+        {
+            newGameConfirmPanel.SetActive(false);
+            SetMenuNavigationBlocked(false);
+            Select(playButton);
         }
 
         public void OpenOptions() => OpenPanel(optionsPanel, optionsBackButton, optionsButton);
@@ -126,7 +198,7 @@ namespace Reloj.UI
 
         private void OpenPanel(GameObject panel, Button back, Button opener)
         {
-            if (_loading) return;
+            if (_loading || ConfirmOpen) return;
             _opener = opener;
             SetMenuNavigationBlocked(true);
             panel.SetActive(true);
