@@ -19,6 +19,11 @@ namespace Reloj.Core
         public void SetLevelScore(int score) => LevelScore = score;
         public void SetLevelTime(float time) => LevelTime = time;
 
+        // --- Puntos de habilidad (I-34: se guardan en SaveData) ---
+        public int SkillPoints { get; private set; }
+        public void SetSkillPoints(int value) => SkillPoints = Mathf.Max(0, value);
+        public void AddSkillPoints(int amount) => SetSkillPoints(SkillPoints + amount);
+
         private readonly Dictionary<string, string> _data = new();
 
         public void AddScore(int amount) => Score += amount;
@@ -43,6 +48,7 @@ namespace Reloj.Core
             MaxHealth = 0;
             LevelScore = 0;
             LevelTime = 0f;
+            SkillPoints = 0;
             _data.Clear();
             ClearCheckpoint();
         }
