@@ -378,8 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.LevelObjectives
   steps:
-  - text: Encuentra en la casa los papeles del hacendado sobre el reloj, sin que
-      los soldados te vean.
+  - text: 
     completeFlag: n2_pista_libro_hacienda
   allDoneText: "Dir\xEDgete a la salida."
 --- !u!1 &51812870
@@ -6382,6 +6381,8 @@ MonoBehaviour:
   levelFlagPrefix: n2_
   recalculateReputation: 0
   editorTestFlags: []
+  sceneAfterComplete: 
+  sceneAfterCompleteDelay: 1.5
 --- !u!1001 &1240724911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6548,6 +6549,10 @@ MonoBehaviour:
   fadeInSeconds: 0.2
   fadeOutSeconds: 0.5
   worldSaturation: -60
+  overlayCenterAlpha: 0.15
+  overlayInnerRadius: 0.3
+  vignetteIntensity: 0.3
+  worldContrast: 10
 --- !u!1001 &1281304676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8885,6 +8890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Sound.AudioManager
   mixer: {fileID: 24100000, guid: 29dd423194685a5448318fce31cef3c4, type: 2}
+  requireGestureInEditor: 0
   music: {fileID: 8300000, guid: 43b9e051762103f4e829ba85717d3f05, type: 3}
   ambienceWind: {fileID: 8300000, guid: 2eab4acac758d9c48a68c1e9448f0b0d, type: 3}
   ambienceRumble: {fileID: 8300000, guid: 98706d436d3d75f41a6767d8ffc3270f, type: 3}

@@ -40,6 +40,26 @@ namespace Reloj.Core
             }
         }
 
+        /// <summary>true si el jugador ya llego a alguno de los finales (lee del guardado, sin necesitar instancia).</summary>
+        public static bool GameCompleted
+        {
+            get
+            {
+                var d = ReadFromPrefs();
+                return d != null && d.gameCompleted;
+            }
+        }
+
+        /// <summary>Id del ultimo final alcanzado (Ending_A / Ending_B), o vacio.</summary>
+        public static string CompletedEndingId
+        {
+            get
+            {
+                var d = ReadFromPrefs();
+                return d != null && d.endingId != null ? d.endingId : "";
+            }
+        }
+
         // ---------------------------------------------------------------- lectura
 
         void EnsureLoaded()
@@ -97,6 +117,7 @@ namespace Reloj.Core
             if (d.flags == null) d.flags = new List<FlagEntry>();
             if (d.clueIds == null) d.clueIds = new List<string>();
             if (d.options == null) d.options = new OptionsData();
+            if (d.endingId == null) d.endingId = "";
 
             d.bestScores.RemoveAll(e => e == null || string.IsNullOrEmpty(e.level));
             d.flags.RemoveAll(f => f == null || string.IsNullOrEmpty(f.key));
@@ -140,7 +161,7 @@ namespace Reloj.Core
 
         /// <summary>
         /// Igual que MarkGameCompleted pero sin instancia (escena de final abierta directo, sin GameServices).
-        /// Lee el guardado actual de PlayerPrefs (si es válido), lo marca y lo escribe.
+        /// Lee el guardado actual de PlayerPrefs (si es valido), lo marca y lo escribe.
         /// </summary>
         public static void WriteCompletion(string endingId)
         {
