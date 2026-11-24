@@ -187,6 +187,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7d1a4c92-3b6e-4f19-a824-9c1e5b2f8d01",
+                    "path": "<TouchControlsDevice>/stick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.125,max=0.925)",
+                    "groups": ";Touch",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5818bff4-6ec9-436b-9491-4449ef1418ac",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -203,6 +214,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4f2a8b1-6c3d-4e90-b715-3a9d8c6e1f02",
+                    "path": "<TouchControlsDevice>/jump",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -231,6 +253,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b19c7d4e-2a5f-4831-9c67-4d8e2a1b3c03",
+                    "path": "<TouchControlsDevice>/interact",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7dcb585e-f3e3-4e7c-8cca-9ddb1514f68b",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -253,6 +286,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c3a8e19f-5b4d-4c28-a910-6f7e8d9c0a04",
+                    "path": "<TouchControlsDevice>/timestop",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "Timestop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "eb75ff8a-73fd-4dca-bb9b-b3afc600fff6",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -269,6 +313,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5b9f20a-8e7c-4147-b231-8a9b0c1d2e05",
+                    "path": "<TouchControlsDevice>/pause",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -311,6 +366,11 @@
                 {
                     "devicePath": "<Touchscreen>",
                     "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<TouchControlsDevice>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

@@ -40,6 +40,7 @@ namespace Reloj.Tutorial
         void Refresh()
         {
             if (text == null) text = GetComponent<TMP_Text>();
+            text.richText = true;
             string key = action != null
                 ? InputPrompt.Label(action.action, InputDeviceTracker.Current, touchLabel, brackets: true, highlight: false)
                 : touchLabel;
