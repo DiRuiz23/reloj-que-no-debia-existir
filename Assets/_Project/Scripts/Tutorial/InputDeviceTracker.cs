@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
+using Reloj.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Utilities;
 
 namespace Reloj.Tutorial
 {
@@ -16,6 +19,7 @@ namespace Reloj.Tutorial
     {
         // Un stick en reposo puede vibrar un poco: solo cuenta si se mueve claramente.
         const float StickThreshold = 0.3f;
+        static readonly InternedString OnScreenUsage = new InternedString("OnScreen");
 
         static bool hooked;
 
@@ -25,7 +29,10 @@ namespace Reloj.Tutorial
         public static event Action<InputScheme> Changed;
 
         static InputScheme DefaultScheme() =>
-            Application.isMobilePlatform ? InputScheme.Touch : InputScheme.Keyboard;
+            UnityEngine.Device.Application.isMobilePlatform
+            || UnityEngine.Device.SystemInfo.deviceType == DeviceType.Handheld
+                ? InputScheme.Touch
+                : InputScheme.Keyboard;
 
         // Evita estado viejo si el Editor tiene desactivado "Reload Domain".
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -39,6 +46,7 @@ namespace Reloj.Tutorial
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
         {
+            Current = DefaultScheme();
             if (hooked) return;
             hooked = true;
             InputSystem.onEvent -= OnEvent;
@@ -61,6 +69,12 @@ namespace Reloj.Tutorial
             if (device == null) return;
             var type = eventPtr.type;
             if (type != StateEvent.Type && type != DeltaStateEvent.Type) return;
+
+            if (device is TouchControlsDevice || device.usages.Contains(OnScreenUsage))
+            {
+                Set(InputScheme.Touch);
+                return;
+            }
 
             if (device is Keyboard)
             {
