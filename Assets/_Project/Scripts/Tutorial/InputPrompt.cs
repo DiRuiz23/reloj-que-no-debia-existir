@@ -13,6 +13,17 @@ namespace Reloj.Tutorial
     {
         /// <summary>Arena de la paleta I-09 (UIPalette.Arena): resalta la tecla sobre el pergamino del banner.</summary>
         public const string KeyColorHex = "#C9A878";
+        public const string TouchSpriteAsset = "TouchIcons_TMP";
+
+        static readonly Dictionary<string, (string sprite, string text)> TouchIcons =
+            new Dictionary<string, (string sprite, string text)>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "Move", ("touch_stick", "el joystick") },
+                { "Jump", ("touch_jump", "el botón de salto") },
+                { "Interact", ("touch_interact", "el botón de acción") },
+                { "Timestop", ("touch_timestop", "el botón de Parada") },
+                { "Pause", ("touch_pause", "Pausa") },
+            };
 
         // Nombres genericos del Input System -> como los diria una persona (es).
         // Con un mando real el Input System ya devuelve "A", "Cruz", etc.; esto cubre el mando generico.
@@ -53,6 +64,18 @@ namespace Reloj.Tutorial
         public static string Label(InputAction action, InputScheme scheme, string fallback = null,
                                    bool brackets = true, bool highlight = true)
         {
+            if (scheme == InputScheme.Touch)
+            {
+                if (action != null && TouchIcons.TryGetValue(action.name, out var info))
+                {
+                    string icon = $"<sprite=\"{TouchSpriteAsset}\" name=\"{info.sprite}\">";
+                    if (!highlight) return icon;
+                    string labelText = !string.IsNullOrEmpty(fallback) ? fallback : info.text;
+                    return $"{icon} <color={KeyColorHex}><b>{labelText}</b></color>";
+                }
+                if (!string.IsNullOrEmpty(fallback)) return fallback;
+            }
+
             string raw = action != null ? Resolve(action, GroupOf(scheme)) : null;
 
             if (!string.IsNullOrEmpty(raw))

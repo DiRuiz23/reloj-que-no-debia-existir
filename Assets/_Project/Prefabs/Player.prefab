@@ -97,9 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a5dde1302e3504ea08f5cd6d121682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Player.PlayerMotor
-  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  moveAction: {fileID: 4467024881914974784, guid: fb9002de5945bcc489275e1311bb3d4e, type: 3}
+  jumpAction: {fileID: 0}
   moveSpeed: 5
   lookThreshold: 0.1
+  jumpHeight: 0.8
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundCheckDistance: 0.12
+  jumpBufferSeconds: 0.12
   movingMaterial: {fileID: 13400000, guid: de8a7abafc77cd04291be225e37e78b7, type: 2}
   idleMaterial: {fileID: 13400000, guid: 26f9b4a38b3d20a4ebb564d98c8bac72, type: 2}
   showDebug: 0
