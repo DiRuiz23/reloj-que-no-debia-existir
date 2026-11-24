@@ -13,6 +13,7 @@ namespace Reloj.Core
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private GameStateManager state;
         [SerializeField] private ClueInventory clues;
+        [SerializeField] private SettingsService settings;
 
         public DialogueFlagManager Flags => flags;
         public GameSession Session => session;
@@ -20,6 +21,7 @@ namespace Reloj.Core
         public SceneLoader Loader => sceneLoader;
         public GameStateManager State => state;
         public ClueInventory Clues => clues;
+        public SettingsService Settings => settings;
 
         private void Awake()
         {
@@ -31,6 +33,7 @@ namespace Reloj.Core
             Instance = this;
             DontDestroyOnLoad(gameObject);
             if (clues == null) clues = GetComponent<ClueInventory>();   // I-27: no exige cablearlo a mano
+            if (settings == null) settings = GetComponentInChildren<SettingsService>(true);
         }
     }
 }
