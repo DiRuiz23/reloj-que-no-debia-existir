@@ -48,6 +48,9 @@ namespace Reloj.Core
         public List<FlagEntry> flags = new List<FlagEntry>();
         public List<string> clueIds = new List<string>();
         public int skillPoints;
+        /// <summary>true cuando se llegó a un final del juego (EndingController).</summary>
+        public bool gameCompleted;
+        public string endingId = "";
         public OptionsData options = new OptionsData();
 
         public string savedAtUtc = "";

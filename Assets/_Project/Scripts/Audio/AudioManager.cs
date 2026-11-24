@@ -1,4 +1,5 @@
 using System.Collections;
+using Reloj.Core;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -36,8 +37,6 @@ namespace Reloj.Sound
     {
         public const string MusicVolParam = "MusicVol";
         public const string SfxVolParam = "SfxVol";
-        const string MusicPrefKey = "audio.musicVol";
-        const string SfxPrefKey = "audio.sfxVol";
 
         public static AudioManager Instance { get; private set; }
 
@@ -205,24 +204,24 @@ namespace Reloj.Sound
         /// <summary>true mientras al menos un enemigo esta en estado Sospechoso: activa el tic-tac.</summary>
         public void SetSuspicious(bool value) { suspicious = value; }
 
-        /// <summary>Volumen de la musica del jugador (0 a 1). Se guarda y se aplica al Mixer (MusicVol).</summary>
+        /// <summary>Volumen de la musica del jugador (0 a 1). Lo guarda SettingsService (I-36).</summary>
         public void SetMusicVolume(float value01)
         {
             value01 = Mathf.Clamp01(value01);
-            PlayerPrefs.SetFloat(MusicPrefKey, value01);
-            ApplyMixer(MusicVolParam, value01);
+            if (SettingsService.Instance != null) SettingsService.Instance.SetMusicVolume(value01);
+            else ApplyMixer(MusicVolParam, value01);
         }
 
-        /// <summary>Volumen de efectos del jugador (0 a 1). Se guarda y se aplica al Mixer (SfxVol).</summary>
+        /// <summary>Volumen de efectos del jugador (0 a 1). Lo guarda SettingsService (I-36).</summary>
         public void SetSfxVolume(float value01)
         {
             value01 = Mathf.Clamp01(value01);
-            PlayerPrefs.SetFloat(SfxPrefKey, value01);
-            ApplyMixer(SfxVolParam, value01);
+            if (SettingsService.Instance != null) SettingsService.Instance.SetSfxVolume(value01);
+            else ApplyMixer(SfxVolParam, value01);
         }
 
-        public static float SavedMusicVolume => PlayerPrefs.GetFloat(MusicPrefKey, 1f);
-        public static float SavedSfxVolume => PlayerPrefs.GetFloat(SfxPrefKey, 1f);
+        public static float SavedMusicVolume => SettingsService.Instance != null ? SettingsService.Instance.MusicVolume : 1f;
+        public static float SavedSfxVolume => SettingsService.Instance != null ? SettingsService.Instance.SfxVolume : 1f;
 
         void ApplySavedVolumes()
         {

@@ -1,3 +1,4 @@
+using Reloj.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,11 +24,16 @@ namespace Reloj.Tutorial
         void OnEnable()
         {
             InputDeviceTracker.Changed += OnSchemeChanged;
+            SettingsService.AnyBindingsChanged += Refresh;
             if (action != null) action.action.Enable();
             Refresh();
         }
 
-        void OnDisable() { InputDeviceTracker.Changed -= OnSchemeChanged; }
+        void OnDisable()
+        {
+            InputDeviceTracker.Changed -= OnSchemeChanged;
+            SettingsService.AnyBindingsChanged -= Refresh;
+        }
 
         void OnSchemeChanged(InputScheme _) => Refresh();
 
