@@ -115,7 +115,7 @@ namespace Reloj.Tutorial
             return false;
         }
 
-        static string Localize(string s)
+        public static string Localize(string s)
         {
             if (string.IsNullOrEmpty(s)) return s;
             return Spanish.TryGetValue(s, out var es) ? es : s;

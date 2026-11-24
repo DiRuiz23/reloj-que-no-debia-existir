@@ -135,9 +135,10 @@ namespace Reloj.Core
         // ---------------------------------------------------------------- escritura
 
         /// <summary>Escribe los datos actuales en PlayerPrefs.</summary>
-        public void Save()
+        public void Save() => WriteToPrefs(Data);
+
+        static void WriteToPrefs(SaveData d)
         {
-            var d = Data;
             d.saveVersion = CurrentVersion;
             d.savedAtUtc = DateTime.UtcNow.ToString("o");
             try
@@ -149,6 +150,27 @@ namespace Reloj.Core
             {
                 Debug.LogWarning($"[SaveService] No se pudo guardar: {e.Message}");
             }
+        }
+
+        /// <summary>Lo llama EndingController: marca la partida como completada y guarda.</summary>
+        public void MarkGameCompleted(string endingId)
+        {
+            var d = Data;
+            d.gameCompleted = true;
+            d.endingId = endingId ?? "";
+            Save();
+        }
+
+        /// <summary>
+        /// Igual que MarkGameCompleted pero sin instancia (escena de final abierta directo, sin GameServices).
+        /// Lee el guardado actual de PlayerPrefs (si es válido), lo marca y lo escribe.
+        /// </summary>
+        public static void WriteCompletion(string endingId)
+        {
+            var d = ReadFromPrefs() ?? new SaveData();
+            d.gameCompleted = true;
+            d.endingId = endingId ?? "";
+            WriteToPrefs(d);
         }
 
         /// <summary>
