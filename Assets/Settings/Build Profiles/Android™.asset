@@ -42,6 +42,16 @@ MonoBehaviour:
     m_path: Assets/_Project/Scenes/Level03_Art.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level03_Gameplay.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Ending_A.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Ending_B.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Decision_Final.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level04_Art.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Level04_Gameplay.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

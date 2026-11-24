@@ -107,7 +107,8 @@ namespace Reloj.Level
 
             int deaths = player != null ? player.Deaths : 0;
             int collected = ScoreManager.Instance != null ? ScoreManager.Instance.Score : 0;
-            int score = Mathf.Max(0, maxScore - deaths * penaltyPerDeath) + collected;
+            // El puntaje del nivel es exactamente lo recolectado (el mismo valor que muestra el HUD).
+            int score = collected;
 
             // Nivel 4: en vez del panel de resultados se pasa a la escena de decision final.
             if (!string.IsNullOrEmpty(sceneAfterComplete) && Application.CanStreamedLevelBeLoaded(sceneAfterComplete))

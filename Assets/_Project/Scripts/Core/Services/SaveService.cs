@@ -15,8 +15,6 @@ namespace Reloj.Core
     {
         public const int CurrentVersion = 1;
         const string PrefsKey = "reloj.save";
-        const string CompletedKey = "save.game_completed";
-        const string EndingKey = "save.ending_id";
 
         SaveData _data;
         bool _loaded;
@@ -42,25 +40,24 @@ namespace Reloj.Core
             }
         }
 
-        /// <summary>true si el jugador ya llego a alguno de los finales.</summary>
-        public static bool GameCompleted => PlayerPrefs.GetInt(CompletedKey, 0) == 1;
-
-        /// <summary>Id del ultimo final alcanzado (Ending_A / Ending_B), o vacio.</summary>
-        public static string CompletedEndingId => PlayerPrefs.GetString(EndingKey, "");
-
-        /// <summary>Marca la partida como completada con el final alcanzado y la guarda.</summary>
-        public void MarkGameCompleted(string endingId)
+        /// <summary>true si el jugador ya llego a alguno de los finales (lee del guardado, sin necesitar instancia).</summary>
+        public static bool GameCompleted
         {
-            WriteCompletion(endingId);
-            Save();
+            get
+            {
+                var d = ReadFromPrefs();
+                return d != null && d.gameCompleted;
+            }
         }
 
-        /// <summary>Misma marca, sin necesitar la instancia (escenas abiertas sin pasar por Boot).</summary>
-        public static void WriteCompletion(string endingId)
+        /// <summary>Id del ultimo final alcanzado (Ending_A / Ending_B), o vacio.</summary>
+        public static string CompletedEndingId
         {
-            PlayerPrefs.SetInt(CompletedKey, 1);
-            PlayerPrefs.SetString(EndingKey, endingId ?? "");
-            PlayerPrefs.Save();
+            get
+            {
+                var d = ReadFromPrefs();
+                return d != null && d.endingId != null ? d.endingId : "";
+            }
         }
 
         // ---------------------------------------------------------------- lectura
@@ -120,6 +117,7 @@ namespace Reloj.Core
             if (d.flags == null) d.flags = new List<FlagEntry>();
             if (d.clueIds == null) d.clueIds = new List<string>();
             if (d.options == null) d.options = new OptionsData();
+            if (d.endingId == null) d.endingId = "";
 
             d.bestScores.RemoveAll(e => e == null || string.IsNullOrEmpty(e.level));
             d.flags.RemoveAll(f => f == null || string.IsNullOrEmpty(f.key));
@@ -163,7 +161,7 @@ namespace Reloj.Core
 
         /// <summary>
         /// Igual que MarkGameCompleted pero sin instancia (escena de final abierta directo, sin GameServices).
-        /// Lee el guardado actual de PlayerPrefs (si es válido), lo marca y lo escribe.
+        /// Lee el guardado actual de PlayerPrefs (si es valido), lo marca y lo escribe.
         /// </summary>
         public static void WriteCompletion(string endingId)
         {

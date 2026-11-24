@@ -297,7 +297,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -320,27 +320,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_LocalPosition.x
@@ -405,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 5198574344676527099, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_fontSizeBase
       value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198574344676527099, guid: 7eeea240106ccb44494be549552d2114, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290107882
       objectReference: {fileID: 0}
     - target: {fileID: 6716869088212459160, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -613,7 +617,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4286097609
   m_fontColor: {r: 0.7882353, g: 0.65882355, b: 0.47058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -626,7 +630,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -902,27 +906,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 351961097159819931, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_LocalPosition.x
@@ -987,6 +991,10 @@ PrefabInstance:
     - target: {fileID: 5198574344676527099, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_fontSizeBase
       value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198574344676527099, guid: 7eeea240106ccb44494be549552d2114, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290107882
       objectReference: {fileID: 0}
     - target: {fileID: 6716869088212459160, guid: 7eeea240106ccb44494be549552d2114, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -1116,7 +1124,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1366,7 +1374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2068982052
@@ -1381,13 +1389,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45659b46b0436c4fb91e3822a9d3a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Endings.EndingClock
-  mode: 1
+  mode: 0
   palette: {fileID: 11400000, guid: 15d58d6a678fa78488841799d1d77809, type: 2}
   circleSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  size: 560
-  spinSeconds: 18
-  restingAlpha: 0.18
-  alphaScale: 0.35
+  dialSprite: {fileID: 21300000, guid: 4727b18f89ec6cb479a4ccb5dd0831c4, type: 3}
+  size: 620
+  alphaScale: 0.5
 --- !u!1 &2144103256
 GameObject:
   m_ObjectHideFlags: 0

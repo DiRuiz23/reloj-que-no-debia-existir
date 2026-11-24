@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Reloj.Player
@@ -20,22 +21,36 @@ namespace Reloj.Player
         {
             startPos = transform.localPosition; startScale = transform.localScale;
             phase = Random.value * Mathf.PI * 2f;
+            if (groundRing != null) StartCoroutine(PlaceRingWhenReady());
         }
 
-        void PlaceRing()
+        // El anillo del prefab queda a una altura fija bajo el reloj; segun la altura a la que se coloque el
+        // coleccionable podia quedar enterrado en el piso (Nivel 1). Se pega al piso real con un raycast.
+        // La escena de arte se carga aditiva despues del gameplay, asi que se reintenta hasta encontrar piso.
+        IEnumerator PlaceRingWhenReady()
         {
-            if (groundRing == null) return;
+            var wait = new WaitForSecondsRealtime(0.2f);
+            float end = Time.unscaledTime + 8f;
+            while (groundRing != null && !PlaceRing() && Time.unscaledTime < end)
+                yield return wait;
+        }
+
+        bool PlaceRing()
+        {
+            if (groundRing == null) return false;
             Transform owner = transform.parent != null ? transform.parent : transform;
             Vector3 from = owner.position + Vector3.up * 0.3f;
             var hits = Physics.RaycastAll(from, Vector3.down, 8f, ~0, QueryTriggerInteraction.Ignore);
-            float best = float.MaxValue; Vector3 point = owner.position + Vector3.down * 0.85f;
+            float best = float.MaxValue; Vector3 point = default; bool found = false;
             foreach (var h in hits)
             {
                 if (h.collider.transform.IsChildOf(owner)) continue;
-                if (h.distance < best) { best = h.distance; point = h.point; }
+                if (h.distance < best) { best = h.distance; point = h.point; found = true; }
             }
+            if (!found) return false;
             groundRing.position = point + Vector3.up * ringLift;
             groundRing.rotation = Quaternion.Euler(90f, 0f, 0f);
+            return true;
         }
 
         void Update()

@@ -25848,18 +25848,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reloj.Clues.LevelObjectives
   steps:
-  - text: "Sigue la v\xEDa hasta el patio de carga"
+  - text: 
     completeFlag: n4_en_patio
-  - text: Cruza el patio sin que te vean
+  - text: 
     completeFlag: n4_en_talleres
-  - text: 'Atraviesa los talleres: las rejas solo ceden con la Parada Temporal'
+  - text: 
     completeFlag: n4_en_estacion
-  - text: "Cruza la estaci\xF3n hasta la torre del reloj"
+  - text: 
     completeFlag: n4_en_arena
-  - text: "Cruza la arena: si el Guardi\xE1n te fija, det\xE9n el tiempo y sal de
-      la zona roja"
+  - text: 
     completeFlag: n4_encuentro_superado
-  allDoneText: 'Cruza el arco: el reloj de la salida ya late'
+  allDoneText: 
 --- !u!1 &1899777797
 GameObject:
   m_ObjectHideFlags: 0
