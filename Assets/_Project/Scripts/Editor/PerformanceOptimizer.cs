@@ -3,7 +3,7 @@ using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Reloj.Editor
+namespace Reloj.EditorTools
 {
     /// <summary>
     /// Herramientas de verificacion y empaquetado de rendimiento (Reloj > Rendimiento).

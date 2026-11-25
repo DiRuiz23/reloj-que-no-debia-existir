@@ -96,7 +96,7 @@ namespace Reloj.EditorTools
 
         public static void SetGameViewSize(int width, int height)
         {
-            var asm = typeof(Editor).Assembly;
+            var asm = typeof(UnityEditor.Editor).Assembly;
             var gvT = asm.GetType("UnityEditor.GameView");
             var sizesT = asm.GetType("UnityEditor.GameViewSizes");
             var sizeT = asm.GetType("UnityEditor.GameViewSize");
