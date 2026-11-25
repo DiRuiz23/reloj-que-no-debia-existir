@@ -539,7 +539,7 @@ namespace Reloj.EditorTools
 
             var scaler = root.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1280f, 720f);
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
             var safeAreaGo = new GameObject("SafeArea", typeof(RectTransform), typeof(SafeAreaFitter));
@@ -551,6 +551,7 @@ namespace Reloj.EditorTools
             var controlsRt = (RectTransform)controlsRoot.transform;
             controlsRt.SetParent(safeRt, false);
             Stretch(controlsRt);
+            safeAreaGo.GetComponent<SafeAreaFitter>().Configure(controlsRt, 1.5f);
 
             // Stick izquierdo (Mover)
             Sprite stickBgSprite = LoadSprite("touch_stick_bg.png");

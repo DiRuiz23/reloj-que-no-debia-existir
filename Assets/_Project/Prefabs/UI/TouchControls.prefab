@@ -1405,8 +1405,8 @@ MonoBehaviour:
   right: 1
   top: 1
   bottom: 1
-  content: {fileID: 0}
-  contentScale: 1
+  content: {fileID: 2921665659094929777}
+  contentScale: 1.5
 --- !u!1 &8839738074016800415
 GameObject:
   m_ObjectHideFlags: 0

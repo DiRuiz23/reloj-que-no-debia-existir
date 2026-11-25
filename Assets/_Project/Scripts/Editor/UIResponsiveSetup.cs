@@ -49,6 +49,10 @@ namespace Reloj.EditorTools
             "Assets/_Project/Scenes/Level02_Gameplay.unity",
             "Assets/_Project/Scenes/Level03_Gameplay.unity",
             "Assets/_Project/Scenes/Level04_Gameplay.unity",
+            "Assets/_Project/Scenes/Test_GameState.unity",
+            "Assets/_Project/Scenes/Test_Stats.unity",
+            "Assets/_Project/Scenes/Test_Visual.unity",
+            "Assets/_Project/Scenes/Test_Input.unity",
         };
 
         [MenuItem("Reloj/UI/Aplicar responsive (escalado + area segura)")]

@@ -52,6 +52,7 @@ namespace Reloj.EditorTools
             foreach (var n in new[] { "Decision_Final", "Ending_A", "Ending_B" })
                 AddToBuild(ScenesFolder + n + ".unity");
 
+            UIResponsiveSetup.Run();
             AssetDatabase.SaveAssets();
             Debug.Log("[Finales] Escenas Decision_Final, Ending_A y Ending_B construidas.");
         }
