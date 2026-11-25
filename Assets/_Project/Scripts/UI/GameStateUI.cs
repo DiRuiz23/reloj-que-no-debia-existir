@@ -9,6 +9,8 @@ namespace Reloj.UI
         [SerializeField] private StatePanel[] panels;
         [Tooltip("Opcional. Panel de Opciones (I-35). Si está vacío solo escribe un log.")]
         [SerializeField] private GameObject optionsPanel;
+        [Tooltip("I-38: Panel de habilidades. Se abre desde Pausa y desde Fin del Nivel.")]
+        [SerializeField] private SkillMenuPanel skillPanel;
 
         private GameStateManager _state;
         private StatePanel _active;
@@ -51,7 +53,7 @@ namespace Reloj.UI
         private void Update()
         {
             var es = EventSystem.current;
-            if (_active != null && es != null && es.currentSelectedGameObject == null)
+            if (_active != null && es != null && es.currentSelectedGameObject == null && !SkillMenuPanel.IsOpen)
                 _active.Select();
         }
 
@@ -60,6 +62,12 @@ namespace Reloj.UI
         public void Restart() { if (State != null) State.Restart(); }
         public void LoadNext() { if (State != null) State.LoadNext(); }
         public void QuitToMenu() { if (State != null) State.QuitToMenu(); }
+
+        public void OpenSkills()
+        {
+            if (skillPanel != null) skillPanel.Open();
+            else Debug.LogWarning("[GameStateUI] Falta asignar el Skill Panel (I-38).", this);
+        }
 
         public void OpenOptions()
         {

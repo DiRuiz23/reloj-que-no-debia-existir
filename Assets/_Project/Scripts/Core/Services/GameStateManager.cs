@@ -98,6 +98,11 @@ namespace Reloj.Core
             if (services != null && services.Session != null)
                 services.Session.SetLevelResult(score, time);
 
+            // I-38: exactamente 1 punto de habilidad por nivel completado (una sola vez por nivel).
+            // Va ANTES de guardar para que el punto quede en el guardado de este mismo nivel.
+            if (services != null && services.SkillPoints != null)
+                services.SkillPoints.AwardLevelCompleted(SceneManager.GetActiveScene().name);
+
             // I-34: al terminar el nivel se desbloquea el siguiente y se guarda el progreso.
             if (services != null && services.Save != null)
                 services.Save.RegisterLevelComplete(SceneManager.GetActiveScene().name, score);
