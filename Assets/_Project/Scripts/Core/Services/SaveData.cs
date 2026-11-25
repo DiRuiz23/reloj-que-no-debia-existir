@@ -48,6 +48,10 @@ namespace Reloj.Core
         public List<FlagEntry> flags = new List<FlagEntry>();
         public List<string> clueIds = new List<string>();
         public int skillPoints;
+        /// <summary>Nivel (0 a 3) de cada mejora, indexado por SkillCategory: Parada Temporal, Sigilo, Persuasion (I-38).</summary>
+        public int[] skillLevels = new int[3];
+        /// <summary>Niveles (escenas Gameplay) cuyo punto de habilidad ya se cobro; evita cobrarlo dos veces (I-38).</summary>
+        public List<string> skillRewardedLevels = new List<string>();
         /// <summary>true cuando se llegó a un final del juego (EndingController).</summary>
         public bool gameCompleted;
         public string endingId = "";

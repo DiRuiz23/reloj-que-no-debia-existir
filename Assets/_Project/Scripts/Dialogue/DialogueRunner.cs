@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Reloj.Core;
 using Reloj.Player;
+using Reloj.Progression;
 
 namespace Reloj.Dialogue
 {
@@ -16,6 +17,9 @@ namespace Reloj.Dialogue
     public class DialogueRunner : MonoBehaviour
     {
         public static DialogueRunner Instance { get; private set; }
+
+        /// <summary>I-38: prefijo que marca las opciones persuasivas en pantalla.</summary>
+        const string PersuasionTag = "[Persuadir] ";
 
         /// <summary>true mientras hay una conversacion abierta.</summary>
         public static bool IsRunning => Instance != null && Instance.running;
@@ -202,13 +206,22 @@ namespace Reloj.Dialogue
                 return;
             }
 
+            // I-38: las opciones persuasivas solo aparecen si la habilidad esta desbloqueada.
+            // Si no quedara NINGUNA visible se muestran todas: el dialogo nunca se queda sin salida.
+            bool anyAvailable = false;
+            for (int i = 0; i < n.choices.Count; i++)
+                if (SkillModifiers.IsPersuasionUnlocked(n.choices[i].requiresPersuasion)) { anyAvailable = true; break; }
+            if (!anyAvailable)
+                Debug.LogWarning($"[Dialogue] El nodo '{n.id}' solo tiene opciones persuasivas bloqueadas: se muestran todas.");
+
             GameObject first = null;
             for (int i = 0; i < n.choices.Count; i++)
             {
+                if (anyAvailable && !SkillModifiers.IsPersuasionUnlocked(n.choices[i].requiresPersuasion)) continue;
                 int index = i;
                 var button = Instantiate(choiceButtonPrefab, choicesContainer);
                 var label = button.GetComponentInChildren<TMP_Text>();
-                if (label != null) label.text = n.choices[i].text;
+                if (label != null) label.text = (n.choices[i].requiresPersuasion > 0 ? PersuasionTag : "") + n.choices[i].text;
                 button.onClick.AddListener(() => Choose(index));
                 if (first == null) first = button.gameObject;
             }

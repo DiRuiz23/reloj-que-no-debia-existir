@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Reloj.Progression;
 
 namespace Reloj.Core
 {
@@ -13,7 +14,7 @@ namespace Reloj.Core
     /// </summary>
     public class SaveService : MonoBehaviour
     {
-        public const int CurrentVersion = 1;
+        public const int CurrentVersion = 2;
         const string PrefsKey = "reloj.save";
 
         SaveData _data;
@@ -107,6 +108,8 @@ namespace Reloj.Core
         //   if (d.saveVersion < 2) { ...convertir...; d.saveVersion = 2; }
         static void Migrate(SaveData d)
         {
+            // v1 -> v2 (I-38): se agregan skillLevels y skillRewardedLevels. JsonUtility los deja por defecto
+            // en un guardado v1 (sin mejoras, ningun nivel cobrado) y Sanitize los normaliza: no hace falta convertir nada.
             d.saveVersion = CurrentVersion;
         }
 
@@ -125,6 +128,16 @@ namespace Reloj.Core
 
             d.unlockedLevel = Mathf.Clamp(d.unlockedLevel, 0, LevelSequence.Order.Length - 1);
             d.skillPoints = Mathf.Max(0, d.skillPoints);
+            if (d.skillLevels == null || d.skillLevels.Length != SkillPointManager.CategoryCount)
+            {
+                var fixedLevels = new int[SkillPointManager.CategoryCount];
+                if (d.skillLevels != null)
+                    for (int i = 0; i < fixedLevels.Length && i < d.skillLevels.Length; i++) fixedLevels[i] = d.skillLevels[i];
+                d.skillLevels = fixedLevels;
+            }
+            for (int i = 0; i < d.skillLevels.Length; i++) d.skillLevels[i] = Mathf.Clamp(d.skillLevels[i], 0, SkillPointManager.MaxLevel);
+            if (d.skillRewardedLevels == null) d.skillRewardedLevels = new List<string>();
+            d.skillRewardedLevels.RemoveAll(string.IsNullOrEmpty);
             d.options.musicVolume = Mathf.Clamp01(d.options.musicVolume);
             d.options.sfxVolume = Mathf.Clamp01(d.options.sfxVolume);
             if (d.options.inputBindingsJson == null) d.options.inputBindingsJson = "";
@@ -210,7 +223,9 @@ namespace Reloj.Core
 
             var gs = GameServices.Instance;
             d.clueIds = (gs != null && gs.Clues != null) ? gs.Clues.GetIds() : new List<string>();
-            d.skillPoints = (gs != null && gs.Session != null) ? gs.Session.SkillPoints : 0;
+            // I-38: puntos sin gastar + niveles de mejora + niveles ya cobrados.
+            if (gs != null && gs.SkillPoints != null) gs.SkillPoints.WriteTo(d);
+            else d.skillPoints = (gs != null && gs.Session != null) ? gs.Session.SkillPoints : 0;
         }
 
         // ---------------------------------------------------------------- partida nueva / continuar
@@ -220,6 +235,8 @@ namespace Reloj.Core
         {
             var options = Data.options;
             _data = new SaveData { options = options };
+            var gsReset = GameServices.Instance;
+            if (gsReset != null && gsReset.SkillPoints != null) gsReset.SkillPoints.ResetAll();   // I-38
             _loaded = true;
             Save();
         }
@@ -247,6 +264,8 @@ namespace Reloj.Core
                     gs.Session.SetSkillPoints(_data.skillPoints);
                 }
             }
+
+            if (gs != null && gs.SkillPoints != null) gs.SkillPoints.LoadFrom(_data);   // I-38 (despues de ResetSession)
 
             sceneName = LevelSequence.Order[_data.unlockedLevel];
             return true;

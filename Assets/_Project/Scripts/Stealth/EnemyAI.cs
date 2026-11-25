@@ -4,6 +4,7 @@ using TMPro;
 using Reloj.Core;
 using Reloj.Player;
 using Reloj.TimeStop;
+using Reloj.Progression;
 
 namespace Reloj.Stealth
 {
@@ -63,7 +64,11 @@ namespace Reloj.Stealth
 
         public EnemyState State { get; private set; } = EnemyState.Ignorante;
         public float ViewAngle => viewAngle;
-        public float ViewDistance => viewDistance;
+        /// <summary>
+        /// Radio de deteccion EFECTIVO: el del nivel (I-30) x el modificador de la habilidad Sigilo (I-38, -10 % por nivel).
+        /// Se calcula en vivo, asi que no se acumula al reaplicar la dificultad y el cono de vision lo sigue solo.
+        /// </summary>
+        public float ViewDistance => viewDistance * SkillModifiers.DetectionRadiusMultiplier;
         public float TimeToAlert => timeToAlert;
         public float ForgetCooldown => forgetCooldown;
         public float EyeHeight => eyeHeight;
@@ -235,7 +240,7 @@ namespace Reloj.Stealth
 
             Vector3 flat = target - eye; flat.y = 0f;
             float dist = flat.magnitude;
-            if (dist > viewDistance) return false;
+            if (dist > ViewDistance) return false;
 
             if (dist > 0.01f)
             {
@@ -384,13 +389,13 @@ namespace Reloj.Stealth
             Gizmos.color = c;
 
             float half = viewAngle * 0.5f;
-            Vector3 prev = origin + Quaternion.AngleAxis(-half, Vector3.up) * fwd * viewDistance;
+            Vector3 prev = origin + Quaternion.AngleAxis(-half, Vector3.up) * fwd * ViewDistance;
             Gizmos.DrawLine(origin, prev);
             const int seg = 24;
             for (int i = 1; i <= seg; i++)
             {
                 float a = -half + viewAngle * i / seg;
-                Vector3 p = origin + Quaternion.AngleAxis(a, Vector3.up) * fwd * viewDistance;
+                Vector3 p = origin + Quaternion.AngleAxis(a, Vector3.up) * fwd * ViewDistance;
                 Gizmos.DrawLine(prev, p);
                 prev = p;
             }
