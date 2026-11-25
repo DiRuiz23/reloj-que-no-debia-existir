@@ -89,7 +89,6 @@ namespace Reloj.Progression
         {
             if (Instance != null && Instance != this)
             {
-                Debug.LogWarning("[SkillPointManager] Ya hay uno activo; este se desactiva.", this);
                 enabled = false;
                 return;
             }

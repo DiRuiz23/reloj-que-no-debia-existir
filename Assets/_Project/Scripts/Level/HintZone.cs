@@ -31,6 +31,11 @@ namespace Reloj.Level
 
         bool inside;
         bool flashed;
+        int lastPct = -1;
+        string lastRechargeText;
+        bool hasReadyScheme;
+        InputScheme lastReadyScheme;
+        string cachedReadyText;
 
         void Reset() { GetComponent<Collider>().isTrigger = true; }
 
@@ -70,18 +75,34 @@ namespace Reloj.Level
 
             if (DialogueRunner.IsRunning) { banner.Hide(this); return; }
 
-            string st = ctl.State.ToString();
-            if (st == "Active") { banner.Hide(this); return; }
-
-            if (st == "Recharging")
+            switch (ctl.State)
             {
-                int pct = Mathf.RoundToInt(Mathf.Clamp01(ctl.CooldownNormalized) * 100f);
-                banner.Show(this, string.Format(rechargingMessage, pct));
-                return;
-            }
+                case TimeStopState.Active:
+                    banner.Hide(this);
+                    return;
 
-            if (onlyWhenRecharging || (hideAfterFirstUse && HintBanner.TimeStopUsed)) { banner.Hide(this); return; }
-            banner.Show(this, string.Format(readyMessage, KeyLabel()));
+                case TimeStopState.Recharging:
+                    int pct = Mathf.RoundToInt(Mathf.Clamp01(ctl.CooldownNormalized) * 100f);
+                    if (pct != lastPct || lastRechargeText == null)
+                    {
+                        lastPct = pct;
+                        lastRechargeText = string.Format(rechargingMessage, pct);
+                    }
+                    banner.Show(this, lastRechargeText);
+                    return;
+
+                default:
+                    if (onlyWhenRecharging || (hideAfterFirstUse && HintBanner.TimeStopUsed)) { banner.Hide(this); return; }
+                    var scheme = InputDeviceTracker.Current;
+                    if (!hasReadyScheme || scheme != lastReadyScheme || cachedReadyText == null)
+                    {
+                        hasReadyScheme = true;
+                        lastReadyScheme = scheme;
+                        cachedReadyText = string.Format(readyMessage, KeyLabel());
+                    }
+                    banner.Show(this, cachedReadyText);
+                    return;
+            }
         }
 
         // Tecla/boton real del dispositivo que la persona esta usando (teclado, gamepad o tactil).

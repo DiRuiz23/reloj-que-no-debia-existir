@@ -49,7 +49,12 @@ namespace Reloj.UI
             if (gs != null)
             {
                 var t = TimeSpan.FromSeconds(gs.Session.LastLevelTime);
-                if (scoreText != null) scoreText.text = $"Puntaje: {gs.Session.LastLevelScore}";
+                if (scoreText != null)
+                {
+                    scoreText.text = gs.Session.Score > gs.Session.LastLevelScore
+                        ? $"Puntaje: {gs.Session.LastLevelScore}  (Total: {gs.Session.Score})"
+                        : $"Puntaje: {gs.Session.LastLevelScore}";
+                }
                 if (timeText != null) timeText.text = $"Tiempo: {(int)t.TotalMinutes:00}:{t.Seconds:00}";
                 if (nextButton != null) nextButton.gameObject.SetActive(gs.State.HasNextLevel);
             }

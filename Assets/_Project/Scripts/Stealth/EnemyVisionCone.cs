@@ -30,11 +30,18 @@ namespace Reloj.Stealth
         EnemyAI ai; Mesh mesh; MeshRenderer mr; Material mat;
         Vector3[] verts; Color[] cols; int[] tris; float[] colDist;
         Color current;
+        int excludeMask;
+        bool hasBuilt;
         readonly RaycastHit[] hits = new RaycastHit[8];
 
         void Awake()
         {
             ai = GetComponent<EnemyAI>();
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int enemyLayer = LayerMask.NameToLayer("Enemy");
+            if (playerLayer >= 0) excludeMask |= 1 << playerLayer;
+            if (enemyLayer >= 0) excludeMask |= 1 << enemyLayer;
+
             var go = new GameObject("VisionCone");
             go.transform.SetParent(transform, false);
             var mf = go.AddComponent<MeshFilter>();
@@ -65,6 +72,9 @@ namespace Reloj.Stealth
                     tris[t++] = a; tris[t++] = d; tris[t++] = b;
                     tris[t++] = b; tris[t++] = d; tris[t++] = e;
                 }
+            mesh.vertices = verts;
+            mesh.colors = cols;
+            mesh.triangles = tris;
         }
 
         Color TargetColor()
@@ -80,11 +90,25 @@ namespace Reloj.Stealth
 
         void LateUpdate()
         {
+            if (Time.timeScale == 0f) return;
             bool show = visible && !ai.VisionHidden;
-            mr.enabled = show;
+            if (mr.enabled != show) mr.enabled = show;
             if (!show) return;
+
+            Color targetCol = TargetColor();
+            if (current != targetCol)
+            {
+                current = Color.Lerp(current, targetCol, 1f - Mathf.Exp(-12f * Time.deltaTime));
+                if (Mathf.Abs(current.r - targetCol.r) < 0.004f && Mathf.Abs(current.g - targetCol.g) < 0.004f
+                    && Mathf.Abs(current.b - targetCol.b) < 0.004f && Mathf.Abs(current.a - targetCol.a) < 0.004f)
+                    current = targetCol;
+            }
+
+            if (hasBuilt && ai.IsFrozen && current == targetCol) return;
+            hasBuilt = true;
+
             float dist = ai.ViewDistance, half = ai.ViewAngle * 0.5f;
-            current = Color.Lerp(current, TargetColor(), 1f - Mathf.Exp(-12f * Time.deltaTime));
+            int mask = ai.VisionMask & ~excludeMask;
             Vector3 origin = transform.position;
             Vector3 eye = origin + Vector3.up * ai.EyeHeight;
             int c = rays + 1;
@@ -95,13 +119,11 @@ namespace Reloj.Stealth
                 float ang = Mathf.Lerp(-half, half, u);
                 Vector3 dir = Quaternion.AngleAxis(ang, Vector3.up) * transform.forward; dir.y = 0f; dir.Normalize();
                 float d = dist;
-                int n = Physics.RaycastNonAlloc(eye, dir, hits, dist, ai.VisionMask, QueryTriggerInteraction.Ignore);
+                int n = Physics.RaycastNonAlloc(eye, dir, hits, dist, mask, QueryTriggerInteraction.Ignore);
                 for (int h = 0; h < n; h++)
                 {
                     var col = hits[h].collider;
                     if (col.transform.IsChildOf(transform)) continue;
-                    if (col.GetComponentInParent<PlayerMotor>() != null) continue;
-                    if (col.GetComponentInParent<EnemyAI>() != null) continue;
                     if (hits[h].distance < d) d = hits[h].distance;
                 }
                 colDist[i] = d;
@@ -120,7 +142,8 @@ namespace Reloj.Stealth
                     cols[idx] = col2;
                 }
             }
-            mesh.vertices = verts; mesh.colors = cols; mesh.triangles = tris;
+            mesh.SetVertices(verts);
+            mesh.SetColors(cols);
             mesh.RecalculateBounds();
         }
     }

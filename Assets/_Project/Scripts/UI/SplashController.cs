@@ -1,5 +1,6 @@
 
 using System.Collections;
+using Reloj.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,8 +20,8 @@ public class SplashController : MonoBehaviour
 
     private void Start()
     {
-        contenido.alpha = 0f;
-        splashCompleto.alpha = 1f;
+        if (contenido != null) contenido.alpha = 0f;
+        if (splashCompleto != null) splashCompleto.alpha = 1f;
 
         StartCoroutine(AnimarSplash());
     }
@@ -40,7 +41,11 @@ public class SplashController : MonoBehaviour
             splashCompleto, 1f, 0f, duracionSalida
         );
 
-        SceneManager.LoadScene(siguienteEscena);
+        var services = GameServices.Instance;
+        if (services != null && services.Loader != null)
+            services.Loader.LoadSingle(siguienteEscena);
+        else
+            SceneManager.LoadScene(siguienteEscena);
     }
 
     private IEnumerator Desvanecer(
@@ -49,6 +54,7 @@ public class SplashController : MonoBehaviour
         float fin,
         float duracion)
     {
+        if (grupo == null) yield break;
         grupo.alpha = inicio;
 
         if (duracion <= 0f)

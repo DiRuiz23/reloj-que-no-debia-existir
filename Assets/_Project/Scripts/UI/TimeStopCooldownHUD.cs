@@ -15,6 +15,9 @@ namespace Reloj.UI
         [SerializeField] Image fill;
         [SerializeField] Image background;
 
+        TimeStopState lastState = (TimeStopState)(-1);
+        float lastFill = -1f;
+
         void Start()
         {
             if (controller == null) controller = TimeStopController.Instance;
@@ -48,34 +51,47 @@ namespace Reloj.UI
         }
 
         // LateUpdate: el controller ya actualizo su timer en Update este mismo frame.
-        void LateUpdate() => Refresh();
+        void LateUpdate()
+        {
+            if (controller == null) return;
+            if (controller.State == TimeStopState.Ready && lastState == TimeStopState.Ready) return;
+            Refresh();
+        }
 
         void Refresh()
         {
             if (controller == null || fill == null) return;
 
+            float nextFill;
             switch (controller.State)
             {
                 case TimeStopState.Ready:
-                    fill.fillAmount = 1f;
+                    nextFill = 1f;
                     break;
                 case TimeStopState.Active:
                     // Se consume de 1 a 0 durante la parada.
-                    fill.fillAmount = controller.Duration > 0f
+                    nextFill = controller.Duration > 0f
                         ? Mathf.Clamp01(controller.RemainingActiveTime / controller.Duration)
                         : 0f;
                     break;
                 default: // Recharging: 0 -> 1
-                    fill.fillAmount = controller.CooldownNormalized;
+                    nextFill = controller.CooldownNormalized;
                     break;
             }
 
-            if (palette != null)
+            if (!Mathf.Approximately(nextFill, lastFill))
+            {
+                fill.fillAmount = nextFill;
+                lastFill = nextFill;
+            }
+
+            if (palette != null && controller.State != lastState)
             {
                 fill.color = controller.State == TimeStopState.Recharging
                     ? palette.SepiaMedio   // recargando: tono apagado
                     : palette.Acento;      // listo y activo: color de acento
             }
+            lastState = controller.State;
         }
     }
 }

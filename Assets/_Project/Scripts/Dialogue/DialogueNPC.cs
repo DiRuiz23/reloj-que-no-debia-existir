@@ -54,8 +54,9 @@ namespace Reloj.Dialogue
 
         void Update()
         {
-            if (prompt != null)
-                prompt.SetActive(playerInRange && !DialogueRunner.IsRunning);
+            if (prompt == null) return;
+            bool show = playerInRange && !DialogueRunner.IsRunning;
+            if (prompt.activeSelf != show) prompt.SetActive(show);
         }
 
         void OnTriggerEnter(Collider other)
