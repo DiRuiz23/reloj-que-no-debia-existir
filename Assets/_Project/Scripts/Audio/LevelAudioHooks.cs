@@ -119,7 +119,7 @@ namespace Reloj.Sound
         {
             PollCheckpoint();
             UpdateFootsteps();
-            UpdateTickTock();
+            if (suspiciousEnemies.Count > 0) UpdateTickTock();
         }
 
         // ------------------------------------------------------------------ pasos / checkpoint
@@ -130,7 +130,7 @@ namespace Reloj.Sound
             if (DialogueRunner.IsRunning) return;
 
             Vector3 v = playerBody.linearVelocity;
-            float horizontal = new Vector2(v.x, v.z).magnitude;
+            float horizontal = Mathf.Sqrt(v.x * v.x + v.z * v.z);
             bool grounded = Mathf.Abs(v.y) < 1f;
             if (horizontal < minStepSpeed || !grounded) { nextStepTime = 0f; return; }
 

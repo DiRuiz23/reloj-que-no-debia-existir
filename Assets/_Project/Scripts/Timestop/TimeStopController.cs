@@ -19,6 +19,8 @@ namespace Reloj.TimeStop
         static readonly List<ITimeAffectable> affectables = new List<ITimeAffectable>();
         static readonly List<ITimeAffectable> buffer = new List<ITimeAffectable>();
 
+        public static IReadOnlyList<ITimeAffectable> Affectables => affectables;
+
         [Header("Entrada")]
         [SerializeField] InputActionReference timestopAction;
 
@@ -29,7 +31,7 @@ namespace Reloj.TimeStop
         [SerializeField, Min(0.1f)] float cooldown = 9f;
 
         [Header("Debug")]
-        [SerializeField] bool showDebug = true;
+        [SerializeField] bool showDebug;
 
         float timer;
 

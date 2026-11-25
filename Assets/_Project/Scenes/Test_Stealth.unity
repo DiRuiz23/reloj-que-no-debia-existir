@@ -596,7 +596,7 @@ MonoBehaviour:
   timestopAction: {fileID: 7092782154575008944, guid: fb9002de5945bcc489275e1311bb3d4e, type: 3}
   duration: 4
   cooldown: 9
-  showDebug: 1
+  showDebug: 0
 --- !u!4 &318261320
 Transform:
   m_ObjectHideFlags: 0

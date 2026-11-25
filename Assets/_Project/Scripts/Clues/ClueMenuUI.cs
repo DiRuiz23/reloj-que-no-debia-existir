@@ -39,6 +39,17 @@ namespace Reloj.Clues
         bool openedFromPause;
         GameObject previousSelection;
 
+        struct PooledClueRow
+        {
+            public GameObject root;
+            public TMP_Text title;
+            public TMP_Text summary;
+        }
+
+        readonly System.Collections.Generic.List<PooledClueRow> rowPool = new System.Collections.Generic.List<PooledClueRow>();
+        TMP_Text emptyLabel;
+        int lastCount = -1;
+
         Color Tinta => palette != null ? palette.Tinta : new Color(0.17f, 0.11f, 0.08f);
         Color Tierra => palette != null ? palette.TierraOscura : new Color(0.31f, 0.21f, 0.15f);
         Color Perga => palette != null ? palette.Pergamino : new Color(0.92f, 0.85f, 0.71f);
@@ -193,37 +204,76 @@ namespace Reloj.Clues
         void Refresh()
         {
             if (content == null) return;
-            for (int i = content.childCount - 1; i >= 0; i--) Destroy(content.GetChild(i).gameObject);
 
             int n = inventory != null ? inventory.Count : 0;
-            titleLabel.text = $"Pistas ({n})";
+            if (n != lastCount)
+            {
+                lastCount = n;
+                titleLabel.text = $"Pistas ({n})";
+            }
 
             if (n == 0)
             {
-                AddText("Aún no has reunido pistas.", 22, FontStyles.Italic, Arena);
+                for (int i = 0; i < rowPool.Count; i++)
+                    if (rowPool[i].root != null && rowPool[i].root.activeSelf) rowPool[i].root.SetActive(false);
+
+                if (emptyLabel == null)
+                    emptyLabel = AddText("Aún no has reunido pistas.", 22, FontStyles.Italic, Arena);
+                else
+                    emptyLabel.gameObject.SetActive(true);
                 return;
             }
+
+            if (emptyLabel != null && emptyLabel.gameObject.activeSelf)
+                emptyLabel.gameObject.SetActive(false);
+
+            int used = 0;
             foreach (var c in inventory.Clues)
             {
                 if (c == null) continue;
-                AddEntry(c);
+                BindOrCreateEntry(used, c);
+                used++;
             }
+
+            for (int i = used; i < rowPool.Count; i++)
+                if (rowPool[i].root != null && rowPool[i].root.activeSelf) rowPool[i].root.SetActive(false);
         }
 
-        void AddEntry(ClueData c)
+        void BindOrCreateEntry(int index, ClueData c)
         {
-            var row = new GameObject("Pista_" + c.Id, typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
-            row.transform.SetParent(content, false);
-            row.GetComponent<Image>().color = new Color(Tierra.r, Tierra.g, Tierra.b, 0.55f);
-            var vl = row.GetComponent<VerticalLayoutGroup>();
-            vl.padding = new RectOffset(16, 16, 10, 12);
-            vl.spacing = 4;
-            vl.childControlWidth = true; vl.childControlHeight = true;
-            vl.childForceExpandWidth = true; vl.childForceExpandHeight = false;
-            row.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            PooledClueRow entry;
+            if (index < rowPool.Count && rowPool[index].root != null)
+            {
+                entry = rowPool[index];
+                if (!entry.root.activeSelf) entry.root.SetActive(true);
+            }
+            else
+            {
+                var row = new GameObject("Pista_Row_" + index, typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
+                row.transform.SetParent(content, false);
+                row.GetComponent<Image>().color = new Color(Tierra.r, Tierra.g, Tierra.b, 0.55f);
+                var vl = row.GetComponent<VerticalLayoutGroup>();
+                vl.padding = new RectOffset(16, 16, 10, 12);
+                vl.spacing = 4;
+                vl.childControlWidth = true; vl.childControlHeight = true;
+                vl.childForceExpandWidth = true; vl.childForceExpandHeight = false;
+                row.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
-            AddText(c.Title, 24, FontStyles.Bold, Perga, row.transform);
-            if (!string.IsNullOrEmpty(c.Summary)) AddText(c.Summary, 20, FontStyles.Normal, Arena, row.transform);
+                entry = new PooledClueRow
+                {
+                    root = row,
+                    title = AddText("", 24, FontStyles.Bold, Perga, row.transform),
+                    summary = AddText("", 20, FontStyles.Normal, Arena, row.transform)
+                };
+                if (index < rowPool.Count) rowPool[index] = entry;
+                else rowPool.Add(entry);
+            }
+
+            entry.title.text = c.Title;
+            bool hasSummary = !string.IsNullOrEmpty(c.Summary);
+            if (entry.summary.gameObject.activeSelf != hasSummary)
+                entry.summary.gameObject.SetActive(hasSummary);
+            if (hasSummary) entry.summary.text = c.Summary;
         }
 
         TMP_Text AddText(string text, float size, FontStyles style, Color color, Transform parent = null)

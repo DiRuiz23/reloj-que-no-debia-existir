@@ -19,6 +19,7 @@ namespace Reloj.Clues
 
         LevelObjectives objectives;
         float flashUntil;
+        bool isFlashing;
         Color baseColor = new Color(0.92f, 0.85f, 0.71f, 1f);
 
         void Awake()
@@ -47,7 +48,11 @@ namespace Reloj.Clues
         void OnChanged(string text, bool advanced)
         {
             Show(text);
-            if (advanced) flashUntil = Time.unscaledTime + flashSeconds;
+            if (advanced)
+            {
+                flashUntil = Time.unscaledTime + flashSeconds;
+                isFlashing = true;
+            }
         }
 
         void Show(string text)
@@ -55,19 +60,27 @@ namespace Reloj.Clues
             if (label == null) return;
             bool has = !string.IsNullOrEmpty(text);
             label.gameObject.SetActive(has);
-            if (has) label.text = prefix + text;
+            if (has)
+            {
+                label.text = prefix + text;
+                label.color = baseColor;
+            }
         }
 
         void Update()
         {
-            if (label == null || !label.gameObject.activeSelf) return;
+            if (!isFlashing || label == null || !label.gameObject.activeSelf) return;
             if (flashUntil > Time.unscaledTime && palette != null)
             {
                 // Destello suave de "objetivo nuevo": del color de acento a pergamino. Solo mientras dura.
                 float t = 1f - (flashUntil - Time.unscaledTime) / Mathf.Max(0.01f, flashSeconds);
                 label.color = Color.Lerp(palette.Arena, baseColor, t);
             }
-            else label.color = baseColor;
+            else
+            {
+                label.color = baseColor;
+                isFlashing = false;
+            }
         }
 
         TMP_Text BuildLabel()

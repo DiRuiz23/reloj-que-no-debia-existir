@@ -5,16 +5,23 @@ namespace Reloj.Core
     /// <summary>Mantiene el sprite vertical y de frente a la camara (solo gira en Y).</summary>
     public class BillboardSprite : MonoBehaviour
     {
-        Camera cam;
+        Transform camTransform;
+        float lastYaw = float.NaN;
 
         void LateUpdate()
         {
-            if (cam == null)
+            if (camTransform == null)
             {
-                cam = Camera.main;
+                var cam = Camera.main;
                 if (cam == null) return;
+                camTransform = cam.transform;
             }
-            transform.rotation = Quaternion.Euler(0f, cam.transform.eulerAngles.y, 0f);
+            float yaw = camTransform.eulerAngles.y;
+            if (Mathf.Abs(yaw - lastYaw) > 0.01f)
+            {
+                lastYaw = yaw;
+                transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+            }
         }
     }
 }
