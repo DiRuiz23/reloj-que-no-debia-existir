@@ -52,6 +52,8 @@ namespace Reloj.Dialogue
         int totalChars;
         int startFrame = -1;
         int endFrame = -1;
+        ComponentPool<Button> choicePool;
+        readonly System.Collections.Generic.List<Button> activeChoices = new System.Collections.Generic.List<Button>();
 
         public event Action OnDialogueStarted;
         public event Action OnDialogueEnded;
@@ -214,12 +216,16 @@ namespace Reloj.Dialogue
             if (!anyAvailable)
                 Debug.LogWarning($"[Dialogue] El nodo '{n.id}' solo tiene opciones persuasivas bloqueadas: se muestran todas.");
 
+            if (choicePool == null)
+                choicePool = new ComponentPool<Button>(choiceButtonPrefab, choicesContainer, 3);
+
             GameObject first = null;
             for (int i = 0; i < n.choices.Count; i++)
             {
                 if (anyAvailable && !SkillModifiers.IsPersuasionUnlocked(n.choices[i].requiresPersuasion)) continue;
                 int index = i;
-                var button = Instantiate(choiceButtonPrefab, choicesContainer);
+                var button = choicePool.Get(choicesContainer);
+                activeChoices.Add(button);
                 var label = button.GetComponentInChildren<TMP_Text>();
                 if (label != null)
                 {
@@ -228,6 +234,7 @@ namespace Reloj.Dialogue
                     label.fontSizeMin = 16f;
                     label.fontSizeMax = 28f;
                 }
+                button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => Choose(index));
                 if (first == null) first = button.gameObject;
             }
@@ -240,8 +247,16 @@ namespace Reloj.Dialogue
         void ClearChoices()
         {
             if (choicesContainer == null) return;
-            for (int i = choicesContainer.childCount - 1; i >= 0; i--)
-                Destroy(choicesContainer.GetChild(i).gameObject);
+            for (int i = 0; i < activeChoices.Count; i++)
+            {
+                var btn = activeChoices[i];
+                if (btn != null)
+                {
+                    btn.onClick.RemoveAllListeners();
+                    choicePool?.Release(btn);
+                }
+            }
+            activeChoices.Clear();
         }
 
         void Choose(int index)

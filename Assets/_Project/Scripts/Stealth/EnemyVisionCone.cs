@@ -28,8 +28,13 @@ namespace Reloj.Stealth
         [SerializeField] bool visible = true;
 
         EnemyAI ai; Mesh mesh; MeshRenderer mr; Material mat;
-        Vector3[] verts; Color[] cols; int[] tris; float[] colDist;
+        Vector3[] verts; Color[] cols; int[] tris; float[] colDist; float[] edgeFactors;
         Color current;
+        Color lastBuiltColor;
+        Vector3 lastBuiltPos;
+        Quaternion lastBuiltRot;
+        float lastBuiltDist = -1f;
+        float lastBuiltAngle = -1f;
         int excludeMask;
         bool hasBuilt;
         readonly RaycastHit[] hits = new RaycastHit[8];
@@ -62,7 +67,13 @@ namespace Reloj.Stealth
         void Build()
         {
             int c = rays + 1, r = rows + 1;
-            verts = new Vector3[c * r]; cols = new Color[c * r]; colDist = new float[c];
+            verts = new Vector3[c * r]; cols = new Color[c * r]; colDist = new float[c]; edgeFactors = new float[c];
+            for (int i = 0; i < c; i++)
+            {
+                float u = i / (float)rays;
+                float side = Mathf.Abs(u * 2f - 1f);
+                edgeFactors[i] = 1f - edgeSoftness * Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.55f, 1f, side));
+            }
             tris = new int[rays * rows * 6];
             int t = 0;
             for (int j = 0; j < rows; j++)
@@ -105,46 +116,76 @@ namespace Reloj.Stealth
             }
 
             if (hasBuilt && ai.IsFrozen && current == targetCol) return;
-            hasBuilt = true;
 
             float dist = ai.ViewDistance, half = ai.ViewAngle * 0.5f;
-            int mask = ai.VisionMask & ~excludeMask;
             Vector3 origin = transform.position;
+            Quaternion rot = transform.rotation;
+
+            bool transformUnchanged = hasBuilt
+                && (origin - lastBuiltPos).sqrMagnitude < 0.000025f
+                && Quaternion.Angle(rot, lastBuiltRot) < 0.05f
+                && Mathf.Approximately(dist, lastBuiltDist)
+                && Mathf.Approximately(half, lastBuiltAngle);
+
+            if (transformUnchanged && current == lastBuiltColor) return;
+
+            hasBuilt = true;
+            lastBuiltPos = origin;
+            lastBuiltRot = rot;
+            lastBuiltDist = dist;
+            lastBuiltAngle = half;
+            lastBuiltColor = current;
+
+            int mask = ai.VisionMask & ~excludeMask;
             Vector3 eye = origin + Vector3.up * ai.EyeHeight;
             int c = rays + 1;
 
             for (int i = 0; i < c; i++)
             {
-                float u = i / (float)rays;                       // 0..1 a lo ancho
-                float ang = Mathf.Lerp(-half, half, u);
-                Vector3 dir = Quaternion.AngleAxis(ang, Vector3.up) * transform.forward; dir.y = 0f; dir.Normalize();
-                float d = dist;
-                int n = Physics.RaycastNonAlloc(eye, dir, hits, dist, mask, QueryTriggerInteraction.Ignore);
-                for (int h = 0; h < n; h++)
+                float d;
+                Vector3 dir = Vector3.zero;
+                if (transformUnchanged)
                 {
-                    var col = hits[h].collider;
-                    if (col.transform.IsChildOf(transform)) continue;
-                    if (hits[h].distance < d) d = hits[h].distance;
+                    d = colDist[i];
                 }
-                colDist[i] = d;
-                float side = Mathf.Abs(u * 2f - 1f);                                   // 0 centro, 1 borde
-                float edge = 1f - edgeSoftness * Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.55f, 1f, side));
+                else
+                {
+                    float u = i / (float)rays;                       // 0..1 a lo ancho
+                    float ang = Mathf.Lerp(-half, half, u);
+                    dir = Quaternion.AngleAxis(ang, Vector3.up) * transform.forward; dir.y = 0f; dir.Normalize();
+                    d = dist;
+                    int n = Physics.RaycastNonAlloc(eye, dir, hits, dist, mask, QueryTriggerInteraction.Ignore);
+                    for (int h = 0; h < n; h++)
+                    {
+                        var col = hits[h].collider;
+                        if (col.transform.IsChildOf(transform)) continue;
+                        if (hits[h].distance < d) d = hits[h].distance;
+                    }
+                    colDist[i] = d;
+                }
+                float edge = edgeFactors[i];
                 for (int j = 0; j <= rows; j++)
                 {
                     float f = j / (float)rows;
                     float dj = d * f;
-                    Vector3 w = origin + dir * dj; w.y = groundOffset;
                     int idx = j * c + i;
-                    verts[idx] = transform.InverseTransformPoint(w);
+                    if (!transformUnchanged)
+                    {
+                        Vector3 w = origin + dir * dj; w.y = groundOffset;
+                        verts[idx] = transform.InverseTransformPoint(w);
+                    }
                     Color col2 = current;
                     float fade = Mathf.Pow(Mathf.Clamp01(1f - dj / dist), fadePower);
                     col2.a = current.a * fade * edge;
                     cols[idx] = col2;
                 }
             }
-            mesh.SetVertices(verts);
+            if (!transformUnchanged)
+            {
+                mesh.SetVertices(verts);
+                mesh.RecalculateBounds();
+            }
             mesh.SetColors(cols);
-            mesh.RecalculateBounds();
         }
     }
 }

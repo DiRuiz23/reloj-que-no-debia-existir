@@ -52,8 +52,14 @@ namespace Reloj.TimeStop
         }
 
         readonly List<TintTarget> targets = new List<TintTarget>();
+        readonly List<Renderer> rendererBuffer = new List<Renderer>(16);
+        readonly List<Material> materialBuffer = new List<Material>(8);
+        readonly Stack<ParticleSystem> particlePool = new Stack<ParticleSystem>(4);
+        readonly List<ParticleSystem> activeParticles = new List<ParticleSystem>(4);
         TimeStopController controller;
         MaterialPropertyBlock block;
+        ParticleSystem castParticlePrefab;
+        Material particleMaterial;
 
         float weight;
         float weightTarget;
@@ -85,6 +91,7 @@ namespace Reloj.TimeStop
             BuildOverlay();
             BuildWave();
             BuildVolume();
+            BuildParticlePool();
         }
 
         void OnDestroy()
@@ -99,6 +106,7 @@ namespace Reloj.TimeStop
             if (ringTex != null) Destroy(ringTex);
             if (vignetteTex != null) Destroy(vignetteTex);
             if (ringSprite != null) Destroy(ringSprite);
+            if (particleMaterial != null) Destroy(particleMaterial);
         }
 
         void HandleStart()
@@ -113,8 +121,10 @@ namespace Reloj.TimeStop
 
             if (waveTransform != null && player != null)
             {
-                waveTransform.position = player.transform.position + Vector3.up * 0.08f;
+                Vector3 castPos = player.transform.position + Vector3.up * 0.08f;
+                waveTransform.position = castPos;
                 waveRenderer.enabled = true;
+                SpawnPooledBurst(castPos);
             }
         }
 
@@ -125,6 +135,9 @@ namespace Reloj.TimeStop
 
         void Update()
         {
+            RecycleFinishedParticles();
+            if (Mathf.Approximately(weight, weightTarget) && waveTime < 0f) return;
+
             float rate = weightTarget > weight ? 1f / fadeInSeconds : 1f / fadeOutSeconds;
             float before = weight;
             weight = Mathf.MoveTowards(weight, weightTarget, rate * Time.deltaTime);
@@ -169,20 +182,108 @@ namespace Reloj.TimeStop
         {
             ClearTint();
             targets.Clear();
-            foreach (var a in FindObjectsByType<TimeAffectableBase>(FindObjectsSortMode.None))
+            var list = TimeStopController.Affectables;
+            for (int aIdx = 0; aIdx < list.Count; aIdx++)
             {
-                foreach (var r in a.GetComponentsInChildren<Renderer>())
+                if (!(list[aIdx] is Component comp) || comp == null) continue;
+                rendererBuffer.Clear();
+                comp.GetComponentsInChildren(false, rendererBuffer);
+                for (int rIdx = 0; rIdx < rendererBuffer.Count; rIdx++)
                 {
-                    if (r is ParticleSystemRenderer) continue;
-                    var mats = r.sharedMaterials;
-                    for (int i = 0; i < mats.Length; i++)
+                    var r = rendererBuffer[rIdx];
+                    if (r == null || r is ParticleSystemRenderer) continue;
+                    materialBuffer.Clear();
+                    r.GetSharedMaterials(materialBuffer);
+                    for (int i = 0; i < materialBuffer.Count; i++)
                     {
-                        var m = mats[i];
+                        var m = materialBuffer[i];
                         if (m == null) continue;
                         int p = m.HasProperty(BaseColorId) ? BaseColorId : (m.HasProperty(ColorId) ? ColorId : -1);
                         if (p < 0) continue;
                         targets.Add(new TintTarget { renderer = r, index = i, prop = p, original = m.GetColor(p) });
                     }
+                }
+            }
+        }
+
+        void BuildParticlePool()
+        {
+            var shader = Shader.Find("Sprites/Default");
+            if (shader == null) return;
+            particleMaterial = new Material(shader);
+            for (int i = 0; i < 2; i++)
+                particlePool.Push(CreatePooledParticleInstance(i));
+        }
+
+        ParticleSystem CreatePooledParticleInstance(int index)
+        {
+            var go = new GameObject("TimeStopBurst_Pooled_" + index);
+            go.transform.SetParent(transform, false);
+            var ps = go.AddComponent<ParticleSystem>();
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+            var main = ps.main;
+            main.playOnAwake = false;
+            main.loop = false;
+            main.duration = 0.6f;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(0.35f, 0.65f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(3f, 7f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.08f, 0.16f);
+            main.startColor = accent;
+            main.maxParticles = 24;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+
+            var emission = ps.emission;
+            emission.enabled = true;
+            emission.rateOverTime = 0f;
+            emission.SetBursts(new[] { new ParticleSystem.Burst(0f, 16) });
+
+            var shape = ps.shape;
+            shape.enabled = true;
+            shape.shapeType = ParticleSystemShapeType.Circle;
+            shape.radius = 0.4f;
+
+            var psr = go.GetComponent<ParticleSystemRenderer>();
+            if (psr != null && particleMaterial != null)
+            {
+                psr.sharedMaterial = particleMaterial;
+                psr.shadowCastingMode = ShadowCastingMode.Off;
+                psr.receiveShadows = false;
+            }
+
+            go.SetActive(false);
+            return ps;
+        }
+
+        void SpawnPooledBurst(Vector3 worldPos)
+        {
+            if (particleMaterial == null) return;
+            ParticleSystem ps = particlePool.Count > 0
+                ? particlePool.Pop()
+                : CreatePooledParticleInstance(activeParticles.Count + particlePool.Count);
+            ps.transform.position = worldPos;
+            ps.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            ps.gameObject.SetActive(true);
+            ps.Clear(true);
+            ps.Play(true);
+            activeParticles.Add(ps);
+        }
+
+        void RecycleFinishedParticles()
+        {
+            for (int i = activeParticles.Count - 1; i >= 0; i--)
+            {
+                var ps = activeParticles[i];
+                if (ps == null)
+                {
+                    activeParticles.RemoveAt(i);
+                    continue;
+                }
+                if (!ps.IsAlive(true))
+                {
+                    ps.gameObject.SetActive(false);
+                    particlePool.Push(ps);
+                    activeParticles.RemoveAt(i);
                 }
             }
         }

@@ -139,6 +139,7 @@ namespace Reloj.Core
         /// <summary>Aplica volumen, calidad y controles guardados.</summary>
         public void ApplyAll()
         {
+            Application.targetFrameRate = 60;
             ApplyAudio();
             QualitySettings.SetQualityLevel(QualityLevel, true);
             LoadBindings(Options.inputBindingsJson);
@@ -202,6 +203,7 @@ namespace Reloj.Core
             level = ClampQuality(level);
             Options.qualityLevel = level;
             QualitySettings.SetQualityLevel(level, true);
+            Application.targetFrameRate = 60;
             _dirty = true;
             Flush();
         }

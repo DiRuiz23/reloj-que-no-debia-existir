@@ -26,6 +26,7 @@ namespace Reloj.Level
         Vector3 closedLocalPos;
         bool open;
         float closeAt = -1f;
+        readonly Collider[] overlapBuf = new Collider[16];
 
         public bool IsOpen => open;
 
@@ -55,7 +56,8 @@ namespace Reloj.Level
             if (bars != null)
             {
                 Vector3 target = closedLocalPos + (open ? Vector3.up * openHeight : Vector3.zero);
-                bars.localPosition = Vector3.MoveTowards(bars.localPosition, target, slideSpeed * Time.deltaTime);
+                if ((bars.localPosition - target).sqrMagnitude > 0.000001f)
+                    bars.localPosition = Vector3.MoveTowards(bars.localPosition, target, slideSpeed * Time.deltaTime);
             }
         }
 
@@ -71,9 +73,9 @@ namespace Reloj.Level
         bool PlayerInside()
         {
             Vector3 center = transform.TransformPoint(clearanceCenter);
-            var hits = Physics.OverlapBox(center, clearanceHalfExtents, transform.rotation, ~0, QueryTriggerInteraction.Ignore);
-            foreach (var h in hits)
-                if (h.GetComponentInParent<PlayerMotor>() != null) return true;
+            int count = Physics.OverlapBoxNonAlloc(center, clearanceHalfExtents, overlapBuf, transform.rotation, ~0, QueryTriggerInteraction.Ignore);
+            for (int i = 0; i < count; i++)
+                if (overlapBuf[i] != null && overlapBuf[i].GetComponentInParent<PlayerMotor>() != null) return true;
             return false;
         }
 

@@ -61,6 +61,15 @@ namespace Reloj.Level
         int gw, gh;
         readonly Collider[] buf = new Collider[16];
         readonly RaycastHit[] hits = new RaycastHit[24];
+        readonly List<(float f, int id)> heap = new List<(float f, int id)>(256);
+        readonly List<Vector3> revPath = new List<Vector3>(128);
+        float[] gCostBuf;
+        int[] fromBuf;
+        bool[] closedBuf;
+        static readonly Dictionary<int, bool> obstacleCache = new Dictionary<int, bool>(128);
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => obstacleCache.Clear();
 
         public bool IsChasing => chasing;
 
@@ -120,7 +129,7 @@ namespace Reloj.Level
             if (guardian != null) guardian.enabled = false;     // sin onda de choque mientras persigue
             enemy.Suspended = true;                             // EnemyAI deja de patrullar: lo movemos nosotros
             enemy.VisionHidden = false;
-            BuildGrid();
+            if (free == null) BuildGrid();
             enemy.ForceState(EnemyState.Alerta);                // icono rojo (chasing evita reentrada)
         }
 
@@ -202,8 +211,15 @@ namespace Reloj.Level
             return true;
         }
 
-        static bool IsObstacle(Collider c) =>
-            !c.isTrigger && c.GetComponentInParent<EnemyAI>() == null && c.GetComponentInParent<PlayerMotor>() == null;
+        static bool IsObstacle(Collider c)
+        {
+            if (c == null || c.isTrigger) return false;
+            int id = c.GetInstanceID();
+            if (obstacleCache.TryGetValue(id, out bool isObs)) return isObs;
+            isObs = c.GetComponentInParent<EnemyAI>() == null && c.GetComponentInParent<PlayerMotor>() == null;
+            obstacleCache[id] = isObs;
+            return isObs;
+        }
 
         void BuildGrid()
         {
@@ -247,17 +263,20 @@ namespace Reloj.Level
             if (!NearestFree(ToCell(from), out var s) || !NearestFree(ToCell(to), out var g)) return false;
 
             int W = gw, H = gh, N = W * H;
-            var gCost = new float[N]; var from_ = new int[N]; var closed = new bool[N];
-            for (int i = 0; i < N; i++) { gCost[i] = float.MaxValue; from_[i] = -1; }
-            var heap = new List<(float f, int id)>();
-            Action<float, int> push = (f, id) => { heap.Add((f, id)); int c = heap.Count - 1; while (c > 0) { int p = (c - 1) / 2; if (heap[p].f <= heap[c].f) break; var t = heap[p]; heap[p] = heap[c]; heap[c] = t; c = p; } };
-            Func<(float f, int id)> pop = () => { var top = heap[0]; var last = heap[heap.Count - 1]; heap.RemoveAt(heap.Count - 1); if (heap.Count > 0) { heap[0] = last; int c = 0; while (true) { int l = 2 * c + 1, r = l + 1, m = c; if (l < heap.Count && heap[l].f < heap[m].f) m = l; if (r < heap.Count && heap[r].f < heap[m].f) m = r; if (m == c) break; var t = heap[m]; heap[m] = heap[c]; heap[c] = t; c = m; } } return top; };
+            if (gCostBuf == null || gCostBuf.Length < N)
+            {
+                gCostBuf = new float[N];
+                fromBuf = new int[N];
+                closedBuf = new bool[N];
+            }
+            for (int i = 0; i < N; i++) { gCostBuf[i] = float.MaxValue; fromBuf[i] = -1; closedBuf[i] = false; }
+            heap.Clear();
 
             int sid = s.x + s.y * W, gid = g.x + g.y * W;
-            gCost[sid] = 0f; push(Heur(s, g), sid);
+            gCostBuf[sid] = 0f; HeapPush(Heur(s, g), sid);
             while (heap.Count > 0)
             {
-                int cur = pop().id; if (closed[cur]) continue; closed[cur] = true;
+                int cur = HeapPop().id; if (closedBuf[cur]) continue; closedBuf[cur] = true;
                 if (cur == gid) break;
                 int cx = cur % W, cz = cur / W;
                 for (int dx = -1; dx <= 1; dx++)
@@ -267,16 +286,52 @@ namespace Reloj.Level
                         int nx = cx + dx, nz = cz + dz;
                         if (nx < 0 || nz < 0 || nx >= W || nz >= H || !free[nx, nz]) continue;
                         if (dx != 0 && dz != 0 && (!free[cx + dx, cz] || !free[cx, cz + dz])) continue;   // sin cortar esquinas
-                        int nid = nx + nz * W; if (closed[nid]) continue;
-                        float ng = gCost[cur] + ((dx != 0 && dz != 0) ? 1.4142f : 1f);
-                        if (ng < gCost[nid]) { gCost[nid] = ng; from_[nid] = cur; push(ng + Heur(new Vector2Int(nx, nz), g), nid); }
+                        int nid = nx + nz * W; if (closedBuf[nid]) continue;
+                        float ng = gCostBuf[cur] + ((dx != 0 && dz != 0) ? 1.4142f : 1f);
+                        if (ng < gCostBuf[nid]) { gCostBuf[nid] = ng; fromBuf[nid] = cur; HeapPush(ng + Heur(new Vector2Int(nx, nz), g), nid); }
                     }
             }
-            if (from_[gid] < 0 && sid != gid) return false;
+            if (fromBuf[gid] < 0 && sid != gid) return false;
 
-            var rev = new List<Vector3>(); for (int c = gid; c >= 0; c = from_[c]) { rev.Add(CellCenter(c % W, c / W)); if (c == sid) break; }
-            rev.Reverse(); path.AddRange(rev);
+            revPath.Clear();
+            for (int c = gid; c >= 0; c = fromBuf[c]) { revPath.Add(CellCenter(c % W, c / W)); if (c == sid) break; }
+            for (int i = revPath.Count - 1; i >= 0; i--) path.Add(revPath[i]);
             return path.Count > 0;
+        }
+
+        void HeapPush(float f, int id)
+        {
+            heap.Add((f, id));
+            int c = heap.Count - 1;
+            while (c > 0)
+            {
+                int p = (c - 1) / 2;
+                if (heap[p].f <= heap[c].f) break;
+                var t = heap[p]; heap[p] = heap[c]; heap[c] = t;
+                c = p;
+            }
+        }
+
+        (float f, int id) HeapPop()
+        {
+            var top = heap[0];
+            var last = heap[heap.Count - 1];
+            heap.RemoveAt(heap.Count - 1);
+            if (heap.Count > 0)
+            {
+                heap[0] = last;
+                int c = 0;
+                while (true)
+                {
+                    int l = 2 * c + 1, r = l + 1, m = c;
+                    if (l < heap.Count && heap[l].f < heap[m].f) m = l;
+                    if (r < heap.Count && heap[r].f < heap[m].f) m = r;
+                    if (m == c) break;
+                    var t = heap[m]; heap[m] = heap[c]; heap[c] = t;
+                    c = m;
+                }
+            }
+            return top;
         }
 
         static float Heur(Vector2Int a, Vector2Int b) { float dx = Mathf.Abs(a.x - b.x), dz = Mathf.Abs(a.y - b.y); return (dx + dz) + (1.4142f - 2f) * Mathf.Min(dx, dz); }

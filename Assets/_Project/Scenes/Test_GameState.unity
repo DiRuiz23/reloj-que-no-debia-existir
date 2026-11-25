@@ -2786,7 +2786,7 @@ MonoBehaviour:
   timestopAction: {fileID: -3881179159037090628, guid: fb9002de5945bcc489275e1311bb3d4e, type: 3}
   duration: 4
   cooldown: 9
-  showDebug: 1
+  showDebug: 0
 --- !u!1 &1122382082
 GameObject:
   m_ObjectHideFlags: 0
