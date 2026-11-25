@@ -124,15 +124,28 @@ namespace Reloj.UI
             rectTransform.offsetMin = Vector2.zero;
             rectTransform.offsetMax = Vector2.zero;
 
-            if (content != null && !Mathf.Approximately(contentScale, 1f) && canvasSize.x > 0f && canvasSize.y > 0f)
+            if (content != null)
             {
-                // El contenido se maqueto para un canvas mas chico: se dibuja a 'contentScale' y su rectangulo
-                // se reduce en la misma proporcion para que siga ocupando exactamente el area segura.
-                Vector2 size = new Vector2(canvasSize.x * (max.x - min.x), canvasSize.y * (max.y - min.y));
-                content.anchorMin = content.anchorMax = content.pivot = new Vector2(0.5f, 0.5f);
-                content.anchoredPosition = Vector2.zero;
-                content.sizeDelta = size / contentScale;
-                content.localScale = new Vector3(contentScale, contentScale, 1f);
+                if (hasParentSafeArea)
+                {
+                    // El SafeAreaFitter padre ya aplico area segura y compensacion de escala; este se estira sin re-escalar.
+                    content.anchorMin = Vector2.zero;
+                    content.anchorMax = Vector2.one;
+                    content.pivot = new Vector2(0.5f, 0.5f);
+                    content.offsetMin = Vector2.zero;
+                    content.offsetMax = Vector2.zero;
+                    content.localScale = Vector3.one;
+                }
+                else if (!Mathf.Approximately(contentScale, 1f) && canvasSize.x > 0f && canvasSize.y > 0f)
+                {
+                    // El contenido se maqueto para un canvas mas chico: se dibuja a 'contentScale' y su rectangulo
+                    // se reduce en la misma proporcion para que siga ocupando exactamente el area segura.
+                    Vector2 size = new Vector2(canvasSize.x * (max.x - min.x), canvasSize.y * (max.y - min.y));
+                    content.anchorMin = content.anchorMax = content.pivot = new Vector2(0.5f, 0.5f);
+                    content.anchoredPosition = Vector2.zero;
+                    content.sizeDelta = size / contentScale;
+                    content.localScale = new Vector3(contentScale, contentScale, 1f);
+                }
             }
         }
 
