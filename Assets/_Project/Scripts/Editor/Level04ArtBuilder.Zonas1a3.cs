@@ -11,7 +11,8 @@ namespace Reloj.EditorTools
         static readonly string[] RocasBajas = { "ROCK_01_Small", "ROCK_02_Medium", "ROCK_04_Flat", "ROCK_03_Large" };
         static readonly string[] Blandos = { "VEG_Grass_Tuft_Dry", "VEG_Grass_Tuft_Dry", "VEG_Grass_Tuft_Dry", "VEG_Shrub_Dry", "VEG_Agave_Blue", "VEG_Bush_Desert_Green" };
         static readonly string[] SueloTierra = { "FLOOR_Dirt_Packed_2x2", "FLOOR_Dirt_Packed_2x2", "FLOOR_Dirt_2x2" };
-        static readonly string[] SueloTile = { "FLOOR_Tile_2x2", "FLOOR_Tile_2x2", "FLOOR_Tile_Worn_2x2" };
+        // Sin azulejos cuadrados: quedaban a ras de la base de tierra y parpadeaban (z-fighting). Solo tierra.
+        static readonly string[] SueloTile = { "FLOOR_Dirt_Packed_2x2", "FLOOR_Dirt_2x2" };
         static readonly string[] Cajas = { "PROP_Crate_Wood_090", "PROP_Crate_Wood_060", "PROP_Crate_Wood_Large_120", "PROP_Barrel_Medium", "PROP_Barrel_Small", "PROP_Sack_Grain", "PROP_Pallet_Wood" };
 
         // ============================================================ GLOBAL

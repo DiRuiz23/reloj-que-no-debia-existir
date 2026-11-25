@@ -80,7 +80,7 @@ namespace Reloj.EditorTools
                 for (float zz = -9f; zz < 12f; zz += 2f)
                 {
                     float r = Vector2.Distance(new Vector2(x, zz), c);
-                    string n = r < 3.2f ? "FLOOR_Tile_Worn_2x2" : r < 8.5f ? "FLOOR_Tile_2x2" : r < 10.8f ? "PAVE_Stone_Straight_2m" : r < 15f ? "FLOOR_Tile_Worn_2x2" : "FLOOR_Dirt_Packed_2x2";
+                    string n = (r >= 8.5f && r < 10.8f) ? "PAVE_Stone_Straight_2m" : "FLOOR_Dirt_Packed_2x2";
                     Put(n, x, zz, 90f * rng.Next(4), 1f, 0f, fl);
                 }
             Tiles(SueloTierra, 50f, 52f, -10f, 12f, fl, 0f);
