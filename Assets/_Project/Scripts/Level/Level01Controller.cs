@@ -14,8 +14,10 @@ namespace Reloj.Level
     {
         [SerializeField] string artSceneName = "Level01_Art";
         [SerializeField] PlayerRespawn player;
+#pragma warning disable CS0414   // en desuso: el puntaje del nivel ahora es solo lo recolectado; se conservan para no perder lo serializado en las escenas
         [SerializeField] int maxScore = 1000;
         [SerializeField] int penaltyPerDeath = 100;
+#pragma warning restore CS0414
 
         [Header("Dificultad (I-30)")]
         [Tooltip("Asset LevelDifficultyConfig de este nivel. Los enemigos y la Parada Temporal leen sus valores de aqui. Vacio = cada uno usa sus valores propios.")]

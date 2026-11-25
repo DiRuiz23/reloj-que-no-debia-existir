@@ -215,6 +215,11 @@ namespace Reloj.TimeStop
             var canvas = go.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = -10;   // debajo del HUD y de los dialogos
+            var scaler = go.AddComponent<UnityEngine.UI.CanvasScaler>();   // vineta a pantalla completa: mismo escalado que el resto de la UI
+            scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.screenMatchMode = UnityEngine.UI.CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+            scaler.matchWidthOrHeight = 0.5f;
 
             const int n = 128;
             vignetteTex = new Texture2D(n, n, TextureFormat.RGBA32, false);

@@ -256,16 +256,21 @@ namespace Reloj.Clues
 
             EnsureEventSystem();
 
-            // Panel: fondo oscuro a pantalla completa + ventana central. Todo oculto hasta que se abre.
+            // Panel: fondo oscuro a pantalla completa + area segura + ventana central. Todo oculto hasta que se abre.
             panelRoot = new GameObject("Panel", typeof(RectTransform), typeof(Image));
             var prt = (RectTransform)panelRoot.transform;
             prt.SetParent(cgo.transform, false);
             Stretch(prt);
             panelRoot.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.65f);
 
+            var safeGo = new GameObject("SafeArea", typeof(RectTransform), typeof(SafeAreaFitter));
+            var safeRt = (RectTransform)safeGo.transform;
+            safeRt.SetParent(prt, false);
+            Stretch(safeRt);
+
             var win = new GameObject("Ventana", typeof(RectTransform), typeof(Image));
             var wrt = (RectTransform)win.transform;
-            wrt.SetParent(prt, false);
+            wrt.SetParent(safeRt, false);
             wrt.anchorMin = wrt.anchorMax = wrt.pivot = new Vector2(0.5f, 0.5f);
             wrt.sizeDelta = new Vector2(900f, 760f);
             win.GetComponent<Image>().color = new Color(Tinta.r, Tinta.g, Tinta.b, 0.97f);

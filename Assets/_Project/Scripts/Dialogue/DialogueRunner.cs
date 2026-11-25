@@ -221,7 +221,13 @@ namespace Reloj.Dialogue
                 int index = i;
                 var button = Instantiate(choiceButtonPrefab, choicesContainer);
                 var label = button.GetComponentInChildren<TMP_Text>();
-                if (label != null) label.text = (n.choices[i].requiresPersuasion > 0 ? PersuasionTag : "") + n.choices[i].text;
+                if (label != null)
+                {
+                    label.text = (n.choices[i].requiresPersuasion > 0 ? PersuasionTag : "") + n.choices[i].text;
+                    label.enableAutoSizing = true;
+                    label.fontSizeMin = 16f;
+                    label.fontSizeMax = 28f;
+                }
                 button.onClick.AddListener(() => Choose(index));
                 if (first == null) first = button.gameObject;
             }

@@ -21637,7 +21637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e70c249435aa79c438047b0d3d0d31a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e70c249435aa79c438047b0d3d0d31a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24192,6 +24192,11 @@ MonoBehaviour:
   usarNiebla: 1
   nieblaInicio: 34
   nieblaFin: 120
+  noche: 0
+  nocheCielo: {r: 0.16, g: 0.2, b: 0.4, a: 1}
+  nocheHorizonte: {r: 0.11, g: 0.14, b: 0.3, a: 1}
+  nocheSuelo: {r: 0.05, g: 0.05, b: 0.11, a: 1}
+  nocheNiebla: {r: 0.05, g: 0.07, b: 0.16, a: 1}
 --- !u!1 &1903391051
 GameObject:
   m_ObjectHideFlags: 0
@@ -25946,7 +25951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e70c249435aa79c438047b0d3d0d31a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e70c249435aa79c438047b0d3d0d31a7, type: 3}
       propertyPath: m_LocalPosition.z
