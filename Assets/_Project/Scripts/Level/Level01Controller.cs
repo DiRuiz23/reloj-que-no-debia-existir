@@ -78,6 +78,8 @@ namespace Reloj.Level
         IEnumerator Start()
         {
             var services = GameServices.Instance;
+            if (services != null && services.State != null && services.State.CurrentState != GameState.Jugando)
+                services.State.ResetToPlaying();
             if (services != null && services.Session != null) services.Session.ClearCheckpoint();
 
             // Espera a que termine cualquier carga en curso (Reiniciar ya recarga el Art solo).
@@ -116,7 +118,16 @@ namespace Reloj.Level
             if (!string.IsNullOrEmpty(sceneAfterComplete) && Application.CanStreamedLevelBeLoaded(sceneAfterComplete))
             {
                 var gs = GameServices.Instance;
-                if (gs != null && gs.Session != null) gs.Session.SetLevelResult(score, time);
+                string activeScene = SceneManager.GetActiveScene().name;
+                if (gs != null && gs.Session != null)
+                {
+                    gs.Session.SetLevelResult(score, time);
+                    gs.Session.RecordLevelScore(activeScene, score);
+                }
+                if (gs != null && gs.SkillPoints != null)
+                    gs.SkillPoints.AwardLevelCompleted(activeScene);
+                if (gs != null && gs.Save != null)
+                    gs.Save.RegisterLevelComplete(activeScene, score);
                 StartCoroutine(LoadSceneAfterComplete());
                 return;
             }

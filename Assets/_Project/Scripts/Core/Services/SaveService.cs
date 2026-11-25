@@ -261,6 +261,7 @@ namespace Reloj.Core
                 if (gs.Session != null)
                 {
                     gs.Session.ResetSession();
+                    gs.Session.RestoreLevelScores(_data.bestScores);
                     gs.Session.SetSkillPoints(_data.skillPoints);
                 }
             }

@@ -25,10 +25,6 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Splash.unity
   - m_enabled: 1
-    m_path: Assets/_Project/Scenes/Test_Sandbox.unity
-  - m_enabled: 1
-    m_path: Assets/_Project/Scenes/Test_GameState.unity
-  - m_enabled: 1
     m_path: Assets/_Project/Scenes/MainMenu.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level01_Art.unity
@@ -43,15 +39,15 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level03_Gameplay.unity
   - m_enabled: 1
-    m_path: Assets/_Project/Scenes/Ending_A.unity
-  - m_enabled: 1
-    m_path: Assets/_Project/Scenes/Ending_B.unity
-  - m_enabled: 1
-    m_path: Assets/_Project/Scenes/Decision_Final.unity
-  - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level04_Art.unity
   - m_enabled: 1
     m_path: Assets/_Project/Scenes/Level04_Gameplay.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Decision_Final.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Ending_A.unity
+  - m_enabled: 1
+    m_path: Assets/_Project/Scenes/Ending_B.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

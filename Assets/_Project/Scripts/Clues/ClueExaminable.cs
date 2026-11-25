@@ -47,7 +47,9 @@ namespace Reloj.Clues
 
         void Update()
         {
-            if (prompt != null) prompt.SetActive(inRange && !AlreadyHave);
+            if (prompt == null) return;
+            bool show = inRange && !AlreadyHave;
+            if (prompt.activeSelf != show) prompt.SetActive(show);
         }
 
         void OnTriggerEnter(Collider other)

@@ -104,7 +104,8 @@ namespace Reloj.Level
                 if (label.text != txt) { label.text = txt; FitToText(txt); }
             }
             float target = show ? 1f : 0f;
-            group.alpha = Mathf.MoveTowards(group.alpha, target, Time.unscaledDeltaTime / fadeSeconds);
+            if (!Mathf.Approximately(group.alpha, target))
+                group.alpha = Mathf.MoveTowards(group.alpha, target, Time.unscaledDeltaTime / fadeSeconds);
         }
     }
 }

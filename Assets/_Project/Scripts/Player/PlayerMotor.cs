@@ -69,6 +69,7 @@ namespace Reloj.Player
 
         void Awake()
         {
+            useGUILayout = false;
             rb = GetComponent<Rigidbody>();
             col = GetComponent<CapsuleCollider>();
             rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -153,6 +154,7 @@ namespace Reloj.Player
             col.sharedMaterial = moving ? movingMaterial : idleMaterial;
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         void OnGUI()
         {
             if (!showDebug || rb == null) return;
@@ -160,5 +162,6 @@ namespace Reloj.Player
             float h = new Vector2(v.x, v.z).magnitude;
             GUI.Label(new Rect(10, 10, 360, 24), $"Vel. horizontal: {h:F2}  |  Input: {input.magnitude:F2}  |  Suelo: {IsGrounded}");
         }
+#endif
     }
 }

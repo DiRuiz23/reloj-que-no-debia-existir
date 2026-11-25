@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Reloj.Core;
 using Reloj.Progression;
@@ -113,9 +114,31 @@ namespace Reloj.UI
         {
             gameObject.SetActive(true);
             transform.SetAsLastSibling();   // por encima de los paneles de estado
+
+            bool hasActiveChild = false;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).gameObject.activeInHierarchy) { hasActiveChild = true; break; }
+            }
+            if (backButton == null || !hasActiveChild)
+            {
+                Debug.LogError("[SkillMenuPanel] Panel sin contenido o sin boton Volver; se cierra para evitar bloqueo.", this);
+                Close();
+            }
         }
 
         public void Close() => gameObject.SetActive(false);
+
+        void Update()
+        {
+            var kb = Keyboard.current;
+            var pad = Gamepad.current;
+            if ((kb != null && kb.escapeKey.wasPressedThisFrame)
+                || (pad != null && pad.buttonEast.wasPressedThisFrame))
+            {
+                Close();
+            }
+        }
 
         // Cancelar (Esc / B del gamepad) equivale a pulsar Volver.
         public void OnCancel(BaseEventData eventData)

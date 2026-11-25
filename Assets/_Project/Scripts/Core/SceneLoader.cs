@@ -9,6 +9,8 @@ namespace Reloj.Core
     public class SceneLoader : MonoBehaviour
     {
         public bool IsLoading { get; private set; }
+        public float LastLoadDurationSeconds { get; private set; }
+        public string LastLoadedScene { get; private set; }
         public event Action<string> SceneLoaded;
         public event Action<string> SceneUnloaded;
 
@@ -34,22 +36,34 @@ namespace Reloj.Core
         private IEnumerator LoadSingleRoutine(int buildIndex)
         {
             IsLoading = true;
+            float start = Time.realtimeSinceStartup;
             var op = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+            if (op == null) { IsLoading = false; yield break; }
             while (!op.isDone) yield return null;
+            string loadedName = SceneManager.GetActiveScene().name;
+            LastLoadDurationSeconds = Time.realtimeSinceStartup - start;
+            LastLoadedScene = loadedName;
             IsLoading = false;
+            SceneLoaded?.Invoke(loadedName);
         }
 
         private IEnumerator LoadSingleRoutine(string sceneName)
         {
             IsLoading = true;
+            float start = Time.realtimeSinceStartup;
             var op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            if (op == null) { IsLoading = false; yield break; }
             while (!op.isDone) yield return null;
+            LastLoadDurationSeconds = Time.realtimeSinceStartup - start;
+            LastLoadedScene = sceneName;
             IsLoading = false;
+            SceneLoaded?.Invoke(sceneName);
         }
 
         private IEnumerator ReloadRoutine()
         {
             IsLoading = true;
+            float start = Time.realtimeSinceStartup;
             string activeName = SceneManager.GetActiveScene().name;
 
             var others = new List<string>();
@@ -60,12 +74,15 @@ namespace Reloj.Core
             }
 
             var op = SceneManager.LoadSceneAsync(activeName, LoadSceneMode.Single);
+            if (op == null) { IsLoading = false; yield break; }
             while (!op.isDone) yield return null;
 
             foreach (var n in others)
                 yield return LoadAdditiveRoutine(n, false);
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(activeName));
+            LastLoadDurationSeconds = Time.realtimeSinceStartup - start;
+            LastLoadedScene = activeName;
             IsLoading = false;
         }
 
@@ -73,9 +90,13 @@ namespace Reloj.Core
         {
             if (SceneManager.GetSceneByName(sceneName).isLoaded) yield break;
             IsLoading = true;
+            float start = Time.realtimeSinceStartup;
             var op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            if (op == null) { IsLoading = false; yield break; }
             while (!op.isDone) yield return null;
             if (setActive) SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+            LastLoadDurationSeconds = Time.realtimeSinceStartup - start;
+            LastLoadedScene = sceneName;
             IsLoading = false;
             SceneLoaded?.Invoke(sceneName);
         }

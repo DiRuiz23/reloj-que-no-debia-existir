@@ -25,8 +25,44 @@ namespace Reloj.Core
         public void AddSkillPoints(int amount) => SetSkillPoints(SkillPoints + amount);
 
         private readonly Dictionary<string, string> _data = new();
+        private readonly Dictionary<string, int> _levelScores = new();
 
         public void AddScore(int amount) => Score += amount;
+
+        public void RecordLevelScore(string sceneName, int levelScore)
+        {
+            if (string.IsNullOrEmpty(sceneName)) return;
+            _levelScores[sceneName] = Mathf.Max(0, levelScore);
+            RecalculateTotalScore();
+        }
+
+        public int GetScoreExcluding(string sceneName)
+        {
+            if (string.IsNullOrEmpty(sceneName)) return Score;
+            int sum = 0;
+            foreach (var kv in _levelScores)
+                if (kv.Key != sceneName) sum += kv.Value;
+            return sum;
+        }
+
+        public void RestoreLevelScores(IEnumerable<LevelScoreEntry> entries)
+        {
+            _levelScores.Clear();
+            if (entries != null)
+            {
+                foreach (var e in entries)
+                    if (e != null && !string.IsNullOrEmpty(e.level) && e.bestScore > 0)
+                        _levelScores[e.level] = e.bestScore;
+            }
+            RecalculateTotalScore();
+        }
+
+        private void RecalculateTotalScore()
+        {
+            int total = 0;
+            foreach (var v in _levelScores.Values) total += v;
+            Score = total;
+        }
 
         // Lo llama GameStateManager.CompleteLevel. La pantalla de I-12 lee estos valores.
         public void SetLevelResult(int score, float time)
@@ -50,6 +86,7 @@ namespace Reloj.Core
             LevelTime = 0f;
             SkillPoints = 0;
             _data.Clear();
+            _levelScores.Clear();
             ClearCheckpoint();
         }
 

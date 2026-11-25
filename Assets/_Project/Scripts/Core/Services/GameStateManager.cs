@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,6 +47,11 @@ namespace Reloj.Core
             }
         }
 
+        private static readonly HashSet<string> NonPausableScenes = new HashSet<string>
+        {
+            "Boot", "Splash", "MainMenu", "Decision_Final", "Ending_A", "Ending_B"
+        };
+
         private bool _inputActive;
 
         private void Start()
@@ -75,8 +81,16 @@ namespace Reloj.Core
 
         private void OnPausePerformed(InputAction.CallbackContext ctx)
         {
+            if (NonPausableScenes.Contains(SceneManager.GetActiveScene().name)) return;
             if (CurrentState == GameState.Jugando) Pause();
             else if (CurrentState == GameState.Pausado) Resume();
+        }
+
+        public void ResetToPlaying()
+        {
+            SetState(GameState.Jugando);
+            Time.timeScale = 1f;
+            AudioListener.pause = false;
         }
 
         public void Pause()
@@ -96,7 +110,10 @@ namespace Reloj.Core
             if (CurrentState != GameState.Jugando) return;
             var services = GameServices.Instance;
             if (services != null && services.Session != null)
+            {
                 services.Session.SetLevelResult(score, time);
+                services.Session.RecordLevelScore(SceneManager.GetActiveScene().name, score);
+            }
 
             // I-38: exactamente 1 punto de habilidad por nivel completado (una sola vez por nivel).
             // Va ANTES de guardar para que el punto quede en el guardado de este mismo nivel.

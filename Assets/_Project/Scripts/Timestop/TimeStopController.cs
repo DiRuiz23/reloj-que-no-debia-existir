@@ -98,6 +98,7 @@ namespace Reloj.TimeStop
 
         void Awake()
         {
+            useGUILayout = false;
             if (Instance != null && Instance != this)
                 Debug.LogWarning("Hay mas de un TimeStopController en la escena.", this);
             Instance = this;
@@ -206,11 +207,13 @@ namespace Reloj.TimeStop
             }
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         void OnGUI()
         {
             if (!showDebug) return;
             GUI.Label(new Rect(10, 40, 780, 24),
                 $"TimeStop: {State}  |  Activo restante: {RemainingActiveTime:F1}s  |  Carga: {CooldownNormalized:F2}  |  Duracion: {EffectiveDuration:F1}s (nivel {activeDuration:F1} + habilidad {SkillBonusSeconds:F1})  |  Ultima medida: {LastMeasuredDuration:F2}s");
         }
+#endif
     }
 }

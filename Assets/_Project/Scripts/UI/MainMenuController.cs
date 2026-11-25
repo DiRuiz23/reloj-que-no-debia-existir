@@ -12,8 +12,8 @@ namespace Reloj.UI
 {
     public class MainMenuController : MonoBehaviour
     {
-        [Header("Nivel 1 (provisional hasta que exista la escena real)")]
-        [SerializeField] private string level1SceneName = "Test_Sandbox";
+        [Header("Nivel 1")]
+        [SerializeField] private string level1SceneName = "Level01_Gameplay";
 
         [Header("Transicion de musica")]
         [Tooltip("Segundos que tarda en bajar la musica del menu antes de cargar el nivel.")]
@@ -127,8 +127,9 @@ namespace Reloj.UI
                 return;
             }
 
+            if (services.State != null) services.State.ResetToPlaying();
             _loading = true;
-            services.Loader.LoadSingle(scene);
+            StartCoroutine(FadeThenLoad(services, scene));
         }
 
         private void StartNewGame()
@@ -143,15 +144,16 @@ namespace Reloj.UI
             if (services.Clues != null) services.Clues.Clear();
             if (services.Session != null) services.Session.ResetSession();
             if (services.Save != null) services.Save.ResetProgress();
+            else if (services.SkillPoints != null) services.SkillPoints.ResetAll();
+            if (services.State != null) services.State.ResetToPlaying();
 
             if (newGameConfirmPanel != null) newGameConfirmPanel.SetActive(false);
             _loading = true;
-            services.Loader.LoadSingle(LevelSequence.Order[0]);
-            StartCoroutine(FadeThenLoad(services));
+            StartCoroutine(FadeThenLoad(services, LevelSequence.Order[0]));
         }
 
         // La musica del menu se apaga suave y despues se carga el nivel (que sube su propia musica con fade-in).
-        private IEnumerator FadeThenLoad(GameServices services)
+        private IEnumerator FadeThenLoad(GameServices services, string targetScene)
         {
             var audio = AudioManager.Instance;
             if (audio != null && musicFadeOutSeconds > 0f)
@@ -159,7 +161,14 @@ namespace Reloj.UI
                 audio.FadeOutMusic(musicFadeOutSeconds);
                 yield return new WaitForSecondsRealtime(musicFadeOutSeconds);
             }
-            services.Loader.LoadSingle(level1SceneName);
+            string destination = !string.IsNullOrEmpty(targetScene) ? targetScene : level1SceneName;
+            if (!Application.CanStreamedLevelBeLoaded(destination))
+            {
+                Debug.LogError($"[MainMenu] La escena '{destination}' no está en el build.");
+                _loading = false;
+                yield break;
+            }
+            services.Loader.LoadSingle(destination);
         }
 
         private void OpenConfirm()

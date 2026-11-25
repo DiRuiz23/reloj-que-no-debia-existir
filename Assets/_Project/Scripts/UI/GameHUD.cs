@@ -1,6 +1,8 @@
+using Reloj.Core;
 using Reloj.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Reloj.UI
@@ -81,7 +83,12 @@ namespace Reloj.UI
 
         void SetScore(int value)
         {
-            if (scoreLabel != null) scoreLabel.text = $"Puntaje  {value}";
+            if (scoreLabel == null) return;
+            var gs = GameServices.Instance;
+            int carryOver = (gs != null && gs.Session != null)
+                ? gs.Session.GetScoreExcluding(SceneManager.GetActiveScene().name)
+                : 0;
+            scoreLabel.text = $"Puntaje  {carryOver + value}";
         }
 
         void SetTime(float seconds)

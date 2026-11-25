@@ -34,12 +34,34 @@ namespace Reloj.UI
         static void ResetStatics() { DebugNormalizedSafeArea = null; }
 
         RectTransform rectTransform;
+        RectTransform cachedRootCanvasRt;
+        bool hasParentSafeArea;
+        int lastW, lastH;
+        Rect lastSafeRect;
+        Rect? lastDebugSafe;
         Vector2 lastMin, lastMax, lastCanvasSize;
         bool hasLast;
 
-        void Awake() { rectTransform = GetComponent<RectTransform>(); }
+        void Awake()
+        {
+            rectTransform = GetComponent<RectTransform>();
+            RefreshHierarchyCache();
+        }
 
-        void OnEnable() { Apply(true); }
+        void OnTransformParentChanged() => RefreshHierarchyCache();
+
+        void RefreshHierarchyCache()
+        {
+            hasParentSafeArea = transform.parent != null && transform.parent.GetComponentInParent<SafeAreaFitter>() != null;
+            var canvas = GetComponentInParent<Canvas>();
+            cachedRootCanvasRt = canvas != null ? canvas.rootCanvas.transform as RectTransform : null;
+        }
+
+        void OnEnable()
+        {
+            RefreshHierarchyCache();
+            Apply(true);
+        }
 
         void Update() { Apply(false); }
 
@@ -60,6 +82,15 @@ namespace Reloj.UI
             int h = UnityEngine.Device.Screen.height;
             if (w <= 0 || h <= 0) return;
 
+            Rect safe = UnityEngine.Device.Screen.safeArea;
+            Vector2 canvasSize = cachedRootCanvasRt != null ? cachedRootCanvasRt.rect.size : Vector2.zero;
+
+            if (!force && hasLast && w == lastW && h == lastH && safe == lastSafeRect
+                && DebugNormalizedSafeArea == lastDebugSafe && canvasSize == lastCanvasSize)
+                return;
+
+            lastW = w; lastH = h; lastSafeRect = safe; lastDebugSafe = DebugNormalizedSafeArea;
+
             Vector2 min, max;
             if (DebugNormalizedSafeArea.HasValue)
             {
@@ -69,12 +100,11 @@ namespace Reloj.UI
             }
             else
             {
-                Rect safe = UnityEngine.Device.Screen.safeArea;
                 min = new Vector2(Mathf.Clamp01(safe.xMin / w), Mathf.Clamp01(safe.yMin / h));
                 max = new Vector2(Mathf.Clamp01(safe.xMax / w), Mathf.Clamp01(safe.yMax / h));
             }
             // Si ya hay un SafeAreaFitter arriba (p. ej. el SafeArea del Canvas), este no vuelve a recortar.
-            if (transform.parent != null && transform.parent.GetComponentInParent<SafeAreaFitter>() != null)
+            if (hasParentSafeArea)
             {
                 min = Vector2.zero; max = Vector2.one;
             }
@@ -85,9 +115,6 @@ namespace Reloj.UI
                 if (!bottom) min.y = 0f;
                 if (!top) max.y = 1f;
             }
-
-            var canvas = GetComponentInParent<Canvas>();
-            Vector2 canvasSize = canvas != null && canvas.rootCanvas.transform is RectTransform crt ? crt.rect.size : Vector2.zero;
 
             if (!force && hasLast && min == lastMin && max == lastMax && canvasSize == lastCanvasSize) return;
             lastMin = min; lastMax = max; lastCanvasSize = canvasSize; hasLast = true;

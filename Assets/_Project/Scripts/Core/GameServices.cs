@@ -30,7 +30,8 @@ namespace Reloj.Core
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);   // duplicado al volver a Boot
+                gameObject.SetActive(false);
+                Destroy(gameObject);   // duplicado al volver a Boot o entrar a niveles
                 return;
             }
             Instance = this;
