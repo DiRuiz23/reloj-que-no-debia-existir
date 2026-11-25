@@ -12,6 +12,11 @@ namespace Reloj.Dialogue
         public string next;
         /// <summary>Flag que se activa al elegir esta opcion (opcional).</summary>
         public string setFlag;
+        /// <summary>
+        /// I-38: nivel de Persuasion (1 a 3) que hace falta para ver esta opcion. 0 u omitido = siempre visible.
+        /// Si el jugador no tiene ese nivel la opcion NO aparece. Ejemplo: { "text": "...", "next": "...", "requiresPersuasion": 1 }
+        /// </summary>
+        public int requiresPersuasion;
     }
 
     [Serializable]

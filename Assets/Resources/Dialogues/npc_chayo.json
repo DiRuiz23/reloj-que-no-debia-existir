@@ -35,6 +35,15 @@
       "id": "direccion",
       "speaker": "Doña Chayo",
       "text": "Rumbo a la estación, ándale. Pero no me preguntes más, que me da miedo.",
+      "choices": [
+        { "text": "Entiendo. Gracias, Doña Chayo.", "next": "fin_amable" },
+        { "text": "Confíe en mí, Doña Chayo. Necesito saber todo lo que vio.", "next": "persuadida", "requiresPersuasion": 1 }
+      ]
+    },
+    {
+      "id": "persuadida",
+      "speaker": "Doña Chayo",
+      "text": "Ay, está bien, me has convencido. Iba apurado y miraba hacia atrás a cada rato, como si lo siguieran. Eso es todo lo que sé, hijo.",
       "end": true
     },
     {

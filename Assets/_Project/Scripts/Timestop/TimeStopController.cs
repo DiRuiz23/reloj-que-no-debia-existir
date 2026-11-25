@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Reloj.Core;
+using Reloj.Progression;
 
 namespace Reloj.TimeStop
 {
@@ -56,9 +57,21 @@ namespace Reloj.TimeStop
         }
 
         public float RemainingActiveTime =>
-            State == TimeStopState.Active ? Mathf.Max(0f, activeDuration - timer) : 0f;
+            State == TimeStopState.Active ? Mathf.Max(0f, EffectiveDuration - timer) : 0f;
 
-        public float Duration => activeDuration;
+        /// <summary>
+        /// I-38: duracion REAL de la parada = valor del nivel (inspector x LevelDifficultyConfig, I-30)
+        /// + segundos de la mejora de habilidad. Se lee en vivo: gastar un punto en la pausa se nota al instante.
+        /// </summary>
+        public float EffectiveDuration => activeDuration + SkillModifiers.TimeStopBonusSeconds;
+
+        /// <summary>Segundos que la mejora de habilidad suma ahora mismo (0 sin mejora).</summary>
+        public float SkillBonusSeconds => SkillModifiers.TimeStopBonusSeconds;
+
+        /// <summary>Cronometro de prueba (I-38): lo que realmente duro la ultima parada, en segundos. 0 = aun no se uso.</summary>
+        public float LastMeasuredDuration { get; private set; }
+
+        public float Duration => EffectiveDuration;
         public float Cooldown => activeCooldown;
 
         // Evita estado viejo si el Editor tiene desactivado "Reload Domain".
@@ -156,7 +169,7 @@ namespace Reloj.TimeStop
             {
                 case TimeStopState.Active:
                     timer += Time.deltaTime;
-                    if (timer >= activeDuration) EndTimeStop();
+                    if (timer >= EffectiveDuration) EndTimeStop();
                     break;
 
                 case TimeStopState.Recharging:
@@ -174,6 +187,7 @@ namespace Reloj.TimeStop
         void EndTimeStop()
         {
             IsStopped = false;
+            LastMeasuredDuration = timer;
             SetFrozen(false);
             State = TimeStopState.Recharging;
             timer = 0f;
@@ -195,8 +209,8 @@ namespace Reloj.TimeStop
         void OnGUI()
         {
             if (!showDebug) return;
-            GUI.Label(new Rect(10, 40, 420, 24),
-                $"TimeStop: {State}  |  Activo restante: {RemainingActiveTime:F1}s  |  Carga: {CooldownNormalized:F2}");
+            GUI.Label(new Rect(10, 40, 780, 24),
+                $"TimeStop: {State}  |  Activo restante: {RemainingActiveTime:F1}s  |  Carga: {CooldownNormalized:F2}  |  Duracion: {EffectiveDuration:F1}s (nivel {activeDuration:F1} + habilidad {SkillBonusSeconds:F1})  |  Ultima medida: {LastMeasuredDuration:F2}s");
         }
     }
 }

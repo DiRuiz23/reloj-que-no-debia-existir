@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 6094481626130073961}
   - component: {fileID: 7031715613767259623}
   - component: {fileID: 949419809401329163}
+  - component: {fileID: 681414282694753818}
   m_Layer: 0
   m_Name: GameService
   m_TagString: Untagged
@@ -234,6 +235,7 @@ MonoBehaviour:
   state: {fileID: 4885286880016399121}
   clues: {fileID: 949419809401329163}
   settings: {fileID: 8100112233445566773}
+  skillPoints: {fileID: 681414282694753818}
 --- !u!114 &949419809401329163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +257,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1774ab125c39bdf49912a4af2a000207, type: 2}
   - {fileID: 11400000, guid: 078c2abe3516969488f8760e4c2e0611, type: 2}
   - {fileID: 11400000, guid: d70b4b0994c91994b881fc1e5800b714, type: 2}
+--- !u!114 &681414282694753818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036867392367989550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb518c302ea8721488bda8dd7078229c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reloj.Progression.SkillPointManager
+  timeStopSecondsPerLevel: 1
+  detectionReductionPerLevel: 0.1
 --- !u!1 &7602810662677817761
 GameObject:
   m_ObjectHideFlags: 0

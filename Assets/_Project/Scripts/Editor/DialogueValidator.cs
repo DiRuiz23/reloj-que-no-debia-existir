@@ -141,6 +141,9 @@ namespace Reloj.Dialogue.EditorTools
                             Warn(asset, $"{cw}: lleva al mismo nodo ('{c.next}') que otra opción.");
 
                         CheckFlag(asset, cw, c.setFlag, flags);
+
+                        if (c.requiresPersuasion < 0 || c.requiresPersuasion > Reloj.Progression.SkillPointManager.MaxLevel)
+                            Error(asset, $"{cw}: 'requiresPersuasion' debe estar entre 0 y {Reloj.Progression.SkillPointManager.MaxLevel}.");
                     }
                 }
 

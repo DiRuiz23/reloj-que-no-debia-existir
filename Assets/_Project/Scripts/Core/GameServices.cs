@@ -1,5 +1,6 @@
 using UnityEngine;
 using Reloj.Clues;
+using Reloj.Progression;
 
 namespace Reloj.Core
 {
@@ -14,6 +15,7 @@ namespace Reloj.Core
         [SerializeField] private GameStateManager state;
         [SerializeField] private ClueInventory clues;
         [SerializeField] private SettingsService settings;
+        [SerializeField] private SkillPointManager skillPoints;
 
         public DialogueFlagManager Flags => flags;
         public GameSession Session => session;
@@ -22,6 +24,7 @@ namespace Reloj.Core
         public GameStateManager State => state;
         public ClueInventory Clues => clues;
         public SettingsService Settings => settings;
+        public SkillPointManager SkillPoints => skillPoints;
 
         private void Awake()
         {
@@ -34,6 +37,8 @@ namespace Reloj.Core
             DontDestroyOnLoad(gameObject);
             if (clues == null) clues = GetComponent<ClueInventory>();   // I-27: no exige cablearlo a mano
             if (settings == null) settings = GetComponentInChildren<SettingsService>(true);
+            if (skillPoints == null) skillPoints = GetComponent<SkillPointManager>();            // I-38
+            if (skillPoints == null) skillPoints = gameObject.AddComponent<SkillPointManager>(); // no exige cablearlo a mano
         }
     }
 }
