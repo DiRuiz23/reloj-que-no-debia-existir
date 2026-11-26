@@ -48,6 +48,21 @@ namespace Reloj.UI
         public TMP_Dropdown QualityDropdown => qualityDropdown;
         public UnityEngine.UI.Button BackButton => backButton;
 
+        public static OptionsPanelUI Active { get; private set; }
+        public static bool IsOpen => Active != null && Active.gameObject.activeInHierarchy;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => Active = null;
+
+        public static bool TryCloseActive()
+        {
+            if (!IsOpen) return false;
+            if (Active._rebinding) return true;
+            if (Active.backButton != null && Active.backButton.interactable) Active.backButton.onClick.Invoke();
+            else Active.Close();
+            return true;
+        }
+
         GameObject _previousSelection;
         bool _syncing;
         bool _rebinding;
@@ -71,6 +86,7 @@ namespace Reloj.UI
 
         void OnEnable()
         {
+            Active = this;
             if (Settings != null)
             {
                 Settings.Changed += RefreshAll;
@@ -93,6 +109,7 @@ namespace Reloj.UI
 
         void OnDisable()
         {
+            if (Active == this) Active = null;
             if (Settings != null)
             {
                 Settings.Changed -= RefreshAll;

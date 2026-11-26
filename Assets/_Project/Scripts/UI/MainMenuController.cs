@@ -3,6 +3,7 @@ using Reloj.Core;
 using Reloj.Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -66,9 +67,21 @@ namespace Reloj.UI
             Select(playButton);
         }
 
-        // Recupera el foco si un clic en el vacío lo deja sin selección (teclado/gamepad).
+        // Recupera el foco si un clic en el vacío lo deja sin selección (teclado/gamepad) y maneja el botón Atrás.
         private void Update()
         {
+            var kb = Keyboard.current;
+            if (kb != null && kb.escapeKey.wasPressedThisFrame)
+            {
+                if (Reloj.Core.SettingsService.Instance != null && Reloj.Core.SettingsService.Instance.IsRebinding) return;
+                if (ConfirmOpen) { CloseConfirm(); return; }
+                if ((optionsPanel != null && optionsPanel.activeSelf) || (creditsPanel != null && creditsPanel.activeSelf))
+                {
+                    ClosePanels();
+                    return;
+                }
+            }
+
             var es = EventSystem.current;
             if (es == null || es.currentSelectedGameObject != null) return;
             if (ConfirmOpen) Select(confirmNoButton);

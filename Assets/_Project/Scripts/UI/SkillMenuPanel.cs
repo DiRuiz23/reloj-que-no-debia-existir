@@ -44,6 +44,7 @@ namespace Reloj.UI
 
         /// <summary>true mientras el menu esta abierto. GameStateUI lo usa para no robarle el foco.</summary>
         public static bool IsOpen { get; private set; }
+        public static SkillMenuPanel Active { get; private set; }
 
         GameObject _previousSelection;
         GameStateManager _state;
@@ -51,7 +52,14 @@ namespace Reloj.UI
         static SkillPointManager Skills => SkillPointManager.Instance;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() { IsOpen = false; }
+        static void ResetStatics() { IsOpen = false; Active = null; }
+
+        public static bool TryCloseActive()
+        {
+            if (Active == null || !Active.gameObject.activeInHierarchy) return false;
+            Active.Close();
+            return true;
+        }
 
         // ---------------------------------------------------------------- ciclo de vida
 
@@ -69,6 +77,7 @@ namespace Reloj.UI
         void OnEnable()
         {
             IsOpen = true;
+            Active = this;
 
             if (Skills != null) Skills.Changed += Refresh;
             else Debug.LogWarning("[SkillMenuPanel] No hay SkillPointManager. Inicia desde Boot o agrega GameService a la escena.", this);
@@ -88,6 +97,7 @@ namespace Reloj.UI
         void OnDisable()
         {
             IsOpen = false;
+            if (Active == this) Active = null;
 
             if (Skills != null) Skills.Changed -= Refresh;
             if (_state != null) _state.OnStateChanged -= OnStateChanged;

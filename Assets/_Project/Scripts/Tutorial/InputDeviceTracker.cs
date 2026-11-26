@@ -3,6 +3,7 @@ using System.Linq;
 using Reloj.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Utilities;
 
@@ -76,9 +77,15 @@ namespace Reloj.Tutorial
                 return;
             }
 
-            if (device is Keyboard)
+            if (device is Keyboard kb)
             {
-                if (eventPtr.HasButtonPress()) Set(InputScheme.Keyboard);
+                if (eventPtr.HasButtonPress())
+                {
+                    // En Android el botón/gesto "Atrás" entra como Escape del teclado virtual:
+                    // si el jugador está usando controles táctiles, no se debe ocultar la UI táctil.
+                    if (IsSystemBackOnly(eventPtr, kb)) return;
+                    Set(InputScheme.Keyboard);
+                }
             }
             else if (device is Gamepad pad)
             {
@@ -92,6 +99,23 @@ namespace Reloj.Tutorial
                 Set(InputScheme.Touch);
             }
             // El mouse se ignora: el juego no tiene acciones de mouse y solo generaria falsos cambios.
+        }
+
+        static bool IsSystemBackOnly(InputEventPtr eventPtr, Keyboard kb)
+        {
+            if (Current != InputScheme.Touch || kb == null) return false;
+
+            bool escapePressed = false;
+            foreach (var control in eventPtr.EnumerateChangedControls(kb, 0.5f))
+            {
+                if (control == kb.escapeKey)
+                {
+                    escapePressed = true;
+                    continue;
+                }
+                if (control is KeyControl) return false;
+            }
+            return escapePressed;
         }
     }
 }
