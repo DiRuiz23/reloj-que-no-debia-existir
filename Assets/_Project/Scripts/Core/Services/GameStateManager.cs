@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Reloj.Clues;
+using Reloj.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -82,8 +84,28 @@ namespace Reloj.Core
         private void OnPausePerformed(InputAction.CallbackContext ctx)
         {
             if (NonPausableScenes.Contains(SceneManager.GetActiveScene().name)) return;
-            if (CurrentState == GameState.Jugando) Pause();
-            else if (CurrentState == GameState.Pausado) Resume();
+            if (SettingsService.Instance != null && SettingsService.Instance.IsRebinding) return;
+
+            if (CurrentState == GameState.Jugando)
+            {
+                if (ClueMenuUI.Instance != null && ClueMenuUI.Instance.IsOpen)
+                {
+                    ClueMenuUI.Instance.Close();
+                    return;
+                }
+                Pause();
+            }
+            else if (CurrentState == GameState.Pausado)
+            {
+                if (ClueMenuUI.Instance != null && ClueMenuUI.Instance.IsOpen)
+                {
+                    ClueMenuUI.Instance.Close();
+                    return;
+                }
+                if (SkillMenuPanel.TryCloseActive()) return;
+                if (OptionsPanelUI.TryCloseActive()) return;
+                Resume();
+            }
         }
 
         public void ResetToPlaying()
